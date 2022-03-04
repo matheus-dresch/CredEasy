@@ -33,6 +33,10 @@ header {
     letter-spacing: -5px;
 }
 
+.title-text:hover{
+    cursor:pointer;
+}
+
 .title-image {
     display: inline-block;
     width: 85px;
@@ -44,6 +48,7 @@ header {
 
 .title-image:hover img{
     transform: rotateZ(45deg);
+    cursor:pointer;
 }
 
 .title-image img {
@@ -62,6 +67,7 @@ header {
     border: 4px solid rgba(255,255,255,0.15);
     border-radius: 7.5px;
     transition: background-color .25s;
+    text-decoration: none;
 }
 
 .sign-button:hover {
