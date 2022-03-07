@@ -1,0 +1,80 @@
+:root {
+    --main-color: #1d152d;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+header {
+    width: 100%;
+    height: 100px;
+    padding: 15px 0;
+    background-color: var(--main-color);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    height: 100%;
+    margin: 0 auto;
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    font-family: 'Raleway', sans-serif;
+    height: 100%;
+    cursor: pointer;
+}
+
+.title img {
+    height: 100%;
+}
+
+.title p {
+    font-size: 40px;
+    vertical-align: middle;
+    color: #FFf;
+}
+
+.menu {
+    display: flex;
+    height: 100px;
+    align-items: center;
+}
+
+.menu-button {
+    display: inline-block;
+    padding: 10px 25px;
+    border-radius: 10px;
+    margin-left: 15px;
+    text-decoration: none;
+    transition-property: background, color;
+    transition-duration: .5s;
+    font-weight: bolder;
+    font-family: 'Roboto', sans-serif;
+}
+
+.login-button {
+    border: 2px solid #FFF;
+    color: #FFF;
+}
+
+.login-button:hover {
+    background-color: #FFF;
+    color: #1d152d;
+}
+
+.sign-button {
+    border: 2px solid #cc55ff;
+    color: #cc55ff;
+}
+
+.sign-button:hover {
+    background-color: #cc55ff;
+    color: #FFF;
+}
