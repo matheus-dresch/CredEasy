@@ -11,6 +11,9 @@ header {
     height: 100px;
     padding: 15px 0;
     background-color: var(--main-color);
+    position: fixed;
+    border-bottom: 2px solid;
+    border-image: linear-gradient(90deg, #5832a6, #00fffb, #5832a6) 1;
 }
 
 .header-content {

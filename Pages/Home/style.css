@@ -1,0 +1,30 @@
+main {
+    padding: 100px 0 0;
+    margin: 0 auto;
+}
+
+body {
+    background-color: #291e40;
+}
+
+.products-info {
+    width: 100%;
+    height: 300px;
+    display: flex;
+}
+
+.products-info img {
+    object-fit: cover;
+    width: 65%;
+    height: 100%;
+}
+
+.products-info p {
+    display: block;
+    padding: 50px;
+    width: 30%;
+    font-family: 'Roboto', sans-serif;
+    font-style: italic;
+    color: #FFF;
+    font-size: 40px;
+}
