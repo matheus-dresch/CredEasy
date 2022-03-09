@@ -1,0 +1,22 @@
+footer {
+    box-sizing: border-box;
+    height: 100px;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    border-top: 2px solid;
+    border-image: linear-gradient(90deg, #5832a6, #00fffb, #5832a6) 1;
+}
+
+footer p {
+    font-family: 'Raleway', sans-serif;
+    font-size: 50px;
+    color: white;
+    margin-bottom: 10px;
+}
+
+footer a {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    color: #FFF;
+}

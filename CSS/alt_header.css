@@ -1,0 +1,21 @@
+* {
+    box-sizing: border-box;
+}
+
+header {
+    height: 100px;
+    font-family: 'Raleway', sans-serif;
+    font-size: 40px;
+    padding: 30px;
+}
+
+a {
+    color: #FFF;
+    text-decoration: none;
+}
+
+body {
+    background-image: linear-gradient(45deg, #512b9c, #007aaa);
+    background-repeat:no-repeat;
+    height: 100vh;
+}

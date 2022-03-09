@@ -48,6 +48,7 @@ body {
     border-radius: 5px;
     transition-property: background, color;
     transition-duration: .5s;
+    cursor: pointer;
 }
 
 .products-info div button:hover {
