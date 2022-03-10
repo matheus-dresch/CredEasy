@@ -70,3 +70,13 @@ form a {
     font-size: 14px;
     font-family: 'Raleway';
 }
+
+@media screen and (max-width: 520px) {
+    form {
+        width: 300px;
+    }
+
+    .input-box {
+        width: 100%;
+    }
+}

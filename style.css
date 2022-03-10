@@ -1,0 +1,28 @@
+@keyframes cubogira {
+    0% {background-color: #F00; transform: rotateZ(0deg) scale(0); filter: blur(0px); box-shadow: 0 0 5px #000;}
+    50% {background-color: #0F0; transform: rotateZ(360deg) scale(2); filter: blur(5px); box-shadow: 0 0 50px #000;}
+    100% {background-color: #F00; transform: rotateZ(0deg) scale(0); filter: blur(0px); box-shadow: 0 0 5px #000;}
+}
+
+
+.cubo-teste {
+    width: 100px;
+    height: 100px;
+    background-color: #F00;
+    content: ' ';
+    animation-name: cubogira;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+    box-shadow: 0 0 10px #000;
+    margin: auto;
+    border-radius: 50px;
+
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

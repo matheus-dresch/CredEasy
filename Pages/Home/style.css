@@ -4,7 +4,7 @@ main {
 }
 
 body {
-    background-color: #291e40;
+    background-color: #260072;
 }
 
 .products-info {
@@ -58,4 +58,27 @@ body {
 
 .first-banner img{
     object-position: 0 -65px;
+}
+
+@media screen and (max-width: 1000px) {
+    .products-info img, .products-info div {
+        width: 50%;
+    }
+}
+
+@media screen and (max-width: 680px) {
+    .products-info img {
+        display: none;
+    }
+
+    .products-info div {
+        width: 100%;
+        border-top: 2px solid;
+        border-bottom: 2px solid;
+        border-image: linear-gradient(90deg,#5500ff, #00b3ff, #5500ff)1;
+    }
+
+    .products-info p {
+        text-justify: inter-word;
+    }
 }
