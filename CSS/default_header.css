@@ -6,6 +6,14 @@
     box-sizing: border-box;
 }
 
+.show  {
+    display: block;
+}
+
+.open-menu-button {
+    display: none;
+}
+
 header {
     width: 100%;
     height: 100px;
@@ -115,6 +123,14 @@ header {
         padding: 5px 15px;
         margin: 0 0 0 5px;
     }
+
+    /* .menu-list {
+        display: none;
+    } */
+
+    .open-menu-button {
+        display: block;
+    }
 }
 
 @media screen and (max-width: 410px) {
@@ -128,4 +144,8 @@ header {
     .title p {
         margin-bottom: 5px;
     }
+    
+    /* .menu-list {
+        display: none;
+    } */
 }
