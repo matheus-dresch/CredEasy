@@ -13,8 +13,9 @@
         @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@900&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
     </style> 
-    <title>Login - CredEasy</title>
+    <title>Cadastro - CredEasy</title>
 </head>
 <body>
     <header>
@@ -26,10 +27,12 @@
             <label>
                 Nome:
                 <input class="input-box user_name" type="text" name="user_name" placeholder="Seu nome">
+                <p class="error-message hidden">Seu nome deve conter de 10 à 255 carácteres</p>
             </label>
             <label>
                 CPF:
-                <input class="input-box user_cpf" type="number" name="user_cpf" placeholder="Seu cpf (sem pontos e hífen)">
+                <input class="input-box user_cpf" type="number" name="user_cpf" placeholder="Seu CPF">
+                <p class="error-message hidden">CPF inválido</p>
             </label>
             <label>
                 Telefone/Celular:
@@ -38,11 +41,16 @@
             <label>
                 Endereço:
                 <input class="input-box user_address" type="text" name="user_address" placeholder="Seu endereço (Rua, Nº, CEP, Estado)">
+                <p class="error-message hidden">O endereço deve conter até 255 carácteres</p>
             </label>
             <label>
                 Profissão:
                 <input class="input-box user_profession" type="text" name="user_profession" placeholder="Sua profissão">
             </label>
+            <label>
+                Renda:
+                <input class="input-box user_profession" type="number" name="user_income" placeholder="Sua renda">
+            
             <label>
                 E-mail:
                 <input class="input-box user_email" type="email" name="user_email" placeholder="Seu e-mail">
