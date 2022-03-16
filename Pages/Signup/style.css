@@ -38,6 +38,14 @@ form label {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 15px;
     padding: 0 10px;
+<<<<<<< HEAD
+=======
+    outline: none;
+}
+
+.input-box:focus {
+    border-color: rgb(0, 132, 255);
+>>>>>>> fcdb0fd (Pequenas alterações)
 }
 
 form button {
@@ -79,4 +87,12 @@ form a {
     .input-box {
         width: 100%;
     }
+<<<<<<< HEAD
+=======
+}
+
+.red-border {
+    border-color: red;
+    outline: red;
+>>>>>>> fcdb0fd (Pequenas alterações)
 }
