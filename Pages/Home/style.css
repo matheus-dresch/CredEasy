@@ -73,12 +73,11 @@ body {
 
     .products-info div {
         width: 100%;
-        border-top: 2px solid;
         border-bottom: 2px solid;
         border-image: linear-gradient(90deg,#5500ff, #00b3ff, #5500ff)1;
     }
 
     .products-info p {
-        text-justify: inter-word;
+        text-align: center;
     }
 }

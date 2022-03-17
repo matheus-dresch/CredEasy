@@ -88,6 +88,53 @@ header {
     color: #FFF;
 }
 
+.mobile-menu-button {
+    height: 100%;
+    background-color: #FFF2;
+    padding: 10px;
+    border-radius: 10px;
+    display: none;
+}
+
+.mobile-menu {
+    position: absolute;
+    width: 75vw;
+    min-height: 100vh;
+    /* background-color: #260072; */
+    top: 100px;
+    display: flex;
+    left: -75vw;
+    transition: left .5s;
+    background-image: linear-gradient(90deg , #1e0255ee 90%, transparent );
+}
+
+.mobile-menu--visible {
+    left: 0;
+}
+
+.mobile-menu-nav {
+    width: 100%;
+}
+
+.mobile-link {
+    border: 0;
+    color: #FFF;
+    font-size: 2rem;
+    text-decoration: none;
+    display: block;
+    padding: 30px 15px;
+    font-family: 'Roboto', sans-serif;
+    width: 100%;
+    border-bottom: 2px solid;
+    border-image: linear-gradient(90deg, rgb(119, 0, 255), transparent 90%) 1;
+}
+
+@media screen and (min-width: 521px) {
+    .mobile-menu, .mobile-menu--visible {
+        display: none;
+    }
+}
+
 @media screen and (max-width: 580px) {
     .menu-button {
         padding: 5px 10px;
@@ -100,13 +147,13 @@ header {
         padding: 0px;
     }
     header {
-        height: 75px;
         padding: 10px 5px;
     }
 
     .header-content {
         margin: 0 auto;
         padding: 10px;
+        justify-content: space-between;
     }
 
     .title img {
@@ -114,38 +161,26 @@ header {
     }
 
     .title p {
-        font-size: 30px;
+        font-size: 50px;
     }
 
-    .menu-button {
-        height: 30px;
-        font-size: 15px;
-        padding: 5px 15px;
-        margin: 0 0 0 5px;
-    }
-
-    /* .menu-list {
+    .menu {
         display: none;
-    } */
+    }
 
-    .open-menu-button {
+    .mobile-menu-button {
         display: block;
     }
 }
 
-@media screen and (max-width: 410px) {
+@media screen and (max-width: 400px) {
     header {
         height: 100px;
     }
-    .header-content {
-        flex-direction: column;
-    }
 
     .title p {
-        margin-bottom: 5px;
+        font-size: 35px;
     }
-    
-    /* .menu-list {
-        display: none;
-    } */
+
+
 }
