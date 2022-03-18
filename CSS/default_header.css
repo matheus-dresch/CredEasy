@@ -97,10 +97,9 @@ header {
 }
 
 .mobile-menu {
-    position: absolute;
+    position: fixed;
     width: 75vw;
     min-height: 100vh;
-    /* background-color: #260072; */
     top: 100px;
     display: flex;
     left: -75vw;
