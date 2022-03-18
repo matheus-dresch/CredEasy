@@ -1,5 +1,4 @@
 const text_text = document.querySelector('.header-text--text')
-const text_hour = document.querySelector('.header-text--hour')
 
 function updateHours() {
     const date = new Date()
@@ -12,18 +11,6 @@ function updateHours() {
     } else {
         text_text.innerText = 'Boa tarde :)'
     }
-
-    text_hour.innerText = `${addZero(actualHour)}:${addZero(date.getMinutes())}`
-
-    setInterval(updateHours, 10000)
 }
 
 updateHours()
-
-function addZero(num) {
-    if (num < 10) {
-        return `0${num}`
-    } else {
-        return num
-    }
-}

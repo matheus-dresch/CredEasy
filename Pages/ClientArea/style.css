@@ -1,0 +1,24 @@
+main {
+    display: flex;
+    height: calc(100vh - 75px - 15px - (15px * 2));
+}
+
+.left-container {
+    width: 70%;
+    background-color: #FFF;
+    margin-right: calc(15px / 2);
+}
+
+.right-container {
+    width: 30%;
+    background-color: #FFF;
+    margin-left: calc(15px / 2);
+}
+
+.rounded-border {
+    border-radius: 25px;
+}
+
+.shadow {
+    box-shadow: 5px 5px 5px #000;
+}
