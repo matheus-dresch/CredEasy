@@ -1,3 +1,8 @@
+body {
+    min-height: 100vh;
+    padding: 0 15px;
+}
+
 form {
     width: 500px;
     background-color: rgba(255,255,255,0.1);
@@ -68,14 +73,10 @@ form a {
 
 @media screen and (max-width: 520px) {
     form {
-        width: 300px;
+        width: 100%;
     }
 
     .input-box {
         width: 100%;
-    }
-
-    body {
-        height: 100vh;
     }
 }

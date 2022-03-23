@@ -1,6 +1,6 @@
 body {
     height: max-content;
-    padding-bottom: 50px;
+    padding: 0 10px 50px;
 }
 
 form {
@@ -38,11 +38,11 @@ form label {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 15px;
     padding: 0 10px;
-    outline: none;
 }
 
 .input-box:focus {
-
+    outline: none;
+    border: 2px solid transparent;
 }
 
 form button {
@@ -78,29 +78,10 @@ form a {
 
 @media screen and (max-width: 520px) {
     form {
-        width: 300px;
+        width: 100%;
     }
 
     .input-box {
         width: 100%;
     }
-}
-
-.red-border {
-    border-color: red;
-    outline: red;
-}
-
-.error-message {
-    color: #FFE5E5;
-    font-family: 'Lato', sans-serif;
-    font-size: 16px;
-    background-color: #F997;
-    border-radius: 5px;
-    padding: 5px;
-    margin-top: 5px;
-}
-
-.hidden {
-    display: none;
 }

@@ -1,10 +1,17 @@
-main {
-    padding: 100px 0 0;
-    margin: 0 auto;
-}
+@import url('../../CSS/reset.css');
+@import url('../../CSS/default_header.css');
+@import url('../../CSS/default_footer.css');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,500&display=swap');
 
 body {
     background-color: #260072;
+}
+
+main {
+    padding: 100px 0 0;
+    margin: 0 auto;
 }
 
 .products-info {
@@ -20,44 +27,45 @@ body {
 }
 
 .products-info div {
-    display: flex;
-    padding: 40px;
     width: 30%;
+    padding: 40px;
+    
     font-family: 'Roboto', sans-serif;
     font-style: italic;
-    color: #FFF;
     font-size:45px;
-    text-justify: distribute;
+    color: #FFF;
+    text-align: center;
+    
+    display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
 }
 
-.products-info div span {
+.purple-text {
     color: #cc55ff;
 }
 
-.products-info div button {
-    border: 3px solid #cc55ff;
+.product-button {
     width: 50%;
     height: 40px;
+    border-radius: 5px;
+    
+    border: 3px solid #cc55ff;
     background-color: transparent;
-    color: #cc55ff;
+    
     font-weight: bold;
     font-size: 16px;
-    border-radius: 5px;
+    color: #cc55ff;
+    
     transition-property: background, color;
     transition-duration: .5s;
     cursor: pointer;
 }
 
-.products-info div button:hover {
+.product-button:hover {
     background-color: #cc55ff;
     color: #FFF;
-}
-
-.first-banner img{
-    object-position: 0 -65px;
 }
 
 @media screen and (max-width: 1000px) {
@@ -75,9 +83,24 @@ body {
         width: 100%;
         border-bottom: 2px solid;
         border-image: linear-gradient(90deg,#5500ff, #00b3ff, #5500ff)1;
+        background-color: rgba(0,0,0,.75);
     }
 
-    .products-info p {
-        text-align: center;
+    #sign-banner {
+        background-image: url('../../Images/banner.jpg');
+        background-size: cover;
+        background-position: 50%;
+    }
+
+    #login-banner {
+        background-image: url('../../Images/acessar.jpg');
+        background-size: cover;
+        background-position: 50%;
+    }
+
+    #info-banner {
+        background-image: url('../../Images/produtos.jpg');
+        background-size: cover;
+        background-position: 50%;
     }
 }

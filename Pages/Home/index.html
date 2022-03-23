@@ -4,16 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../CSS/reset.css">
-    <link rel="stylesheet" href="../../CSS/default_header.css">
-    <link rel="stylesheet" href="../../CSS/default_footer.css">
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" href="../../Images/favicon.ico" type="image/x-icon">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@900&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,500&display=swap');
-    </style> 
     <title>Home - CredEasy</title>
 </head>
 <body>
@@ -25,7 +17,7 @@
                 <p>CredEasy</p>
             </div>
             <div class="menu">
-                <nav class="menu-list">
+                <nav>
                     <a class="menu-button login-button" href="../Login/login.html">Entre</a>
                     <a class="menu-button sign-button" href="../Signup/signup.html">Cadastre-se</a>
                 </nav>
@@ -39,25 +31,25 @@
         </nav>
     </div>
     <main>
-        <div class="products-info">
+        <div class="products-info" id="sign-banner">
             <img src="../../Images/banner.jpg" alt="imagem-produtos">
             <div>
-                <p>Precisa de crédito? Conte <span>conosco :) </span></p>
-                <button onclick="window.location='../Signup/signup.html'">Acesse</button>    
+                <p>Precisa de crédito? Conte <span class="purple-text">conosco :) </span></p>
+                <button class="product-button" onclick="window.location='../Signup/signup.html'">Acesse</button>    
             </div>
         </div>
-        <div class="products-info">
+        <div class="products-info" id="login-banner">
             <div>
-                <p>Já é nosso cliente? Entre <span>aqui ;)</span></p>
-                <button onclick="window.location='../Login/login.html'">Entre</button>    
+                <p>Já é nosso cliente? Entre <span class="purple-text">aqui ;)</span></p>
+                <button class="product-button" onclick="window.location='../Login/login.html'">Entre</button>    
             </div>
             <img src="../../Images/acessar.jpg" alt="imagem-produtos">
         </div>
-        <div class="products-info">
+        <div class="products-info" id="info-banner">
             <img src="../../Images/produtos.jpg" alt="imagem-produtos" >
             <div>
-                <p>Está em dúvida? <span>Saiba mais! </span></p>
-                <button>Clique aqui</button>    
+                <p>Está em dúvida? <span class="purple-text">Saiba mais! </span></p>
+                <button class="product-button">Clique aqui</button>    
             </div>
         </div>
     </main>
