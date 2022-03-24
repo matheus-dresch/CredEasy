@@ -30,3 +30,8 @@ O CredEasy conta com as mais diversas funcionalidades de uma plataforma de créd
 <img src="https://user-images.githubusercontent.com/100793778/159767221-6649076a-d42e-467f-849d-537d44917690.svg" width="75">
 <img src="https://user-images.githubusercontent.com/100793778/159767712-68383daa-41c7-45dd-9081-c59b6d27f183.svg" width="75">
 <img src="https://user-images.githubusercontent.com/100793778/159768005-9f1c1d3e-1884-424f-9831-b22d9f48e491.svg" width="75">
+
+---
+
+### Status do projeto
+> Terminando as principais partes do Front-end, Back-end ainda não iniciado
