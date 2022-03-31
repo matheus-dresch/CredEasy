@@ -1,0 +1,50 @@
+:root {
+    --purple: #50f
+}
+
+header {
+    width: 100vw;
+    height: 15vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 5vh;
+    border-bottom: 5px solid;
+    border-image: linear-gradient(90deg, #247da3, #3902a8) 1;
+}
+
+/* HEADER-TITLE */
+
+.header-title {
+    font-family: 'Raleway', sans-serif;
+    font-size: 3rem;
+}
+
+/* HEADER-ACCOUNT */
+
+.header-account {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.header-account p {
+    font-size: 1.25rem;
+    font-family: 'Roboto', sans-serif;
+
+}
+
+.header-account img{
+    height: 100%;
+    width: auto;
+    margin-left: 1rem;
+    padding: 5px;
+    background-color: #ccc;
+    border-radius: 5px;
+}
+
+.header-account:hover:nth-child(1n) {
+    text-decoration: underline;
+}
+
