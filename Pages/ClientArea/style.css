@@ -4,10 +4,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,500&display=swap');
 
+:root {
+    --shadow-color: #555
+}
+
 main {
     width: 100vw;
-    padding: 0 5vh;
+    padding: 0 5vh 0;
     display: flex;
+    background-color: #ddd;
 }
 
 /*! LEFT-CONTENT */
@@ -30,19 +35,10 @@ main {
 .head-link {
     width: 49%;
     height: 100%;
-    /* margin: 0 1vh; */
     border-radius: 15px;
-    box-shadow: 0 0 10px #aaa;
+    box-shadow: 0 0 10px var(--shadow-color);
 
-    display: grid;
-    place-items: center;
-
-    font-size: 2.5vw;
-    font-family: 'Raleway', sans-serif;
-    color: #FFF;
-    text-shadow: 0 0 10px #000, 0 0 5px #000, 0 0 2.5px #000;
-
-    transition-property: box-shadow, filter;
+    transition-property: box-shadow, filter, backdrop-filter;
     transition-duration: .5s;
 
     cursor: pointer;
@@ -51,7 +47,7 @@ main {
 }
 
 .head-link:hover {
-    box-shadow: 0 0 15px #000;
+    box-shadow: 0 0 15px var(--shadow-color);
     filter: grayscale(.25);
 }
 
@@ -65,6 +61,25 @@ main {
     background-image: url('../../Images/button-banner-2.jpg');
     background-size: cover;
     background-position: 100%;
+}
+
+.head-link p {
+    display: grid;
+    place-items: center;
+    border-radius: 15px;
+    width: 100.05%;
+    height: 100.05%;
+    font-size: 2.5vw;
+    font-family: 'Raleway', sans-serif;
+    color: #FFF;
+
+    backdrop-filter: brightness(.25);
+
+    transition: backdrop-filter .5s;
+}
+
+.head-link:hover p {
+    backdrop-filter: brightness(.75);
 }
 
 /* RECOMMENDED */
@@ -81,8 +96,10 @@ main {
     padding: 2.5vh;
     height: 100%;
 
+    background-color: #FFF;
+
     border-radius: 15px;
-    box-shadow: 0 0 10px #aaa;
+    box-shadow: 0 0 10px var(--shadow-color);
 }
 
 .recommended-title {
@@ -107,7 +124,10 @@ main {
 .warn-feed {
     height: 100%;
     width: 100%;
-    box-shadow: 0 0 10px #aaa;
+
+    background-color: #FFF;
+
+    box-shadow: 0 0 10px var(--shadow-color);
     border-radius: 15px;
     padding: 2.5vh;
 }
@@ -115,4 +135,41 @@ main {
 .warn-title {
     font-family: 'Raleway', sans-serif;
     font-size: 3vh;
+}
+
+@media screen and (max-width: 854px) {
+    main {
+        flex-direction: column;
+        padding: 0 5px;  
+    }
+
+    .left-content, .right-content {
+        width: 100%;
+    }
+
+    .head-link p {
+        font-size: 3.5vh;
+        text-align: center;
+    }
+
+    .warnings-container {
+        margin: 1vh 0 ;
+    }
+}
+
+@media screen and (max-width: 520px) {
+    main {
+        padding: 15vh 5px 1vh;
+    }
+
+    .head-links-container {
+        flex-wrap: wrap;
+        height: fit-content;
+    }
+
+    .head-link {
+        width: 100%;
+        height: 100px;
+        margin-bottom: 1vh;
+    }
 }
