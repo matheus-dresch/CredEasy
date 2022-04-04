@@ -12,7 +12,8 @@ main {
     width: 100vw;
     padding: 0 5vh 0;
     display: flex;
-    background-color: #ddd;
+    background-color: #aaa;
+    background-image: linear-gradient(45deg, #00b3ff55, #5500ff55);
 }
 
 /*! LEFT-CONTENT */
@@ -74,6 +75,7 @@ main {
     color: #FFF;
 
     backdrop-filter: brightness(.25);
+    background-image: linear-gradient(45deg, #00b3ff77, #5500ff77);
 
     transition: backdrop-filter .5s;
 }
@@ -148,7 +150,7 @@ main {
     }
 
     .head-link p {
-        font-size: 3.5vh;
+        font-size: 4vh;
         text-align: center;
     }
 
@@ -171,5 +173,9 @@ main {
         width: 100%;
         height: 100px;
         margin-bottom: 1vh;
+    }
+
+    .head-link p {
+        font-size: 4.5vh;
     }
 }

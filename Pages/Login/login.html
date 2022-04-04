@@ -10,9 +10,11 @@
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" href="../../Images/favicon.ico" type="image/x-icon">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@900&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins&family=Roboto:wght@300&display=swap');
     </style> 
     <title>Login - CredEasy</title>
 </head>
@@ -23,18 +25,17 @@
     <main>
         <form action="../../Pages/ClientArea/index.html">
             <h1>Olá! Seja bem-vindo de volta :)</h1>
-            <label>
-                E-mail:
-                <input class="input-box" type="email" name="user_email" placeholder="Seu e-mail">
+            <label class="input-label">
+                <input class="input-box" type="email" name="user_email" placeholder="E-mail">
             </label>
-            <label>
-                Senha:
-                <input class="input-box" type="password" name="user_password" placeholder="Sua senha">
+            <label class="input-label">
+                <input class="input-box" type="password" name="user_password" placeholder="Senha">
             </label>
             <button type="submit">Entrar</button>
             <a href="">&#8250; Esqueci minha senha</a>
             <a href="../Signup/signup.html">&#8250; Não sou cliente</a>
         </form>
     </main>
+    <script src="focus.js"></script>
 </body>
 </html>
