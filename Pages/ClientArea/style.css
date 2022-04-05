@@ -1,0 +1,181 @@
+@import url('../../CSS/reset.css');
+@import url('../../CSS/clientarea_header.css');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,500&display=swap');
+
+:root {
+    --shadow-color: #555
+}
+
+main {
+    width: 100vw;
+    padding: 0 5vh 0;
+    display: flex;
+    background-color: #aaa;
+    background-image: linear-gradient(45deg, #00b3ff55, #5500ff55);
+}
+
+/*! LEFT-CONTENT */
+/* HEAD-LINKS */
+
+.left-content {
+    width: 70%;
+}
+
+.head-links-container {
+    width: 100%;
+    height: 15vh;
+
+    padding: 1vh 0 0;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+.head-link {
+    width: 49%;
+    height: 100%;
+    border-radius: 15px;
+    box-shadow: 0 0 10px var(--shadow-color);
+
+    transition-property: box-shadow, filter, backdrop-filter;
+    transition-duration: .5s;
+
+    cursor: pointer;
+
+    filter: grayscale(0.75);
+}
+
+.head-link:hover {
+    box-shadow: 0 0 15px var(--shadow-color);
+    filter: grayscale(.25);
+}
+
+.button-left {
+    background-image: url('../../Images/button-banner-1.jpg');
+    background-size: cover;
+    background-position: 100%;
+}
+
+.button-right {
+    background-image: url('../../Images/button-banner-2.jpg');
+    background-size: cover;
+    background-position: 100%;
+}
+
+.head-link p {
+    display: grid;
+    place-items: center;
+    border-radius: 15px;
+    width: 100.05%;
+    height: 100.05%;
+    font-size: 2.5vw;
+    font-family: 'Raleway', sans-serif;
+    color: #FFF;
+
+    backdrop-filter: brightness(.25);
+    background-image: linear-gradient(45deg, #00b3ff77, #5500ff77);
+
+    transition: backdrop-filter .5s;
+}
+
+.head-link:hover p {
+    backdrop-filter: brightness(.75);
+}
+
+/* RECOMMENDED */
+
+.recommended-container {
+    width: 100%;
+    height: 68vh;
+
+    margin: 1vh 0;
+}
+
+.recommended-content {
+    font-family: 'Roboto', sans-serif;
+    padding: 2.5vh;
+    height: 100%;
+
+    background-color: #FFF;
+
+    border-radius: 15px;
+    box-shadow: 0 0 10px var(--shadow-color);
+}
+
+.recommended-title {
+    font-size: 3vh;
+    margin-bottom: 5vh;
+}
+
+/* RIGHT-CONTENT */
+
+.right-content {
+    width: 30%;
+}
+
+/* NEWS-CONTENT */
+
+.warnings-container {
+    width: 100%;
+    height: 83vh;
+    margin: 1vh;
+}
+
+.warn-feed {
+    height: 100%;
+    width: 100%;
+
+    background-color: #FFF;
+
+    box-shadow: 0 0 10px var(--shadow-color);
+    border-radius: 15px;
+    padding: 2.5vh;
+}
+
+.warn-title {
+    font-family: 'Raleway', sans-serif;
+    font-size: 3vh;
+}
+
+@media screen and (max-width: 854px) {
+    main {
+        flex-direction: column;
+        padding: 0 5px;  
+    }
+
+    .left-content, .right-content {
+        width: 100%;
+    }
+
+    .head-link p {
+        font-size: 4vh;
+        text-align: center;
+    }
+
+    .warnings-container {
+        margin: 1vh 0 ;
+    }
+}
+
+@media screen and (max-width: 520px) {
+    main {
+        padding: 15vh 5px 1vh;
+    }
+
+    .head-links-container {
+        flex-wrap: wrap;
+        height: fit-content;
+    }
+
+    .head-link {
+        width: 100%;
+        height: 100px;
+        margin-bottom: 1vh;
+    }
+
+    .head-link p {
+        font-size: 4.5vh;
+    }
+}
