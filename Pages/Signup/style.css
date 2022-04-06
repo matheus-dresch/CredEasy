@@ -31,11 +31,10 @@ form h1 {
 .input-label::after {
     display: block;
     position: relative;
-    top: -25px;
     content: ' ';
     width: 100%;
     height: 2px;
-    background-color: #fff2;
+    background-color: #fff4;
 
     transition-property: background;
     transition-duration: .5s;
@@ -47,12 +46,13 @@ form h1 {
 
 .input-box {
     display: block;
-    margin: 25px 0;
+    /* margin: 25px 0; */
 
     width: 100%;
     height: 30px;
     border-radius: 10px;
-    font-family: 'Roboto', Helvetica, sans-serif;
+    font-family: 'Poppins', Helvetica, sans-serif;
+    font-weight: 100;
     font-size: 15px;
     padding: 0 10px;
 
@@ -99,6 +99,33 @@ form a {
     font-size: 14px;
     font-family: 'Raleway';
 }
+
+.error-message {
+    font-family: 'Poppins', sans-serif;
+    display: none;
+    font-weight: 100;
+    font-size: 1rem;
+
+    border-radius: 0 0 5px 5px;
+    background-color: #fff2;
+    padding: 5px 10px;
+
+    color: #ddd;
+}
+
+.input-div {
+    margin: 25px 0;
+}
+
+.input-div--error {
+    border: 2px solid #f005;
+    border-radius: 5px;
+}
+
+.error-message--active {
+    display: inline-block;
+}
+
 
 @media screen and (max-width: 520px) {
     form {
