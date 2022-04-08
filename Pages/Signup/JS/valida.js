@@ -20,13 +20,11 @@ function validate(input) {
 
 function showErrorMessage(inputType, input) {
     let msg = ''
-
     for (error of errorTypes) {
         if (input.validity[error]) {
             msg = errorMessages[inputType][error]
         }
     }
-
     return msg
 }
 
@@ -39,23 +37,11 @@ function cpfValid(input) {
         msg = 'CPF inválido.'
     }
 
-    input.value = cpfMask(formatedCpf)
     input.setCustomValidity(msg)
-}
-
-function phoneValid(input) {
-    let v = input.value
-
-    v=v.replace(/\D/g,""); //Remove tudo o que não é dígito
-    v=v.replace(/^(\d{2})(\d)/g,"($1) $2"); //Coloca parênteses em volta dos dois primeiros dígitos
-    v=v.replace(/(\d)(\d{4})$/,"$1-$2"); //Coloca hífen entre o quarto e o quinto dígitos
-
-    input.value = v
 }
 
 const validators = {
     cpf: input => cpfValid(input),
-    phone:input => phoneValid(input)
 }
 
 const errorMessages = {
@@ -115,6 +101,20 @@ for (let input of inputs) {
                 thousandsSeparator: '.',
                 cursor: 'move',
             })
+        })
+    }
+
+    if (input.dataset.type === 'cpf') {
+        input.addEventListener('keypress', () => {
+            cpfMask(input)
+        })
+    }
+
+    if (input.dataset.type === 'phone') {
+        input.addEventListener('keydown', () => {
+            setTimeout(() => {
+                phoneMask(input)
+            },5)
         })
     }
 

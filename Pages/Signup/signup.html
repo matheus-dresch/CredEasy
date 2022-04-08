@@ -26,49 +26,49 @@
             <h1>Olá! Seja muito bem-vindo ;) </h1>
             <div class="input-div">
                 <label class="input-label">
-                    <input class="input-box user_name" type="text" placeholder="Seu nome" data-type="name" required minlength="10" maxlength="255">
+                    <input class="input-box user_name" type="text" name="user_name" placeholder="Seu nome" data-type="name" required minlength="10" maxlength="255">
                 </label>
                 <span class="error-message">Campo inválido</span>
             </div>
             <div class="input-div">
                 <label class="input-label">
-                    <input class="input-box user_cpf" type="text" placeholder="Seu CPF" data-type="cpf" required>
+                    <input class="input-box user_cpf" type="text" name="user_cpf" placeholder="Seu CPF" data-type="cpf" required>
                 </label>
                 <span class="error-message">Campo inválido</span>
             </div>
             <div class="input-div">
                 <label class="input-label">
-                    <input class="input-box user_phone" type="tel" placeholder="Seu Nº de celular" data-type="phone" data-mask="(##) # ####-####" required>
+                    <input class="input-box user_phone" type="tel" name="user_phone" placeholder="Seu Nº de celular" data-type="phone" maxlength="16" required>
                 </label>
                 <span class="error-message">Campo inválido</span>
             </div>
             <div class="input-div">
                 <label class="input-label">
-                    <input class="input-box user_address" type="text" placeholder="Seu endereço (Rua, Nº, CEP, Estado)" data-type="address" required maxlength="255">
+                    <input class="input-box user_address" type="text" name="user_address" placeholder="Seu endereço (Rua, Nº, CEP, Estado)" data-type="address" required maxlength="255">
                 </label>
                 <span class="error-message">Campo inválido</span>
             </div>
             <div class="input-div">
                 <label class="input-label">
-                    <input class="input-box user_profession" type="text" placeholder="Sua profissão" data-type="profession" required>
+                    <input class="input-box user_profession" type="text" name="user_profession" placeholder="Sua profissão" data-type="profession" required>
                 </label>
                 <span class="error-message">Campo inválido</span>
             </div>
             <div class="input-div">
                 <label class="input-label">
-                    <input class="input-box user_income" type="text" placeholder="Sua renda" data-type="income" required>
+                    <input class="input-box user_income" type="text" name="user_income" placeholder="Sua renda" data-type="income" required>
                 </label>
                 <span class="error-message">Campo inválido</span>
             </div>
             <div class="input-div">
                 <label class="input-label">
-                    <input class="input-box user_email" type="email" placeholder="Seu e-mail" data-type="email" required>
+                    <input class="input-box user_email" type="email" name="user_email" placeholder="Seu e-mail" data-type="email" required>
                 </label>
                 <span class="error-message">Campo inválido</span>
             </div>
             <div class="input-div">
                 <label class="input-label">
-                    <input class="input-box user_password" type="password" placeholder="Uma senha difícil" data-type="password" required pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W]).{6,8})">
+                    <input class="input-box user_password" type="password" name="user_password"  laceholder="Uma senha difícil" data-type="password" required pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W]).{6,8})">
                 </label>
                 <span class="error-message">Campo inválido</span>
             </div>
@@ -81,5 +81,6 @@
 <script src="./JS/focus.js"></script>
 <script src="./JS/valida.js"></script>
 <script src="./JS/cpfValidator.js"></script>
+<script src="./JS/inputMasks.js"></script>
 <!-- <script src="puremask.min.js"></script> -->
 </html>
