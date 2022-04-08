@@ -40,8 +40,21 @@ function cpfValid(input) {
     input.setCustomValidity(msg)
 }
 
+function incomeValid(input) {
+    let inputVal = ((input.value).replace(/\D/g, '')) / 100
+    let msg = ''
+    console.log(inputVal);
+
+    if (inputVal < 10) {
+        // msg = ' '
+    } 
+
+    input.setCustomValidity(msg)
+}
+
 const validators = {
     cpf: input => cpfValid(input),
+    income: input => incomeValid(input)
 }
 
 const errorMessages = {
@@ -67,6 +80,7 @@ const errorMessages = {
     },
     income: {
         valueMissing: 'O campo não pode estar vazio.',
+        customError: 'Sua renda deve ser de no mínimo R$ 10,00 e no máximo R$ 999.999,00'
     },
     email: {
         valueMissing: 'O campo não pode estar vazio.',
@@ -99,7 +113,7 @@ for (let input of inputs) {
                 fractionDigits: 2,
                 decimalSeparator: ',',
                 thousandsSeparator: '.',
-                cursor: 'move',
+                cursor: 'end',
             })
         })
     }
