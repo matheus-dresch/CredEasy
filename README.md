@@ -2,6 +2,7 @@
 
 ### Sumário:
 * [Introdução](#introducao) 
+* [Release atual](#release-atual)
 * [Funcionalidades](#funcionalidades)
 * [Tecnologias usadas](#tecnologias-usadas)
 
@@ -13,6 +14,9 @@ O CredEasy é uma plataforma de crédito onde qualquer pessoa pode solicitar emp
 Foi criado em 2022 a partir da ideia de ajudar as pessoas que foram e/ou estão sendo afetadas pela crise que a pandemia gerou ao Brasil.
 
 ---
+
+### Release atual
+Atualmente o projeto está em sua versão **0.2.0**, você pode conferir o changelog aqui: [v0.2](https://github.com/matheus-dresch/CredEasy/releases/tag/v0.2)
 
 ### Funcionalidades
 O CredEasy conta com as mais diversas funcionalidades de uma plataforma de crédito:
