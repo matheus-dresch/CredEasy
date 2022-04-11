@@ -11,7 +11,7 @@ body {
 }
 
 form {
-    width: 500px;
+    width: 50vw;
     background-color: rgba(255, 255, 255, 0.1);
     padding: 25px 25px;
     border-radius: 10px;
@@ -110,6 +110,10 @@ form a {
 }
 
 @media screen and (max-width: 520px) {
+    body {
+        padding: 0;
+    }
+
     form {
         width: 100%;
     }

@@ -6,12 +6,13 @@
 @import url('../../CSS/alt_header.css');
 
 body {
-    height: max-content;
+    min-height: 100vh;
+    height: fit-content;
     padding: 0 10px 50px;
 }
 
 form {
-    width: 500px;
+    width: 50vw;
     background-color: rgba(255,255,255,0.1);
     padding: 25px 25px;
     border-radius: 10px;
@@ -53,10 +54,9 @@ form h1 {
 
 .input-box {
     display: block;
-    /* margin: 25px 0; */
 
     width: 100%;
-    height: 30px;
+    height: 4vh;
     border-radius: 10px;
     font-family: 'Roboto', Helvetica, sans-serif;
     font-size: 15px;
@@ -146,6 +146,10 @@ form a {
 }
 
 @media screen and (max-width: 520px) {
+    body {
+        padding: 0;
+    }
+    
     form {
         width: 100%;
     }
