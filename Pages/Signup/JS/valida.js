@@ -13,7 +13,6 @@ function validate(input) {
     } else {
         inputDiv.classList.add('input-div--error')
         errorMessage.classList.add('error-message--active')
-
         errorMessage.innerHTML = showErrorMessage(inputType, input)
     }
 }

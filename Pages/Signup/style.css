@@ -12,7 +12,7 @@ body {
 }
 
 form {
-    width: 50vw;
+    width: 30vw;
     background-color: rgba(255,255,255,0.1);
     padding: 25px 25px;
     border-radius: 10px;
@@ -50,6 +50,14 @@ form h1 {
 
 .label-after--active::after {
     background-color: #fff;
+}
+
+.label-after--valid::after {
+    background-color: #0f04;
+}
+
+.label-after--invalid::after {
+    background-color: #f004;
 }
 
 .input-box {
