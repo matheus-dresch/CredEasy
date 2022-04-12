@@ -13,7 +13,7 @@
         <a href="../Home/index.html">CredEasy</a>
     </header>
     <main>
-        <form action="https://www.google.com.br" class="signup-form">
+        <form action="../../log.html" method="post" class="signup-form">
             <h1>Olá! Seja muito bem-vindo ;) </h1>
             <p>Dados pessoais:</p>
             <div class="input-div">
@@ -24,7 +24,7 @@
             </div>
             <div class="input-div">
                 <label class="input-label">
-                    <input class="input-box user_cpf" type="tel" name="user_cpf" placeholder="Seu CPF" data-type="cpf" max-length="14" required>
+                    <input class="input-box user_cpf" type="tel" name="user_cpf" placeholder="Seu CPF" data-type="cpf" max-length="14" required maxlength="14">
                 </label>
                 <span class="error-message">Campo inválido</span>
             </div>
@@ -92,7 +92,7 @@
             <p>Senha:</p>
             <div class="input-div">
                 <label class="input-label">
-                    <input class="input-box user_password" type="password" name="user_password" placeholder="Uma senha difícil" data-type="password" required pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W]).{6,8})">
+                    <input class="input-box user_password" type="password" name="user_password" placeholder="Uma senha difícil" data-type="password" required pattern="((?=.*\d{2,})(?=.*[a-z])(?=.*[A-Z])(?=.*[\W]).{6,8})">
                 </label>
                 <span class="error-message">Campo inválido</span>
             </div>

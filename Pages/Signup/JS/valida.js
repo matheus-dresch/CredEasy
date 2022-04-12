@@ -11,19 +11,13 @@ function validate(input) {
         inputDiv.classList.remove('input-div--error')
         errorMessage.classList.remove('error-message--active')
     } else {
-        errorMessage.innerHTML = showErrorMessage(input)
+        inputDiv.classList.add('input-div--error')
+        errorMessage.classList.add('error-message--active')
+        errorMessage.innerHTML = showErrorMessage(input, inputType)
     }
 }
 
-function showErrorMessage(input) {
-    const inputType = input.dataset.type
-    const inputDiv = input.parentElement.parentElement
-    const errorMessage = inputDiv.querySelector('.error-message')
-
-    inputDiv.classList.add('input-div--error')
-    errorMessage.classList.add('error-message--active')
-
-    let msg = ''
+function showErrorMessage(input, inputType) {
     for (error of errorTypes) {
         if (input.validity[error]) {
             msg = errorMessages[inputType][error]
@@ -47,7 +41,6 @@ function cpfValid(input) {
 function incomeValid(input) {
     let inputVal = ((input.value).replace(/\D/g, '')) / 100
     let msg = ''
-    console.log(inputVal);
 
     if (inputVal < 100) {
         input.value = ''
@@ -63,42 +56,46 @@ function confirmPassValid(input) {
     let msg = ''
 
     if (passwordConfirm != password) {
-        msg = 'a'
-        console.log('s');
+        msg = 'invalido'
     }
 
     input.setCustomValidity(msg)
 }
 
-async function cepFetch(input) {
+function cepFetch(input) {
+    let cep = input.value
+    cep = cep.replace(/\D/g, '')
+
+    if (cep && cep.length === 8) {
+        fetch(`https://viacep.com.br/ws/${cep}/json/`).then(
+            response => response.json()
+        ).then(
+            data => {
+                if (data.erro) {
+                    input.setCustomValidity('invalido')
+                    return
+                }
+                input.setCustomValidity('')
+                fillCep(data)
+                return
+            }
+        )
+
+    }
+}
+
+function fillCep(data) {
     const stateInput = document.querySelector('.user_state')
     const cityInput = document.querySelector('.user_city')
     const districtInput = document.querySelector('.user_district')
-    const cep = input.value
 
-    let msg = ''
+    const state = data.uf
+    const city = data.localidade
+    const district = data.bairro
 
-    try {
-        const apiResponse = await fetch(`https://ws.apicep.com/cep.json?code=${cep}`)
-        const responseJson = await apiResponse.json()
-        console.log(responseJson);
-        if (responseJson.status != 200) {
-            // input.setCustomValidity('invalido')
-            showErrorMessage(input)
-        } else {
-            const state = responseJson.state
-            const city = responseJson.city
-            const district = responseJson.district
-
-            stateInput.value = state
-            cityInput.value = city
-            districtInput.value = district
-
-            msg = ''
-        }
-    } catch (err) {
-        console.error(err);
-    }
+    stateInput.value = state
+    cityInput.value = city
+    districtInput.value = district != '' ? district : districtInput.value
 }
 
 
@@ -189,6 +186,7 @@ for (let input of inputs) {
             })
         })
     }
+
     if (inputMasks[input.dataset.type]) {
         input.addEventListener('keypress', () => {
             setTimeout(() => {
@@ -201,7 +199,18 @@ for (let input of inputs) {
         e.preventDefault()
     })
 
-    input.addEventListener('blur', () => {
-        validate(input)
-    })
+    if (input.dataset.type === 'cep') {
+        input.addEventListener('blur', () => {
+            validate(input)
+        })
+    }
 }
+
+const submitButton = document.querySelector('.submit-button')
+
+submitButton.addEventListener('click', e => {
+    for (let input of inputs) {
+        validate(input)
+        console.log('q');
+    }
+})

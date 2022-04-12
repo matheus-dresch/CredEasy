@@ -82,7 +82,7 @@ main {
     .products-info div {
         width: 100%;
         border-bottom: 2px solid;
-        border-image: linear-gradient(90deg,#5500ff, #00b3ff, #5500ff)1;
+        border-image: linear-gradient(90deg,#5500ff, #00b3ff, #5500ff) 1;
         background-color: rgba(0,0,0,.75);
     }
 
