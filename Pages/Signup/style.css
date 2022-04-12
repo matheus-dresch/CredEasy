@@ -12,7 +12,7 @@ body {
 }
 
 form {
-    width: 30vw;
+    width: 500px;
     background-color: rgba(255,255,255,0.1);
     padding: 25px 25px;
     border-radius: 10px;
@@ -24,7 +24,7 @@ form h1 {
     font-family: 'Roboto', sans-serif;
     color: #FFF;
     font-size: 25px;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
     text-align: center;
 }
 
@@ -113,6 +113,15 @@ form a {
     font-family: 'Raleway';
 }
 
+form p {
+    margin: 25px 0 10px;
+    display: inline-block;
+    font-family: 'Poppins', sans-serif;
+    color: #FFF;
+    text-decoration: underline;
+    font-size: 18px;
+}
+
 .error-message {
     font-family: 'Poppins', sans-serif;
     display: none;
@@ -141,7 +150,7 @@ form a {
 }
 
 .input-div {
-    margin: 25px 0;
+    margin: 0 0 25px;
 }
 
 .input-div--error {
@@ -151,6 +160,10 @@ form a {
 
 .error-message--active {
     display: inline-block;
+}
+
+.input-box:disabled {
+    cursor: not-allowed;
 }
 
 @media screen and (max-width: 520px) {

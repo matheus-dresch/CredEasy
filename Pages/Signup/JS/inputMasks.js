@@ -18,5 +18,16 @@ function cpfMask(input = '') {
     cpf = cpf.replace(/(\d{3})(\d)/, '$1.$2')
     cpf = cpf.replace(/(\d{3})(\d{1,2})/, '$1-$2')
 
+    cpf = cpf.replace(/ /g)
+
     input.value = cpf
+}
+
+function cepMask(input) {
+    let cep = input.value
+
+    cep = cep.replace(/\D/g, '')
+    cep = cep.replace(/(\d{5})(\d{3})/, '$1-$2')
+
+    input.value = cep
 }
