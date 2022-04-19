@@ -211,6 +211,5 @@ const submitButton = document.querySelector('.submit-button')
 submitButton.addEventListener('click', e => {
     for (let input of inputs) {
         validate(input)
-        console.log('q');
     }
 })

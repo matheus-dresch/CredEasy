@@ -1,5 +1,10 @@
 :root {
-    --purple: #50f
+    --purple: #50f;
+    --white: #FFF;
+    --light-gray: #CCC;
+
+    --main-gradient: linear-gradient(90deg, #247da3, #3902a8) 1;
+    --dark-gradient: linear-gradient(90deg, #083c53, #220957);
 }
 
 header {
@@ -10,9 +15,9 @@ header {
     align-items: center;
     padding: 20px 5vh;
     border-bottom: 5px solid;
-    border-image: linear-gradient(90deg, #247da3, #3902a8) 1;
+    border-image: var(--main-gradient);
 
-    background-color: #FFF;
+    background-image: var(--dark-gradient);
     z-index: 1;
 }
 
@@ -20,6 +25,7 @@ header {
 
 .header-title {
     font-family: 'Raleway', sans-serif;
+    color: var(--white);
     font-size: 5vh;
 }
 
@@ -30,6 +36,8 @@ header {
     display: flex;
     align-items: center;
     cursor: pointer;
+
+    color: var(--white);
 }
 
 .header-account p {
@@ -43,7 +51,8 @@ header {
     width: auto;
     margin-left: 1rem;
     padding: 5px;
-    background-color: #ccc;
+    background-color: #0003;
+    filter: invert(1);
     border-radius: 5px;
 }
 
@@ -54,7 +63,7 @@ header {
 .mobile-menu-button {
     display: none;
     height: 100%;
-    background-color: #ccc;
+    background-color: var(--light-gray);
     padding: 5px;
     border-radius: 5px;
 }
