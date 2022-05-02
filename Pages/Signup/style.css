@@ -1,5 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&family=Roboto:wght@300&display=swap');
+@import url('../../CSS/alt_header.css');
+
 body {
-    height: max-content;
+    min-height: 100vh;
+    height: fit-content;
     padding: 0 10px 50px;
 }
 
@@ -16,7 +24,7 @@ form h1 {
     font-family: 'Roboto', sans-serif;
     color: #FFF;
     font-size: 25px;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
     text-align: center;
 }
 
@@ -44,15 +52,21 @@ form h1 {
     background-color: #fff;
 }
 
+.label-after--valid::after {
+    background-color: #0f04;
+}
+
+.label-after--invalid::after {
+    background-color: #f004;
+}
+
 .input-box {
     display: block;
-    /* margin: 25px 0; */
 
     width: 100%;
-    height: 30px;
+    height: 4vh;
     border-radius: 10px;
-    font-family: 'Poppins', Helvetica, sans-serif;
-    font-weight: 100;
+    font-family: 'Roboto', Helvetica, sans-serif;
     font-size: 15px;
     padding: 0 10px;
 
@@ -99,6 +113,15 @@ form a {
     font-family: 'Raleway';
 }
 
+form p {
+    margin: 25px 0 10px;
+    display: inline-block;
+    font-family: 'Poppins', sans-serif;
+    color: #FFF;
+    text-decoration: underline;
+    font-size: 18px;
+}
+
 .error-message {
     font-family: 'Poppins', sans-serif;
     display: none;
@@ -127,7 +150,7 @@ form a {
 }
 
 .input-div {
-    margin: 25px 0;
+    margin: 0 0 25px;
 }
 
 .input-div--error {
@@ -139,7 +162,15 @@ form a {
     display: inline-block;
 }
 
+.input-box:disabled {
+    cursor: not-allowed;
+}
+
 @media screen and (max-width: 520px) {
+    body {
+        padding: 0;
+    }
+    
     form {
         width: 100%;
     }
