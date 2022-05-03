@@ -1,0 +1,24 @@
+body {
+    background-image: linear-gradient(45deg, #151416, #15072e);
+    min-height: 100vh;
+}
+
+.custom-header {
+    background-color: #5553;
+}
+
+.custom-card {
+    background-color: #0000;
+}
+
+.fs-7 {
+    font-size: .875rem;
+}
+
+.card-header, .card-footer {
+    background-color: #9995;
+}
+
+.card-body {
+    background-color: #5555;
+}
