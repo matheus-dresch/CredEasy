@@ -1,106 +1,58 @@
-@import url('../../CSS/reset.css');
-@import url('../../CSS/default_header.css');
-@import url('../../CSS/default_footer.css');
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+:root {
+    --text-purple: rgb(174, 0, 255);
+}
 
 body {
-    background-color: #260072;
+    background-color: #000;
+    background-image: linear-gradient(45deg, #000000, #2f0f3f);
+
+    min-height: 100vh;    
 }
 
-main {
-    padding: 12.5vh 0 0;
-    margin: 0 auto;
+#header-nav {
+    background-color: #222230;
 }
 
-.products-info {
-    width: 100%;
-    height: 40vh;
-    display: flex;
-}
-
-.products-info img {
-    object-fit: cover;
-    width: 70%;
-    height: 100%;
-}
-
-.products-info div {
-    width: 30%;
-    padding: 40px;
-    
-    font-family: 'Roboto', sans-serif;
-    font-style: italic;
-    font-size: 4vh;
-    color: #FFF;
-    text-align: center;
-    
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-}
-
-.purple-text {
-    color: #cc55ff;
-}
-
-.product-button {
-    width: 50%;
-    height: 20%;
-    border-radius: 5px;
-    
-    border: 3px solid #cc55ff;
-    background-color: transparent;
-    
+#header-title {
+    font-family: 'Raleway', sans-serif;
     font-weight: bold;
-    font-size: 2vh;
-    color: #cc55ff;
-    
-    transition-property: background, color;
-    transition-duration: .5s;
-    cursor: pointer;
 }
 
-.product-button:hover {
-    background-color: #cc55ff;
-    color: #FFF;
+.main-row {
+    border-bottom: 2px solid;
+    border-image: linear-gradient(90deg, transparent, var(--text-purple), transparent) 30;
 }
 
-@media screen and (max-width: 1000px) {
-    .products-info img, .products-info div {
-        width: 50%;
-    }
+.navbar-link:hover {
+    background-color: #fff1;
+    color: #fff!important;
+    text-shadow: 0 0 2px #fff;
 }
 
-@media screen and (max-width: 680px) {
-    .products-info img {
-        display: none;
-    }
+.objfit-cover {
+    object-fit: cover;
+}
 
-    .products-info div {
-        width: 100%;
-        border-bottom: 2px solid;
-        border-image: linear-gradient(90deg,#5500ff, #00b3ff, #5500ff) 1;
-        background-color: rgba(0,0,0,.75);
-    }
+.info-banner-img {
+    max-height: 40vh;
+}
 
-    #sign-banner {
-        background-image: url('../../Images/banner.jpg');
-        background-size: cover;
-        background-position: 50%;
-    }
+.info-banner-txt {
+    background-color: #5555;
+}
 
-    #login-banner {
-        background-image: url('../../Images/acessar.jpg');
-        background-size: cover;
-        background-position: 50%;
-    }
+.banner-title {
+    color: var(--text-purple);
+}
 
-    #info-banner {
-        background-image: url('../../Images/produtos.jpg');
-        background-size: cover;
-        background-position: 50%;
-    }
+.btn-outline-purple {
+    border: 1px solid var(--text-purple);
+    color: var(--text-purple);
+}
+
+.btn-outline-purple:hover {
+    background-color: var(--text-purple);
+    color: #fff;
 }

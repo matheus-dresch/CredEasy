@@ -1,61 +1,85 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
-    <link rel="shortcut icon" href="../../Images/favicon.ico" type="image/x-icon">
-    <title>Home - CredEasy</title>
+    <title>CredEasy - Home</title>
 </head>
+
 <body>
-    <header>
-        <div class="header-content" >
-            <img src="../../Images/menu.png" class="mobile-menu-button">
-            <div class="title" onclick="window.location = 'index.html'">
-                <img src="../../Images/favicon.ico" alt="icone-credeasy">
-                <p>CredEasy</p>
-            </div>
-            <div class="menu">
-                <nav>
-                    <a class="menu-button login-button" href="../Login/login.html">Entre</a>
-                    <a class="menu-button sign-button" href="../Signup/signup.html">Cadastre-se</a>
-                </nav>
-            </div>
-        </div>
+    <header id="header-nav" class="navbar navbar-expand-md navbar-dark sticky-top">
+        <section class="container-fluid">
+            <a id="header-title" class="navbar-brand">CredEasy</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <section class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link navbar-link rounded" href="">ínicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link navbar-link rounded" href="">sobre</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link navbar-link rounded" href="">suporte</a>
+                    </li>
+                </ul>
+            </section>
+        </section>
     </header>
-    <div class="mobile-menu">
-        <nav class="mobile-menu-nav">
-            <a class="mobile-link login-button" href="../Login/login.html">Entre</a>
-            <a class="mobile-link sign-button" href="../Signup/signup.html">Cadastre-se</a>
-        </nav>
-    </div>
     <main>
-        <div class="products-info" id="sign-banner">
-            <img src="../../Images/banner.jpg" alt="imagem-produtos">
-            <div>
-                <p>Precisa de crédito? Conte <span class="purple-text">conosco :) </span></p>
-                <button class="product-button" onclick="window.location='../Signup/signup.html'">Acesse</button>    
-            </div>
-        </div>
-        <div class="products-info" id="login-banner">
-            <div>
-                <p>Já é nosso cliente? Entre <span class="purple-text">aqui ;)</span></p>
-                <button class="product-button" onclick="window.location='../Login/login.html'">Entre</button>    
-            </div>
-            <img src="../../Images/acessar.jpg" alt="imagem-produtos">
-        </div>
-        <div class="products-info" id="info-banner">
-            <img src="../../Images/produtos.jpg" alt="imagem-produtos" >
-            <div>
-                <p>Está em dúvida? <span class="purple-text">Saiba mais! </span></p>
-                <button class="product-button">Clique aqui</button>    
-            </div>
-        </div>
+        <section class="container-fluid d-grid" style="max-width: 100vw;">
+            <section class="row main-row" style="max-width: 100vw;"> 
+                <article class="col info-banner-img p-0">
+                    <img class="objfit-cover w-100 h-100" src="../../Images/banner.jpg" alt="">
+                </article>
+                <article class="col-md-4 col-sm-12 info-banner-txt p-3 p-md-0 d-flex flex-column justify-content-center align-items-center">
+                    <h2 class="banner-title fst-italic text-center">
+                        Precisando de crédito?
+                    </h2>
+                    <p class="banner-text text-center text-light fs-4">Conte conosco!</p>
+                    <a class="btn btn-outline-purple d-block w-50 fw-bold" href="">Acesse aqui</a>
+                </article>
+            </section>
+            <section class="row main-row" style="max-width: 100vw;"> 
+                <article class="col-md-4 col-sm-12 info-banner-txt p-3 p-md-0 d-flex flex-column justify-content-center align-items-center">
+                    <h2 class="banner-title fst-italic text-center">
+                        Já é nosso cliente?
+                    </h2>
+                    <p class="banner-text text-center text-light fs-4">Acesse sua conta</p>
+                    <a class="btn btn-outline-purple d-block w-50 fw-bold" href="">Entrar</a>
+                </article>
+                <article class="col info-banner-img p-0">
+                    <img class="objfit-cover w-100 h-100" src="../../Images/acessar.jpg" alt="">
+                </article>
+            </section>
+            <section class="row main-row" style="max-width: 100vw;"> 
+                <article class="col info-banner-img p-0">
+                    <img class="objfit-cover w-100 h-100" src="../../Images/produtos.jpg" alt="">
+                </article>
+                <article class="col-md-4 col-sm-12 info-banner-txt p-3 p-md-0 d-flex flex-column justify-content-center align-items-center">
+                    <h2 class="banner-title fst-italic text-center">
+                        Quer apenas simular?
+                    </h2>
+                    <p class="banner-text text-center text-light fs-4">Simule seu empréstimo.</p>
+                    <a class="btn btn-outline-purple d-block w-50 fw-bold" href="">Simular agora</a>
+                </article>
+            </section>
+        </section>
     </main>
-    <footer>
-        <p>CredEasy</p>
-    </footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
 </body>
-<script src="index.js"></script>
+
 </html>
