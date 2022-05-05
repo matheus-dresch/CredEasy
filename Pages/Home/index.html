@@ -37,11 +37,11 @@
     </header>
     <main>
         <section id="scrollspyHeading1" class="container-fluid d-grid" style="max-width: 100vw;">
-            <section class="row main-row" style="max-width: 100vw;"> 
+            <section id="banner1" class="row main-row" style="max-width: 100vw;"> 
                 <article class="col info-banner-img p-0">
                     <img class="objfit-cover w-100 h-100" src="../../Images/banner.jpg" alt="">
                 </article>
-                <article id="banner1" class="col-md-4 col-sm-12 info-banner-txt py-5 p-md-0 d-flex flex-column justify-content-center align-items-center">
+                <article class="col-md-4 col-sm-12 info-banner-txt py-5 p-md-0 d-flex flex-column justify-content-center align-items-center">
                     <h2 class="banner-title fst-italic text-center">
                         Precisando de crédito?
                     </h2>
@@ -49,8 +49,8 @@
                     <a class="btn btn-outline-purple d-block w-50 fw-bold" href="">Cadastrar</a>
                 </article>
             </section>
-            <section class="row main-row" style="max-width: 100vw;"> 
-                <article id="banner2" class="col-md-4 col-sm-12 info-banner-txt py-5 p-md-0 d-flex flex-column justify-content-center align-items-center">
+            <section id="banner2" class="row main-row" style="max-width: 100vw;"> 
+                <article class="col-md-4 col-sm-12 info-banner-txt py-5 p-md-0 d-flex flex-column justify-content-center align-items-center">
                     <h2 class="banner-title fst-italic text-center">
                         Já é nosso cliente?
                     </h2>
@@ -61,11 +61,11 @@
                     <img class="objfit-cover w-100 h-100" src="../../Images/acessar.jpg" alt="">
                 </article>
             </section>
-            <section class="row main-row" style="max-width: 100vw;"> 
+            <section id="banner3" class="row main-row" style="max-width: 100vw;"> 
                 <article class="col info-banner-img p-0">
                     <img class="objfit-cover w-100 h-100" src="../../Images/produtos.jpg" alt="">
                 </article>
-                <article id="banner3" class="col-md-4 col-sm-12 info-banner-txt py-5 p-md-0 d-flex flex-column justify-content-center align-items-center">
+                <article class="col-md-4 col-sm-12 info-banner-txt py-5 p-md-0 d-flex flex-column justify-content-center align-items-center">
                     <h2 class="banner-title fst-italic text-center">
                         Quer apenas simular?
                     </h2>
@@ -120,7 +120,7 @@
                     </div>
                 </article>
             </div>
-            <div id="products-section" class="row">
+            <div id="products-section" class="row main-row">
                 <article class="col p-4">
                     <h3 class="info-title text-center text-lg-start mb-3">Conheça nossas linhas de crédito</h3>
                     <div class="d-grid">
@@ -187,13 +187,19 @@
         </section>
     </main>
     <footer>
-        <section id="scrollspyHeading3" class="d-grid">
-            <div class="col-lg-6 p-3">
-
+        <section id="scrollspyHeading3" class="container-fluid d-grid">
+            <div class="row">
+                <div class="col p-3 d-flex justify-content-evenly align-items-center">
+                    <h3 id="header-title" class="m-0 text-light">CredEasy</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col text-center">
+                    <span>Todos direitos reservados CredEasy&copy; 2022.</span>
+                </div>
             </div>
         </section>
     </footer>
-    <script src="../../Bootstrap/jquery.js"></script>
     <script src="../../Bootstrap/bootstrap.min.js"></script>
 </body>
 

@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 :root {
-    --text-purple: rgb(174, 0, 255);
+    --text-purple: rgb(203, 89, 255);
     --dark-purple: rgb(155, 77, 201);
 }
 
@@ -74,7 +74,7 @@ body {
 
 .purple {
     color: var(--dark-purple);
-    text-shadow: 0 0 5px var(--text-purple);
+    text-shadow: 0 0 5px var(--dark-purple);
 }
 
 .info-card {
@@ -104,7 +104,7 @@ body {
 
 @media screen and (max-width: 768px) {
 
-    .info-banner-txt {
+    #banner1, #banner2, #banner3 {
         background-size: cover;
         background-position: 50%;
     }
@@ -119,5 +119,9 @@ body {
 
     #banner3 {
         background-image: url('../../Images/produtos.jpg');
+    }
+
+    .info-banner-txt {
+        background-color: #000a;
     }
 }
