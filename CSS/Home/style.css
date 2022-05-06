@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap');
 @import url('../body.css');
 
 :root {
@@ -29,15 +28,6 @@
     color: var(--text-purple);
 }
 
-.btn-outline-purple {
-    border: 1px solid var(--text-purple);
-    color: var(--text-purple);
-}
-
-.btn-outline-purple:hover {
-    background-color: var(--text-purple);
-    color: #fff;
-}
 
 .about-banner,
 .products-banner,

@@ -1,2 +1,48 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap');
 @import url('../body.css');
+
+#form {
+    background-color: #5553;
+}
+
+#main-head, #main-form {
+    background-color: #5553;
+}
+
+#main-form {
+    width: 30rem;
+}
+
+#input-label {
+    width: 100%;
+}
+
+#input-email {
+    background-color: #0000;
+    border: none;
+    outline: none;
+
+    display: block;
+
+    width: inherit;
+    
+    caret-color: #fff;
+    color: #fffa;
+
+    border-bottom: 1px solid #fff3;
+
+    transition: border .5s;
+}
+
+#input-email::placeholder {
+    color: #aaa;
+    cursor: text;
+}
+
+#input-email:focus{
+    border-color: #fff;
+}
+
+#input-text {
+    font-size: 0.875rem;
+}

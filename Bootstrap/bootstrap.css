@@ -37,6 +37,8 @@
     --bs-danger: #dc3545;
     --bs-light: #f8f9fa;
     --bs-dark: #212529;
+    --bs-purple: rgb(203, 89, 255);
+    --bs-dark-purple: rgb(155, 77, 201);
     --bs-primary-rgb: 13, 110, 253;
     --bs-secondary-rgb: 108, 117, 125;
     --bs-success-rgb: 25, 135, 84;
@@ -57,7 +59,7 @@
     --bs-body-font-weight: 400;
     --bs-body-line-height: 1.5;
     --bs-body-color: #212529;
-    --bs-body-bg: #fff
+    --bs-body-bg: #000
 }
 
 *,
@@ -70,6 +72,10 @@
     :root {
         scroll-behavior: smooth
     }
+}
+
+.td-none {
+    text-decoration: none;
 }
 
 body {
@@ -8693,6 +8699,28 @@ fieldset:disabled .btn {
     --bs-text-opacity: 1
 }
 
+.text-purple {
+    color: var(--bs-purple);
+}
+
+.text-purpled {
+    color: var(--bs-dark-purple);
+}
+
+.btn-outline-purple {
+    border: 1px solid var(--bs-purple);
+    color: var(--bs-purple);
+}
+
+.btn-outline-purple:hover {
+    background-color: var(--bs-purple);
+    color: #fff;
+}
+
+.bg-dark-25 {
+    background-color: #5553;
+}
+
 .bg-primary {
     --bs-bg-opacity: 1;
     background-color: rgba(var(--bs-primary-rgb), var(--bs-bg-opacity)) !important
@@ -8821,6 +8849,10 @@ fieldset:disabled .btn {
 
 .rounded-3 {
     border-radius: .3rem !important
+}
+
+.rounded-4 {
+    border-radius: 1rem;
 }
 
 .rounded-circle {
