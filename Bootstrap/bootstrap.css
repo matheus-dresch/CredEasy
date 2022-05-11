@@ -8717,8 +8717,23 @@ fieldset:disabled .btn {
     color: #fff;
 }
 
+.btn-outline-purpled {
+    border: 1px solid var(--bs-dark-purple);
+    background-color: #0005;
+    color: var(--bs-dark-purple);
+}
+
+.btn-outline-purpled:hover {
+    background-color: var(--bs-dark-purple);
+    color: #fff;
+}
+
 .bg-dark-25 {
     background-color: #5553;
+}
+
+.bg-dark-50 {
+    background-color: #5555;
 }
 
 .bg-primary {

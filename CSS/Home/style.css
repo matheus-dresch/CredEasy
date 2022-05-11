@@ -1,10 +1,5 @@
 @import url('../body.css');
 
-:root {
-    --text-purple: rgb(203, 89, 255);
-    --dark-purple: rgb(155, 77, 201);
-}
-
 .main-row {
     border-bottom: 2px solid;
     border-image: linear-gradient(90deg, transparent, var(--text-purple), transparent) 30;
@@ -25,7 +20,7 @@
 }
 
 .banner-title {
-    color: var(--text-purple);
+    color: var(--bs-purple);
 }
 
 
@@ -38,12 +33,12 @@
 }
 
 .info-title {
-    color: var(--text-purple);
+    color: var(--bs-purple);
 }
 
 .purple {
-    color: var(--dark-purple);
-    text-shadow: 0 0 5px var(--dark-purple);
+    color: var(--bs-dark-purple);
+    text-shadow: 0 0 5px var(--bs-dark-purple);
 }
 
 .info-card {

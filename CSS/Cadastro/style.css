@@ -3,13 +3,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins&family=Roboto:wght@300&display=swap');
-@import url('../../CSS/alt_header.css');
-
-body {
-    min-height: 100vh;
-    height: fit-content;
-    padding: 0 10px 50px;
-}
+@import url('../body.css');
 
 form {
     width: 500px;

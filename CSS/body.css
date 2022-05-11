@@ -9,6 +9,12 @@ body {
     min-height: 100vh;
 }
 
+.navbar-link:hover {
+    background-color: #fff1;
+    color: #fff !important;
+    text-shadow: 0 0 2px #fff;
+}
+
 #header-nav {
     background-color: #222230;
 }
@@ -16,28 +22,4 @@ body {
 #header-title {
     font-family: 'Raleway', sans-serif;
     font-weight: bold;
-}
-
-@media screen and (max-width: 768px) {
-
-    #banner1, #banner2, #banner3 {
-        background-size: cover;
-        background-position: 50%;
-    }
-
-    #banner1 {
-        background-image: url('../../Images/Home/banner1.webp');
-    }
-
-    #banner2 {
-        background-image: url('../../Images/Home/banner2.webp');
-    }
-
-    #banner3 {
-        background-image: url('../../Images/Home/banner3.webp');
-    }
-
-    .info-banner-txt {
-        background-color: #000a;
-    }
 }
