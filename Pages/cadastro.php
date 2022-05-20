@@ -1,3 +1,7 @@
+<?php 
+    $user_email = $_POST['email']
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -17,7 +21,7 @@
             <a id="header-title" class="navbar-brand" href="../">CredEasy</a>
     </header>
     <main class="p-3">
-        <form action="./obrigado.html" class="signup-form">
+        <form action="./obrigado.php" method="POST" class="signup-form">
             <h1>Olá! Seja muito bem-vindo ;) </h1>
             <p>Dados pessoais:</p>
             <div class="input-div">
@@ -58,7 +62,11 @@
             <div class="input-div">
                 <label class="input-label">
                     <input class="input-box user_email" type="email" name="user_email" placeholder="Seu e-mail"
-                        data-type="email" required>
+                        data-type="email" required value="<?php 
+                        if ($user_email) {
+                            echo $user_email;
+                        }
+                        ?>">
                 </label>
                 <span class="error-message">Campo inválido</span>
             </div>
