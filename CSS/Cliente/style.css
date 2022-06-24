@@ -22,7 +22,7 @@
 .emp-btn {
     background-size: cover;
     background-position: 50%;
-    background-color: #5555;
+    background-color: #9995;
 }
 
 .emp-btn h3 {
@@ -31,7 +31,7 @@
 }
 
 .emp-btn:hover {
-    background-color: #9995;
+    background-color: #ccc5;
     transition: background .5s;
 }
 

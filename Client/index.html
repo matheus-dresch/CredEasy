@@ -96,9 +96,12 @@
                 </div>
             </div>
             <div class="row">
+                <div class="col pb-2 px-1">
+                    <article class="perfil-container rounded text-light text-center" style="height: 100%;"></article>
+                </div>
                 <div class="col-12 col-lg-6 mb-2 px-1">
                     <article id="emp-btn-1" class="emp-btn rounded text-light text-center">
-                        <h3 class="p-3 fs-3 fs-lg-1 m-0 fw-bolder rounded d-flex justify-content-center">
+                        <h3 class="p-4 fs-3 fs-lg-1 m-0 fw-bolder rounded d-flex justify-content-center">
                             <span class="material-symbols-outlined fs-2 me-2 d-none d-lg-inline">
                                 paid
                             </span>
@@ -106,15 +109,8 @@
                         </h3>
                     </article>
                 </div>
-                <div class="col-12 col-lg-6 mb-2 px-1">
-                    <article id="emp-btn-2" class="emp-btn rounded text-light text-center">
-                        <h3 class="p-3 fs-3 fs-lg-1 m-0 fw-bolder rounded d-flex justify-content-center">
-                            <span class="material-symbols-outlined fs-2 me-2 d-none d-lg-inline">
-                                format_list_bulleted
-                            </span>
-                            MEUS EMPRÉSTIMOS
-                        </h3>
-                    </article>
+                <div class="col-3 pb-2 px-1">
+                    <article class="perfil-container rounded text-light text-center" style="height: 100%;"></article>
                 </div>
             </div>
             <div class="row">
@@ -181,7 +177,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-12 col-lg-6 mb-2 px-1">
+                <div class="col-12 mb-2 px-1" >
                     <article class="perfil-container rounded text-light text-center">
                         <h3 class="d-flex align-items-center p-2">
                             <span class="fs-4 me-2 material-symbols-outlined">
@@ -189,37 +185,32 @@
                             </span>
                             Acesso rápido
                         </h3>
-                        <table class="table table-responsive text-light">
-                            <thead>
-                                <th>Empréstimo</th>
-                                <th>Valor</th>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Contas de maio</td>
-                                    <td>R$ 2500,00</td>
-                                    <td>
-                                        <a href="" class="btn btn-outline-purple d-flex">
-                                            <span class="material-symbols-outlined">
-                                                arrow_circle_right
-                                            </span>
-                                            Acessar
-                                        </a>
-                                    </td>
-                                </tr>
-                                
-                            </tbody>
-                        </table>
-                    </article>
-                </div>
-                <div class="col-12 col-lg-6 mb-2 px-1">
-                    <article class="perfil-container rounded text-light text-center">
-                        <h3 class="p-3 fs-3 fs-lg-1 m-0 fw-bolder rounded d-flex">
-                            <span class="material-symbols-outlined fs-2 me-2 d-none d-lg-inline">
-                                format_list_bulleted
-                            </span>
-                            MEUS EMPRÉSTIMOS
-                        </h3>
+                        <div class="table-responsive">
+                            <table class="table text-light" style="overflow: scroll;">
+                                <thead>
+                                    <th>Empréstimo</th>
+                                    <th>Valor</th>
+                                    <th>Parcelas</th>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Contas de maio</td>
+                                        <td>R$ 2500,00</td>
+                                        <td>8</td>
+                                        <td>
+                                            <a href="" class="btn btn-outline-purple d-flex">
+                                                <span class="material-symbols-outlined">
+                                                    arrow_circle_right
+                                                </span>
+                                                <span class="d-none d-sm-inline">
+                                                    Acessar
+                                                </span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </article>
                 </div>
             </div>
