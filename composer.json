@@ -1,0 +1,21 @@
+{
+    "name": "sicredi/credeasy",
+    "description": "Projeto para gerenciamento de empréstimos e clientes",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Sicredi\\Credeasy\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Matheus Dresch",
+            "email": "matheus_dresch@sicredi.com.br"
+        }
+    ],
+    "require": {
+        "doctrine/orm": "^2.12",
+        "symfony/cache": "^5.4",
+        "doctrine/annotations": "^1.13"
+    }
+}
