@@ -1,5 +1,7 @@
 <?php
 
+namespace Sicredi\Credeasy\Infra;
+
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\ORMSetup;
@@ -8,7 +10,7 @@ class EntityManagerFactory
 {
     public static function GetEntityManager(): EntityManagerInterface
     {
-        $rootDir = __DIR__ . '/..';
+        $rootDir = __DIR__ . '/../..';
         $paths = [$rootDir . '/src/entity'];
 
         $config = ORMSetup::createAnnotationMetadataConfiguration($paths);

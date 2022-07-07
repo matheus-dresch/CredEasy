@@ -27,12 +27,12 @@ class Parcela
     private int $numero;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="datetime")
      */
     private $data_vencimento;
 
     /**
-     * @ORM\Column(type="date", nullable=true)
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $data_pagamento;
 
@@ -85,7 +85,7 @@ class Parcela
 		return $this->numero;
 	}
 
-	public function getDataVencimento(): mixed
+	public function getDataVencimento()
 	{
 		return $this->data_vencimento;
 	}
@@ -95,7 +95,7 @@ class Parcela
 		$this->data_vencimento = $data_vencimento;
 	}
 
-	public function getDataPagamento(): mixed
+	public function getDataPagamento()
 	{
 		return $this->data_pagamento;
 	}

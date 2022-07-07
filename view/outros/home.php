@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="./Icons/credeasy.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://fonts.sandbox.google.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
-    <link rel="stylesheet" href="./Bootstrap/bootstrap.css">
-    <link rel="stylesheet" href="./CSS/Home/style.css">
+    <link rel="stylesheet" href="./Assets/Bootstrap/bootstrap.css">
+    <link rel="stylesheet" href="./Assets/CSS/Home/style.css">
     <title>CredEasy - Home</title>
 </head>
 
@@ -36,10 +36,10 @@
                 </ul>
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item me-4 mb-3 mb-md-0">
-                        <a href="./login.html" class="btn btn-outline-light px-4 fw-bold">Entrar</a>
+                        <a href="/login" class="btn btn-outline-light px-4 fw-bold">Entrar</a>
                     </li>
                     <li class="nav-item">
-                        <form action="./cadastro.php" method="POST" class="d-flex" id="cadastroForm">
+                        <form action="/signup" method="POST" class="d-flex" id="cadastroForm">
                             <input type="email" name="email" id="email" placeholder="Seu e-mail">
                             <button id="submitBtn" type="submit" class="btn btn-outline-purple rounded-end">Cadastrar</button>
                         </form>
@@ -53,14 +53,14 @@
         <section id="scrollspyHeading1" class="container-fluid d-grid" style="max-width: 100vw;">
             <section id="banner1" class="row main-row" style="max-width: 100vw;"> 
                 <article class="col info-banner-img p-0">
-                    <img class="objfit-cover w-100 h-100" src="./Images/Home/banner1.webp" alt="">
+                    <img class="objfit-cover w-100 h-100" src="./Assets/Images/Home/banner1.webp" alt="">
                 </article>
                 <article class="col-md-4 col-sm-12 info-banner-txt py-5 p-md-0 d-flex flex-column justify-content-center align-items-center">
                     <h2 class="banner-title fst-italic text-center">
                         Precisando de crédito?
                     </h2>
                     <p class="banner-text text-center text-light fs-4">Conte conosco!</p>
-                    <a class="btn btn-outline-purple d-block w-50 fw-bold" href="./cadastro.php">Cadastrar</a>
+                    <a class="btn btn-outline-purple d-block w-50 fw-bold" href="/signup">Cadastrar</a>
                 </article>
             </section>
             <section id="banner2" class="row main-row" style="max-width: 100vw;"> 
@@ -69,15 +69,15 @@
                         Já é nosso cliente?
                     </h2>
                     <p class="banner-text text-center text-light fs-4">Acesse sua conta</p>
-                    <a class="btn btn-outline-purple d-block w-50 fw-bold" href="./login.html">Entrar</a>
+                    <a class="btn btn-outline-purple d-block w-50 fw-bold" href="/login">Entrar</a>
                 </article>
                 <article class="col info-banner-img p-0">
-                    <img class="objfit-cover w-100 h-100" src="./Images/Home/banner2.webp" alt="">
+                    <img class="objfit-cover w-100 h-100" src="./Assets/Images/Home/banner2.webp" alt="">
                 </article>
             </section>
             <section id="banner3" class="row main-row" style="max-width: 100vw;"> 
                 <article class="col info-banner-img p-0">
-                    <img class="objfit-cover w-100 h-100" src="./Images/Home/banner3.webp" alt="">
+                    <img class="objfit-cover w-100 h-100" src="./Assets/Images/Home/banner3.webp" alt="">
                 </article>
                 <article class="col-md-4 col-sm-12 info-banner-txt py-5 p-md-0 d-flex flex-column justify-content-center align-items-center">
                     <h2 class="banner-title fst-italic text-center">
@@ -222,10 +222,10 @@
                     </a>
                 </div>
                 <div class="col-12 col-lg-3 d-flex justify-content-center my-3">
-                    <a href="https://facebook.com"><img src="./Icons/facebook.svg" alt="facebook" style="width: 2rem;"></a>
-                    <a href="https://twitter.com"><img src="./Icons/twitter.svg" alt="twitter" style="width: 2rem;"></a>
-                    <a href="https://youtube.com"><img src="./Icons/youtube.svg" alt="youtube" style="width: 2rem;"></a>
-                    <a href="https://instagram.com"><img src="./Icons/instagram.svg" alt="instagram" style="width: 2rem;"></a>
+                    <a href="https://facebook.com"><img src="./Assets/Icons/facebook.svg" alt="facebook" style="width: 2rem;"></a>
+                    <a href="https://twitter.com"><img src="./Assets/Icons/twitter.svg" alt="twitter" style="width: 2rem;"></a>
+                    <a href="https://youtube.com"><img src="./Assets/Icons/youtube.svg" alt="youtube" style="width: 2rem;"></a>
+                    <a href="https://instagram.com"><img src="./Assets/Icons/instagram.svg" alt="instagram" style="width: 2rem;"></a>
                 </div>
             </div>
             <div class="row">
@@ -235,7 +235,7 @@
             </div>
         </section>
     </footer>
-    <script src="./Bootstrap/bootstrap.min.js"></script>
+    <script src="./Assets/Bootstrap/bootstrap.min.js"></script>
 </body>
 
 </html>

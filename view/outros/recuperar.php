@@ -13,7 +13,7 @@
 <body>
     <header id="header-nav" class="navbar navbar-expand-md navbar-dark sticky-top">
         <section class="container-fluid">
-            <a id="header-title" class="navbar-brand" href="../">CredEasy</a>
+            <a id="header-title" class="navbar-brand" href="/">CredEasy</a>
     </header>
     <main class="p-3">
         <section class="d-flex justify-content-center">
