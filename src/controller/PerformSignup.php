@@ -11,8 +11,6 @@ use Sicredi\Credeasy\Entity\Cliente;
 use Sicredi\Credeasy\Helper\FlashMessageTrait;
 use Sicredi\Credeasy\Repository\ClienteRepository;
 
-//todo muitas coisa
-
 class PerformSignup implements RequestHandlerInterface
 {
 
@@ -67,6 +65,6 @@ class PerformSignup implements RequestHandlerInterface
         $this->em->persist($cliente);
         $this->em->flush();
 
-        return new Response(300, ['location' => '/']);
+        return new Response(300, ['location' => '/login']);
     }
 }
