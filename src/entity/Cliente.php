@@ -63,16 +63,6 @@ class Cliente
 	 */
 	private $emprestimos;
 
-	/**
-	 * @ORM\Column(type="decimal", precision="10", scale="2")
-	 */
-	private float $total_emprestado = 0;
-
-	/**
-	 * @ORM\Column(type="integer")
-	 */
-	private int $qtd_emprestimos = 0;
-
 	public function __construct(
 		string $cpf,
 		string $nome,
@@ -200,23 +190,8 @@ class Cliente
 		$this->nome = $nome;
 	}
 
-	public function getTotalEmprestado(): float
+	public function checkPassword(string $senha): bool
 	{
-		return $this->total_emprestado;
+		return password_verify($senha, $this->senha);
 	}
-
-	public function getQtdEmprestimos(): int
-	{
-		return $this->qtd_emprestimos;
-	}
-
-	public function addQtdEmprestimos()
-	{
-		$this->qtd_emprestimos++;
-	}
-
-	public function addTotalEmprestado(float $valor)
-	{
-		$this->total_emprestado += $valor;
-	}
-        }
+}

@@ -19,26 +19,16 @@ class PerformSignup implements RequestHandlerInterface
     use FlashMessageTrait;
 
     /** @var ClienteRepository $em */
-    private $clienteRepo;
+    private $em;
 
     public function __construct(EntityManagerInterface $em)
     {
-        $this->clienteRepo = $em->getRepository(Cliente::class);
+        $this->em = $em;
     }
 
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
         $post = $request->getParsedBody();
-        
-        $filteredPost = filter_input(INPUT_POST, FILTER_SANITIZE_STRING); 
-
-        foreach ($filteredPost as $key => $value) {
-            if (is_null($value)) {
-                $this->defMessage("danger", "O campo $key é inválido");
-                return new Response(200, ['location' => '/signup']);
-                exit();
-            }
-        }
 
         [
             'nome' => $nome,
@@ -56,10 +46,27 @@ class PerformSignup implements RequestHandlerInterface
             'numcasa' => $numcasa,
 
             'senha' => $senha
-        ] = $filteredPost;
+        ] = $post;
 
+        $endereco = "$estado, $cidade - $cep, $bairro, $rua, $numcasa";
 
+        $renda = preg_replace('/[\D]/', '', $renda);
+        $renda = floatval($renda) / 100;
 
-        return new Response(300, [], var_dump($filteredPost));
+        $cliente = new Cliente(
+            $cpf,
+            $nome,
+            $numero,
+            $endereco,
+            $profissao,
+            $renda,
+            $email,
+            password_hash($senha, PASSWORD_ARGON2I)
+        );
+
+        $this->em->persist($cliente);
+        $this->em->flush();
+
+        return new Response(300, ['location' => '/']);
     }
 }

@@ -6,10 +6,24 @@ use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7Server\ServerRequestCreator;
 use Psr\Http\Server\RequestHandlerInterface;
 
+session_start();
+
 $dir = isset($_SERVER['PATH_INFO']) ? $_SERVER['PATH_INFO'] : '/home';
 
-$routes = require __DIR__ . '/../config/routes.php';
+$freeRoutes = [
+    '/home',
+    '/login',
+    '/signup',
+    '/recover',
+    '/do-login',
+    '/do-signup'
+];
 
+if (! isset($_SESSION['logado']) && ! in_array($dir, $freeRoutes)) {
+    header('location: /login');
+}
+
+$routes = require __DIR__ . '/../config/routes.php';
 
 if (! key_exists($dir, $routes)) {
     http_response_code(404);
@@ -43,4 +57,3 @@ foreach ($response->getHeaders() as $name => $values) {
 }
 
 echo $response->getBody();
-
