@@ -1,50 +1,64 @@
-# Projeto CredEasy 💲
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
-## Sumário
+<p align="center">
+<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+</p>
 
-* [Introdução](#introducao)
-* [Release atual](#release-atual)
-* [Funcionalidades](#funcionalidades)
-* [Tecnologias usadas](#tecnologias-usadas)
+## About Laravel
 
----
+Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-### Introdução
+- [Simple, fast routing engine](https://laravel.com/docs/routing).
+- [Powerful dependency injection container](https://laravel.com/docs/container).
+- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
+- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
+- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
+- [Robust background job processing](https://laravel.com/docs/queues).
+- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-O CredEasy é uma plataforma de crédito onde qualquer pessoa pode solicitar empréstimos pessoais.
+Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-Foi criado em 2022 a partir da ideia de ajudar as pessoas que foram e/ou estão sendo afetadas pela crise que a pandemia gerou ao Brasil.
+## Learning Laravel
 
----
+Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-### Release atual
+If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-Atualmente o projeto está em sua versão **0.2.0**, você pode conferir o changelog aqui: [v0.2](https://github.com/matheus-dresch/CredEasy/releases/tag/v0.2)
+## Laravel Sponsors
 
----
+We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
 
-### Funcionalidades
+### Premium Partners
 
-O CredEasy conta com as mais diversas funcionalidades de uma plataforma de crédito:
+- **[Vehikl](https://vehikl.com/)**
+- **[Tighten Co.](https://tighten.co)**
+- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
+- **[64 Robots](https://64robots.com)**
+- **[Cubet Techno Labs](https://cubettech.com)**
+- **[Cyber-Duck](https://cyber-duck.co.uk)**
+- **[Many](https://www.many.co.uk)**
+- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
+- **[DevSquad](https://devsquad.com)**
+- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
+- **[OP.GG](https://op.gg)**
+- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
+- **[Lendio](https://lendio.com)**
 
-* Análise de crédito
-* Solicitação de crédito
-* Detalhação de empréstimos
-* Consulta as parcelas
-* Pagamento de parcelas
-* Geração de relatórios
-* Cadastro facilitado
+## Contributing
 
----
+Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-### Tecnologias usadas
+## Code of Conduct
 
-<img src="https://user-images.githubusercontent.com/100793778/159767221-6649076a-d42e-467f-849d-537d44917690.svg" width="75">
-<img src="https://user-images.githubusercontent.com/100793778/159767712-68383daa-41c7-45dd-9081-c59b6d27f183.svg" width="75">
-<img src="https://user-images.githubusercontent.com/100793778/159768005-9f1c1d3e-1884-424f-9831-b22d9f48e491.svg" width="75">
+In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 
----
+## Security Vulnerabilities
 
-### Status do projeto
+If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-> Terminando as principais partes do Front-end, Back-end ainda não iniciado
+## License
+
+The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).

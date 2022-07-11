@@ -1,59 +1,55 @@
 <?php
 
-require __DIR__ . '/../vendor/autoload.php';
+use Illuminate\Contracts\Http\Kernel;
+use Illuminate\Http\Request;
 
-use Nyholm\Psr7\Factory\Psr17Factory;
-use Nyholm\Psr7Server\ServerRequestCreator;
-use Psr\Http\Server\RequestHandlerInterface;
+define('LARAVEL_START', microtime(true));
 
-session_start();
+/*
+|--------------------------------------------------------------------------
+| Check If The Application Is Under Maintenance
+|--------------------------------------------------------------------------
+|
+| If the application is in maintenance / demo mode via the "down" command
+| we will load this file so that any pre-rendered content can be shown
+| instead of starting the framework, which could cause an exception.
+|
+*/
 
-$dir = isset($_SERVER['PATH_INFO']) ? $_SERVER['PATH_INFO'] : '/home';
-
-$freeRoutes = [
-    '/home',
-    '/login',
-    '/signup',
-    '/recover',
-    '/do-login',
-    '/do-signup'
-];
-
-if (! isset($_SESSION['logado']) && ! in_array($dir, $freeRoutes)) {
-    header('location: /login');
+if (file_exists($maintenance = __DIR__.'/../storage/framework/maintenance.php')) {
+    require $maintenance;
 }
 
-$routes = require __DIR__ . '/../config/routes.php';
+/*
+|--------------------------------------------------------------------------
+| Register The Auto Loader
+|--------------------------------------------------------------------------
+|
+| Composer provides a convenient, automatically generated class loader for
+| this application. We just need to utilize it! We'll simply require it
+| into the script here so we don't need to manually load our classes.
+|
+*/
 
-if (! key_exists($dir, $routes)) {
-    http_response_code(404);
-    exit();
-}
+require __DIR__.'/../vendor/autoload.php';
 
-$route = $routes[$dir];
+/*
+|--------------------------------------------------------------------------
+| Run The Application
+|--------------------------------------------------------------------------
+|
+| Once we have the application, we can handle the incoming request using
+| the application's HTTP kernel. Then, we will send the response back
+| to this client's browser, allowing them to enjoy our application.
+|
+*/
 
-$container = require __DIR__ . '/../config/dependencies.php';
+$app = require_once __DIR__.'/../bootstrap/app.php';
 
-/** @var RequestHandlerInterface $controller */
-$controller = $container->get($route);
+$kernel = $app->make(Kernel::class);
 
-$psr17Factory = new Psr17Factory(); //psr 17 7
+$response = $kernel->handle(
+    $request = Request::capture()
+)->send();
 
-$creator = new ServerRequestCreator(
-    $psr17Factory, // ServerRequestFactory
-    $psr17Factory, // UrlFactory
-    $psr17Factory, // UploadedFileFactory
-    $psr17Factory // StreamFactory 
-);
-
-$serverRequest = $creator->fromGlobals();
-
-$response = $controller->handle($serverRequest);
-
-foreach ($response->getHeaders() as $name => $values) {
-    foreach ($values as $value) {
-        header(sprintf('%s: %s', $name, $value), false);
-    }
-}
-
-echo $response->getBody();
+$kernel->terminate($request, $response);
