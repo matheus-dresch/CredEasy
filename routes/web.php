@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RecoverController;
+use App\Http\Controllers\SignupController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +17,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
+
+Route::resource('/login', LoginController::class)
+    ->only(['index']);
+
+Route::resource('/signup', SignupController::class)
+    ->only(['index']);
+
+Route::resource('/recover', RecoverController::class)
+    ->only(['index']);

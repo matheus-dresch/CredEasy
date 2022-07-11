@@ -1,0 +1,158 @@
+@import url('../body.css');
+
+.text-purple {
+    color: var(--bs-purple);
+}
+
+.text-purpled {
+    color: var(--bs-dark-purple);
+}
+
+.btn-outline-purple {
+    border: 1px solid var(--bs-purple);
+    color: var(--bs-purple);
+}
+
+.btn-outline-purple:hover {
+    background-color: var(--bs-purple);
+    color: #fff;
+}
+
+.btn-outline-purpled {
+    border: 1px solid var(--bs-dark-purple);
+    background-color: #0005;
+    color: var(--bs-dark-purple);
+}
+
+.btn-outline-purpled:hover {
+    background-color: var(--bs-dark-purple);
+    color: #fff;
+}
+
+.bg-dark-25 {
+    background-color: #5553;
+}
+
+.bg-dark-50 {
+    background-color: #5555;
+}
+
+.main-row {
+    border-bottom: 2px solid;
+    border-image: linear-gradient(90deg, transparent, var(--text-purple), transparent) 30;
+}
+
+.navbar-link:hover {
+    background-color: #fff1;
+    color: #fff !important;
+    text-shadow: 0 0 2px #fff;
+}
+
+.objfit-cover {
+    object-fit: cover;
+}
+
+.info-banner-img {
+    max-height: 40vh;
+}
+
+.banner-title {
+    color: var(--bs-purple);
+}
+
+.about-banner,
+.products-banner,
+.info-banner-txt,
+#products-section,
+.product-card {
+    background-color: #3333!important;
+}
+
+.info-title {
+    color: var(--bs-purple);
+}
+
+.purple {
+    color: var(--bs-purple);
+    text-shadow: 0 0 5px var(--bs-dark-purple)!important;
+}
+
+.info-card {
+    background-color: #fff3!important;
+}
+
+.info-card:hover {
+    box-shadow: 0 0 5px #fff3;
+}
+
+.text-justify {
+    text-align: justify;
+}
+
+#info-section {
+    border-bottom: 2px solid;
+    border-image: linear-gradient(90deg, transparent, var(--text-purple), transparent) 30;
+}
+
+
+.product-card:hover {
+    box-shadow: 0 0 5px var(--dark-purple);
+    background-color: #4443;
+    transform: scale(1.05);
+
+    transition: all .5s;
+}
+
+#email {
+    min-height: 100%;
+
+    outline: none;
+    border-radius: 0.25rem 0 0 0.25rem;
+    padding: 0 0.25rem;
+
+    background-color: #0000;
+    border: 1px solid var(--bs-purple);
+
+    caret-color: #fff;
+
+    color: #fff;
+}
+
+#email::placeholder {
+    color: #fff8;
+}
+
+#submitBtn {
+    border-radius: 0 0.25rem 0.25rem 0;
+}
+
+@media screen and (max-width: 767px) {
+    #banner1, #banner2, #banner3 {
+        background-size: cover;
+        background-position: 50%;
+    }
+
+    #banner1 {
+        background-image: url('../../Images/Home/banner1.webp');
+    }
+
+    #banner2 {
+        background-image: url('../../Images/Home/banner2.webp');
+    }
+
+    #banner3 {
+        background-image: url('../../Images/Home/banner3.webp');
+    }
+
+    .info-banner-txt {
+        background-color: #000a;
+    }
+
+    #submitBtn {
+        min-width: 30%;
+    }
+
+    #email {
+        min-width: 70%;
+    }
+}

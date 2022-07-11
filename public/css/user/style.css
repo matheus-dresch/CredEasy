@@ -1,0 +1,44 @@
+@import url('../body.css');
+
+.side-btn {
+    border-left: 0px solid rgb(98, 0, 255)
+}
+
+.side-btn:hover {
+    border-left: 0.5rem solid rgb(98, 0, 255);
+    padding-left: 0.5rem!important;
+    transition: .5s;
+}
+
+.perfil-container {
+    background-color: #5555;
+    min-height: 100%;
+}
+
+.img-5 {
+    width: 4rem; height: 4rem;
+}
+
+.emp-btn {
+    background-size: cover;
+    background-position: 50%;
+    background-color: #9995;
+}
+
+.emp-btn h3 {
+    font-family: 'Raleway', sans-serif;
+    cursor: pointer;
+}
+
+.emp-btn:hover {
+    background-color: #ccc5;
+    transition: background .5s;
+}
+
+footer {
+    background-color: #000;
+}
+
+td {
+    vertical-align: middle;
+}
