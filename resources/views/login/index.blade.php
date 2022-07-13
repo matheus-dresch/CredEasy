@@ -17,8 +17,8 @@
                         <button type="submit" class="btn btn-outline-purple rounded-pill px-3 py-0 my-3">Entrar</button>
                     </div>
                     <div class="d-flex flex-column align-items-center">
-                        <a class="text-light td-none" href="/recover">&#8250; Esqueci minha senha</a>
-                        <a class="text-light td-none" href="/signup">&#8250; Não sou cliente</a>
+                        <a class="text-light p-1 m-0" href="/recover">&#8250; Esqueci minha senha</a>
+                        <a class="text-light p-1 m-0" href="/signup">&#8250; Não sou cliente</a>
                     </div>
                 </form>
         <script src="{{ asset("js/login/focus.js") }}"></script>
