@@ -9,6 +9,17 @@ class Emprestimo extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'nome',
+        'valor',
+        'valor_final',
+        'taxa_juros',
+        'data_solicitacao',
+        'data_quitacao',
+        'status',
+        'cliente_cpf'
+    ];
+
     public $timestamps = false;
 
     public function cliente()

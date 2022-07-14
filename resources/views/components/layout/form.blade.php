@@ -19,9 +19,17 @@
             <a id="header-title" class="navbar-brand" href="../">CredEasy</a>
     </header>
     <main class="p-3">
-        <section class="d-flex justify-content-center">
-
-        {{ $slot }}
+        <section class="d-flex flex-column align-items-center">
+            @if ($errors->any())
+                <div class="alert alert-danger w-100 rounded-4">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+            {{ $slot }}
 
         </section>
     </main>

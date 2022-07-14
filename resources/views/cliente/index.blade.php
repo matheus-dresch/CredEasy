@@ -8,7 +8,7 @@
                 <article class="p-3 rounded d-flex align-items-center perfil-container">
                     <img src="{{ asset('icons/profile.svg') }}" class="img-5 rounded-circle" style="filter: invert(1)">
                     <div class="ms-3">
-                        <h5 class="d-block text-light">Olá, ...</h5>
+                        <h5 class="d-block text-light">Olá, {{ $cliente->nome }}</h5>
                         <div class="d-flex flex-column">
                             <a href=""
                                 class="side-btn d-flex align-items-center text-light text-decoration-none fw-bold"><span
@@ -160,8 +160,8 @@
 
                                 @foreach ($emprestimos as $emprestimo)
                                 <tr>
-                                    <td>{{ $emprestimo->nome_emprestimo }}</td>
-                                    <td>R$ {{ $emprestimo->valor }} </td>
+                                    <td>{{ $emprestimo->nome }}</td>
+                                    <td>R$ {{ number_format($emprestimo->valor, 2, ',', '.') }} </td>
                                     <td> {{ $emprestimo->parcelas()->count() }} </td>
                                     <td>
                                         <a href="{{ route('emprestimo.show', $emprestimo->id) }} " class="btn btn-outline-purple d-flex">

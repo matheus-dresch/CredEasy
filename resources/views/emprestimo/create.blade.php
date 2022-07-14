@@ -28,16 +28,6 @@
                 </div>
             </form>
         </div>
-
-        @if ($errors->any())
-            <div class="alert alert-danger w-100 rounded-4">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
     </section>
     <script src="{{ asset('js/login/focus.js') }}"></script>
     <script src="{{ asset('js/mask/money.js') }}"></script>

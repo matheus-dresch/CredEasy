@@ -18,21 +18,20 @@ class EmprestimoController extends Controller
 
     public function store(EmprestimoForRequest $request)
     {
-        $valor = $request->get('valor');
-        $valor = floatval(preg_replace('/[\D]/', '', $valor)) / 100;
+        $emprestimoData = $request->all();
 
-        $qtdParcelas = $request->get('parcelas');
+        // Converte a renda que vem mascarada para um float (R$ 1200,50 -> 120050 -> 1200.50)
+        $valor = floatval(preg_replace('/[\D]/', '', $emprestimoData['valor'])) / 100;
+        $emprestimoData['valor'] = $valor;
+
+        $emprestimoData['taxa_juros'] = fake()->randomFloat(2, 1, 5);
+        $emprestimoData['data_solicitacao'] = now();
+        $emprestimoData['cliente_cpf'] = '055.652.727-50';
+
+        $emprestimo = Emprestimo::create($emprestimoData);
+
+        $qtdParcelas = $emprestimoData['parcelas'];
         $valorParcela = $valor / $qtdParcelas;
-
-        $emprestimo = new Emprestimo();
-        $emprestimo->nome_emprestimo = $request->get('nome');
-        $emprestimo->valor = $valor;
-        $emprestimo->taxa_juros = 1.05;
-        $emprestimo->data_solicitacao = now();
-        $emprestimo->status = "SOLICITADO";
-        $emprestimo->cliente_cpf = '340.994.187-82';
-
-        $emprestimo->save();
 
         $parcelas = [];
         $dataVencimento = (new DateTimeImmutable())->add(new DateInterval('P1M'));
@@ -53,8 +52,6 @@ class EmprestimoController extends Controller
 
     public function show(Emprestimo $emprestimo)
     {
-
-        dd($emprestimo);
-        return 'oi';
+        return view('emprestimo.show')->with('emprestimo', $emprestimo);
     }
 }

@@ -9,6 +9,9 @@ class Cliente extends Model
 {
     use HasFactory;
 
+    // protected $table = 'cliente';
+    protected $primaryKey = 'cpf';
+    protected $keyType = 'string';
     protected $fillable = [
         'cpf',
         'nome',
@@ -22,8 +25,6 @@ class Cliente extends Model
     ];
 
     public $timestamps = false;
-
-    // protected $table = 'cliente';
 
     public function emprestimos()
     {

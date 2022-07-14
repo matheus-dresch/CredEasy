@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('emprestimos', function (Blueprint $table) {
             $table->id();
 
-            $table->string('nome_emprestimo', 255);
+            $table->string('nome', 255);
             $table->float('valor', 10, 2);
             $table->float('valor_final', 10, 2)->nullable();
             $table->float('taxa_juros', 3, 2);

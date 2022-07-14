@@ -21,7 +21,7 @@ return new class extends Migration
             $table->dateTime('data_vencimento');
             $table->dateTime('data_pagamento')->nullable();
             $table->float('taxa_multa', 10, 2)->nullable();
-            $table->float('valor_pago', 10, 2);
+            $table->float('valor_pago', 10, 2)->nullable();
             $table->string('status', 255)->default('ABERTA');
 
             $table->foreignId('emprestimo_id')

@@ -26,7 +26,7 @@ Route::resource('/login', LoginController::class)
     ->only(['index']);
 
 Route::resource('/signup', SignupController::class)
-    ->only(['index']);
+    ->only(['index', 'store']);
 
 Route::resource('/recover', RecoverController::class)
     ->only(['index']);

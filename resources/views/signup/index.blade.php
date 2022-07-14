@@ -1,5 +1,6 @@
 <x-layout.form title="Cadastro" css="signup">
-        <form action="/do-signup" method="POST" class="form">
+        <form action="{{ route('signup.store') }}" method="POST" class="form">
+            @csrf
             <h1>Olá! Seja muito bem-vindo ;) </h1>
             <p>Dados pessoais:</p>
             <div class="input-div">
@@ -18,7 +19,7 @@
             </div>
             <div class="input-div">
                 <label class="input-label">
-                    <input class="input-box user_phone" type="tel" name="numero" placeholder="Seu Nº de celular"
+                    <input class="input-box user_phone" type="tel" name="telefone" placeholder="Seu Nº de celular"
                         data-type="phone" maxlength="16" required>
                 </label>
                 <span class="error-message">Campo inválido</span>
@@ -91,8 +92,7 @@
             <div class="input-div">
                 <label class="input-label">
                     <input class="input-box user_password" type="password" name="senha"
-                        placeholder="Uma senha difícil" data-type="password" required
-                        pattern="((?=.*\d{2,})(?=.*[a-z])(?=.*[A-Z])(?=.*[\W]).{6,8})">
+                        placeholder="Uma senha difícil" data-type="password" required min="8" max="128">
                 </label>
                 <span class="error-message">Campo inválido</span>
             </div>
