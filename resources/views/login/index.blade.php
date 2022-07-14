@@ -1,16 +1,16 @@
-<x-form-default title="Entrar" css="login">
-                <form action="/do-login" class="form" method="post">
+<x-layout.form title="Entrar" css="login">
+                <form action="/cliente" class="form" method="get">
                     <h1>Bem-vindo(a) novamente!</h1>
                     <div class="input-div">
                         <label class="input-label">
                             <h6 class="text-light">Seu CPF</h6>
-                            <input class="input-box" id="cpf" type="text" name="cpf" placeholder="XXX.XXX.XXX-XX" maxlength="14" required>
+                            <input disabled class="input-box" id="cpf" type="text" name="cpf" placeholder="XXX.XXX.XXX-XX" maxlength="14" required>
                         </label>
                     </div>
                     <div class="input-div">
                         <label class="input-label">
                             <h6 class="text-light">Sua senha</h6>
-                            <input class="input-box" type="password" name="senha" placeholder="senha" required>
+                            <input disabled class="input-box" type="password" name="senha" placeholder="senha" required>
                         </label>
                     </div>
                     <div class="d-flex justify-content-center">

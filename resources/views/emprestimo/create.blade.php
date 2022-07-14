@@ -1,34 +1,44 @@
-<x-form-default title="Cadastro" css="">
-        <section class="d-flex justify-content-center">
-            <div id="main-form" class="my-3">
-                <form action="/do-login" class="bg-dark-25 rounded-4 py-3" method="post">
-                    <div class="px-3 mt-2 mb-4">
-                        <label class="input-label">
-                            <h6 class="text-light">Nome do empréstimo</h6>
-                            <input class="input-box" type="text" name="nome" placeholder="Contas de julho">
-                        </label>
-                    </div>
-                    <div class="px-3 mt-2 mb-4">
-                        <label class="input-label">
-                            <h6 class="text-light">Valor do empréstimo</h6>
-                            <input class="input-box" type="text" name="valor" placeholder="R$ 1.277,80">
-                        </label>
-                    </div>
-                    <div class="d-flex justify-content-center">
-                        <button type="submit" class="btn btn-outline-purple rounded-pill px-3 py-0 my-3">Solicitar</button>
-                    </div>
-                </form>
-                <?php if (isset($_SESSION['msg'])) : ?>
-                    <div class="alert alert-<?php echo $_SESSION['msg_type']; ?> mt-3 rounded-4">
-                        <strong>
-                            <?php
-                            echo $_SESSION['msg'];
-                            unset($_SESSION['msg_type']);
-                            unset($_SESSION['msg']);
-                            ?>
-                        </strong>
-                    </div>
-                <?php endif; ?>
+<x-layout.form title="Novo empréstimo" css="login">
+    <section class="d-flex flex-column align-items-center">
+        <div id="main-form" class="my-3">
+            <form action="{{ route('emprestimo.store') }}" class="bg-dark-25 rounded-4 py-3" method="post">
+                @csrf
+                <h1>Solicite um empréstimo</h1>
+                <div class="px-3 mt-2 mb-4">
+                    <label class="input-label">
+                        <h6 class="text-light">Nome do empréstimo</h6>
+                        <input class="input-box" type="text" name="nome" placeholder="Contas de julho">
+                    </label>
+                </div>
+                <div class="px-3 mt-2 mb-4">
+                    <label class="input-label">
+                        <h6 class="text-light">Valor do empréstimo</h6>
+                        <input class="input-box" type="text" name="valor" placeholder="R$ 1.277,80"
+                            data-type="income">
+                    </label>
+                </div>
+                <div class="px-3 mt-2 mb-4">
+                    <label class="input-label">
+                        <h6 class="text-light">Quantidade de parcelas</h6>
+                        <input class="input-box" type="number" name="parcelas" placeholder="12">
+                    </label>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <button type="submit" class="btn btn-outline-purple rounded-pill px-3 py-0 my-3">Solicitar</button>
+                </div>
+            </form>
+        </div>
+
+        @if ($errors->any())
+            <div class="alert alert-danger w-100 rounded-4">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
             </div>
-        </section>
-</x-form-default>
+        @endif
+    </section>
+    <script src="{{ asset('js/login/focus.js') }}"></script>
+    <script src="{{ asset('js/mask/money.js') }}"></script>
+    </x-form-default>

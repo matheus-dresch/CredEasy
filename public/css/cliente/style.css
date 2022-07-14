@@ -1,5 +1,10 @@
 @import url('../body.css');
 
+body {
+    display: flex;
+    flex-direction: column;
+}
+
 .side-btn {
     border-left: 0px solid rgb(98, 0, 255)
 }

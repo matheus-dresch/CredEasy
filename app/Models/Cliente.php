@@ -21,10 +21,12 @@ class Cliente extends Model
         'tipo'
     ];
 
+    public $timestamps = false;
+
     // protected $table = 'cliente';
 
     public function emprestimos()
     {
-        $this->hasMany(Emprestimo::class);
+        return $this->hasMany(Emprestimo::class);
     }
 }

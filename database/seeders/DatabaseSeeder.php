@@ -22,6 +22,6 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        Cliente::factory(50)->create();
+        Cliente::factory(5)->create();
     }
 }

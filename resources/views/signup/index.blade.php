@@ -1,4 +1,4 @@
-<x-form-default title="Cadastro" css="signup">
+<x-layout.form title="Cadastro" css="signup">
         <form action="/do-signup" method="POST" class="form">
             <h1>Olá! Seja muito bem-vindo ;) </h1>
             <p>Dados pessoais:</p>
@@ -106,10 +106,8 @@
             <button class="submit-button" type="submit">Cadastrar</button>
             <a href="/login">&#8250; Já sou cliente</a>
         </form>
-        <script src="https://github.com/codermarcos/simple-mask-money/releases/download/v3.0.0/simple-mask-money.js"></script>
-
         <script src="{{ asset("js/signup/focus.js") }}"></script>
         <script src="{{ asset("js/signup/valida.js") }}"></script>
         <script src="{{ asset("js/signup/cpfValidator.js") }}"></script>
         <script src="{{ asset("js/signup/inputMasks.js") }}"></script>
-</x-form-default>
+</x-layout.form>

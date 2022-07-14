@@ -9,8 +9,10 @@ class Parcela extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+
     public function emprestimo()
     {
-        $this->belongsTo(Emprestimo::class);
+        return $this->belongsTo(Emprestimo::class);
     }
 }

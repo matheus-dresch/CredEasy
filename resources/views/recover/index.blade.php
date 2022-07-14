@@ -1,4 +1,4 @@
-<x-form-default title="Recuperar" css="recover">
+<x-layout.form title="Recuperar" css="recover">
     <form action="/" class="form" method="post">
         <h1>Recupere sua conta</h1>
         <div class="input-div">
@@ -14,4 +14,4 @@
     </form>
     <script src="{{ asset('js/login/focus.js') }}"></script>
     <script src="{{ asset('js/login/mask.js') }}"></script>
-</x-form-default>
+</x-layout.form>

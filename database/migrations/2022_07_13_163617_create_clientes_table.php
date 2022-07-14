@@ -26,8 +26,6 @@ return new class extends Migration
             $table->string('senha', 255);
             $table->string('tipo', 32)->default('CLIENTE');
         });
-
-        DB::statement("ALTER TABLE cliente ADD CONSTRAINT tipo_usuario_valido CHECK (tipo IN ('CLIENTE', 'GESTOR')");
     }
 
     /**

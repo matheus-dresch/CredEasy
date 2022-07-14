@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\EmprestimoController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RecoverController;
 use App\Http\Controllers\SignupController;
@@ -28,3 +30,9 @@ Route::resource('/signup', SignupController::class)
 
 Route::resource('/recover', RecoverController::class)
     ->only(['index']);
+
+Route::resource('/cliente', ClienteController::class)
+    ->only(['index']);
+
+Route::resource('/emprestimo', EmprestimoController::class)
+    ->only(['index', 'create', 'store', 'show']);

@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="{{ asset('icons/credeasy.ico') }}" type="image/x-icon">
     <link rel="stylesheet" href="https://fonts.sandbox.google.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
-    @vite(['resources/js/app.js'])
+    @vite(['resources/css/app.css'])
     <link rel="stylesheet" href="{{ asset('css/home/style.css') }}">
     <title>CredEasy - Home</title>
 </head>
@@ -235,6 +235,7 @@
             </div>
         </section>
     </footer>
+    @vite(['resources/js/app.js'])
 </body>
 
 </html>

@@ -9,13 +9,15 @@ class Emprestimo extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+
     public function cliente()
     {
-        $this->belongsTo(Cliente::class);
+        return $this->belongsTo(Cliente::class);
     }
 
     public function parcelas()
     {
-        $this->hasMany(Parcela::class);
+        return $this->hasMany(Parcela::class);
     }
 }
