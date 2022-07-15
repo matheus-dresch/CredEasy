@@ -1,11 +1,12 @@
 <x-layout.cliente title="Empréstimo {{ $emprestimo->id }}" classes="d-flex flex-column align-items-center">
-    <h1 class="text-light"> Empréstimo '{!! $emprestimo->nome !!}'</h1>
-    <div class="p-3 w-25 bg-dark-25 rounded-4">
+    @include('flash::message')
+    <div class="p-3 w-50 bg-dark-25 rounded-4">
         <table class="table text-light">
+            <h1 class="text-light text-center"> Empréstimo '{!! $emprestimo->nome !!}'</h1>
             <tbody>
                 <tr>
                     <th>ID</td>
-                    <td>{{ $emprestimo->id }}</td>
+                    <td># {{ $emprestimo->id }}</td>
                 </tr>
                 <tr>
                     <th>Nome</th>
@@ -16,10 +17,15 @@
                     <td>R$ {{ number_format($emprestimo->valor, 2, ',', '.') }}</td>
                 </tr>
                 <tr>
-                    <th>Valor total pago</th>
+                    <th>Valor total
+                        <span class="badge bg-secondary rounded-circle" data-bs-toggle="tooltip"
+                            title="Valor total estimado com os juros">
+                            ?
+                        </span>
+                    </th>
                     <td>R$
                         @if ($emprestimo->valor_final)
-                            {{ number_format($emprestimo->valor_final, 2, ',', '.') }} }}
+                            {{ number_format($emprestimo->valor_final, 2, ',', '.') }}
                         @else
                             {{ '--' }}
                         @endif
@@ -45,6 +51,10 @@
                     </td>
                 </tr>
                 <tr>
+                    <th>Nº parcelas</th>
+                    <td>{{ $emprestimo->parcelas->count() }}</td>
+                </tr>
+                <tr>
                     <th>Status</th>
                     <td>{{ $emprestimo->status }}</td>
                 </tr>
@@ -58,6 +68,24 @@
                 Acessar parcelas
             </span>
         </a>
+        <div class="d-flex mt-3">
+            <form action="{{ route('emprestimo.muda-status', $emprestimo->id) }}" class="w-50" method="post">
+                @csrf
+                @method('PATCH')
+                <input type="checkbox" name="status" checked class="d-none">
+                <button type="submit" href="" class="btn btn-outline-success w-100 me-1">
+                    Aprovar
+                </button>
+            </form>
+            <form action="{{ route('emprestimo.muda-status', $emprestimo->id) }}" class="w-50" method="post">
+                @csrf
+                @method('PATCH')
+                <input type="checkbox" name="status" class="d-none">
+                <button type="submit" class="btn btn-outline-danger w-100 ms-1">
+                    Rejeitar
+                </button>
+            </form>
+        </div>
     </div>
 
 </x-layout.cliente>

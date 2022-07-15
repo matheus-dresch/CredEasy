@@ -3,6 +3,7 @@
         <h3 class="text-light mb-4">Bem-vindo(a), você está na área do cliente.</h3>
     </section>
     <section class="d-grid container-fluid">
+        @include('flash::message')
         <div class="row">
             <div class="col-12 col-lg-4 mb-2 px-1">
                 <article class="p-3 rounded d-flex align-items-center perfil-container">
@@ -29,13 +30,26 @@
                     <div class="ms-3 ">
                         <h5 class="d-block text-light">Próxima parcela</h5>
                         <div class="d-flex flex-column">
-                            <span class="d-flex align-items-center text-light text-decoration-none"><span
-                                    class="material-symbols-outlined fs-5 me-2">event</span>{{ $parcela->data_vencimento->format('d/m/Y') }}</span>
-                            <span class="d-flex align-items-center text-light text-decoration-none"><span
-                                    class="material-symbols-outlined fs-5 me-2">paid</span>R$ {{ number_format($parcela->valor, 2, ',', '.') }}</span>
-                            <a href=""
-                                class="side-btn d-flex align-items-center text-light text-decoration-none fw-bold"><span
-                                    class="material-symbols-outlined fs-5 me-2">arrow_circle_right</span>Acessar</a>
+                            @if ($parcela)
+                                <span class="d-flex align-items-center text-light text-decoration-none"><span
+                                        class="material-symbols-outlined fs-5 me-2">event</span>{{ $parcela->data_vencimento->format('d/m/Y') }}</span>
+                                <span class="d-flex align-items-center text-light text-decoration-none"><span
+                                        class="material-symbols-outlined fs-5 me-2">paid</span>R$
+                                    {{ number_format($parcela->valor, 2, ',', '.') }}</span>
+                                <a href=""
+                                    class="side-btn d-flex align-items-center text-light text-decoration-none fw-bold"><span
+                                        class="material-symbols-outlined fs-5 me-2">arrow_circle_right</span>Acessar</a>
+                            @else
+                                <span class="d-flex align-items-center text-light text-decoration-none"><span
+                                        class="material-symbols-outlined fs-5 me-2">event</span>--/--/----</span>
+                                <span class="d-flex align-items-center text-light text-decoration-none"><span
+                                        class="material-symbols-outlined fs-5 me-2">paid</span>R$ ---</span>
+                                <button
+                                     disabled class="side-btn d-flex align-items-center text-light text-decoration-none fw-bold">
+                                    <span class="material-symbols-outlined fs-5 me-2">arrow_circle_right</span>
+                                    Acessar
+                                </button>
+                            @endif
                         </div>
                     </div>
                 </article>
@@ -46,13 +60,33 @@
                     <div class="ms-3 ">
                         <h5 class="d-block text-light">Último empréstimo</h5>
                         <div class="d-flex flex-column">
-                            <span class="d-flex align-items-center text-light text-decoration-none"><span
-                                    class="material-symbols-outlined fs-5 me-2">info</span>{{ $emprestimos->first()->nome }} </span>
-                            <span class="d-flex align-items-center text-light text-decoration-none"><span
-                                    class="material-symbols-outlined fs-5 me-2">paid</span>R$ {{ number_format($emprestimos->first()->valor, 2, ',', '.') }} </span>
-                            <a href=""
-                                class="side-btn d-flex align-items-center text-light text-decoration-none fw-bold"><span
-                                    class="material-symbols-outlined fs-5 me-2">arrow_circle_right</span>Acessar</a>
+                            @if ($emprestimos->first())
+                                <span class="d-flex align-items-center text-light text-decoration-none">
+                                    <span class="material-symbols-outlined fs-5 me-2">info</span>
+                                    {{ $emprestimos->first()->nome }}
+                                </span>
+                                <span class="d-flex align-items-center text-light text-decoration-none">
+                                    <span class="material-symbols-outlined fs-5 me-2">paid</span>
+                                    R$ {{ number_format($emprestimos->first()->valor, 2, ',', '.') }}
+                                 </span>
+                                <a href="{{ route('emprestimo.show', $emprestimos->first()->id) }}" class="side-btn d-flex align-items-center text-light text-decoration-none fw-bold">
+                                    <span class="material-symbols-outlined fs-5 me-2">arrow_circle_right</span>
+                                    Acessar
+                                </a>
+                            @else
+                            <span class="d-flex align-items-center text-light text-decoration-none">
+                                <span class="material-symbols-outlined fs-5 me-2">info</span>
+                                --------
+                            </span>
+                            <span class="d-flex align-items-center text-light text-decoration-none">
+                                <span class="material-symbols-outlined fs-5 me-2">paid</span>
+                                R$ ---
+                             </span>
+                            <button disabled class="side-btn d-flex align-items-center text-light text-decoration-none fw-bold">
+                                <span class="material-symbols-outlined fs-5 me-2">arrow_circle_right</span>
+                                Acessar
+                            </button>
+                            @endif
                         </div>
                     </div>
                 </article>
@@ -64,7 +98,7 @@
             </div>
             <div class="col-12 col-lg-6 mb-2 px-1">
                 <article id="emp-btn-1" class="emp-btn rounded text-light text-center">
-                    <a href="/emprestimo/create"
+                    <a href="{{ route('emprestimo.create')}}";
                         class="p-4 fs-3 fs-lg-1 m-0 fw-bolder rounded d-flex justify-content-center align-items-center text-decoration-none text-light">
                         <span class="material-symbols-outlined fs-2 me-2 d-none d-lg-inline">
                             paid
@@ -88,11 +122,11 @@
                     </h5>
                     <div>
                         <h5 class="m-0">&bull; Total emprestado:</h5>
-                        <p class="ps-3 fs-5">R$  </p>
+                        <p class="ps-3 fs-5">R$ </p>
                     </div>
                     <div>
                         <h5 class="m-0">&bull; Total pago:</h5>
-                        <p class="ps-3 fs-5">R$  </p>
+                        <p class="ps-3 fs-5">R$ </p>
                     </div>
                     <div>
                         <h5 class="m-0">&bull; Nº de empréstimos:</h5>
@@ -159,21 +193,22 @@
                             <tbody>
 
                                 @foreach ($emprestimos as $emprestimo)
-                                <tr>
-                                    <td>{{ $emprestimo->nome }}</td>
-                                    <td>R$ {{ number_format($emprestimo->valor, 2, ',', '.') }} </td>
-                                    <td> {{ $emprestimo->parcelas()->count() }} </td>
-                                    <td>
-                                        <a href="{{ route('emprestimo.show', $emprestimo->id) }} " class="btn btn-outline-purple d-flex">
-                                            <span class="material-symbols-outlined">
-                                                arrow_circle_right
-                                            </span>
-                                            <span class="d-none d-sm-inline">
-                                                Acessar
-                                            </span>
-                                        </a>
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <td>{{ $emprestimo->nome }}</td>
+                                        <td>R$ {{ number_format($emprestimo->valor, 2, ',', '.') }} </td>
+                                        <td> {{ $emprestimo->parcelas()->count() }} </td>
+                                        <td>
+                                            <a href="{{ route('emprestimo.show', $emprestimo->id) }} "
+                                                class="btn btn-outline-purple d-flex">
+                                                <span class="material-symbols-outlined">
+                                                    arrow_circle_right
+                                                </span>
+                                                <span class="d-none d-sm-inline">
+                                                    Acessar
+                                                </span>
+                                            </a>
+                                        </td>
+                                    </tr>
                                 @endforeach
 
                             </tbody>

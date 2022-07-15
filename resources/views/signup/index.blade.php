@@ -1,5 +1,5 @@
 <x-layout.form title="Cadastro" css="signup">
-        <form action="{{ route('signup.store') }}" method="POST" class="form">
+        <form action="{{ route('cliente.store') }}" method="POST" class="form">
             @csrf
             <h1>Olá! Seja muito bem-vindo ;) </h1>
             <p>Dados pessoais:</p>

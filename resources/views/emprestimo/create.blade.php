@@ -7,25 +7,26 @@
                 <div class="px-3 mt-2 mb-4">
                     <label class="input-label">
                         <h6 class="text-light">Nome do empréstimo</h6>
-                        <input class="input-box" type="text" name="nome" placeholder="Contas de julho">
+                        <input class="input-box" type="text" name="nome" placeholder="Contas de julho" value="{{ old('nome') }}">
                     </label>
                 </div>
                 <div class="px-3 mt-2 mb-4">
                     <label class="input-label">
                         <h6 class="text-light">Valor do empréstimo</h6>
                         <input class="input-box" type="text" name="valor" placeholder="R$ 1.277,80"
-                            data-type="income">
+                            data-type="income" value="{{ old('valor') }}">
                     </label>
                 </div>
                 <div class="px-3 mt-2 mb-4">
                     <label class="input-label">
                         <h6 class="text-light">Quantidade de parcelas</h6>
-                        <input class="input-box" type="number" name="parcelas" placeholder="12">
+                        <input class="input-box" type="number" name="parcelas" placeholder="12" value="{{ old('parcelas') }}">
                     </label>
                 </div>
                 <div class="d-flex justify-content-center">
                     <button type="submit" class="btn btn-outline-purple rounded-pill px-3 py-0 my-3">Solicitar</button>
                 </div>
+                <a href="/cliente" class="m-0">&#8250; Voltar</a>
             </form>
         </div>
     </section>

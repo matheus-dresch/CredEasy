@@ -29,7 +29,10 @@
                         <a href="/cliente" class="nav-link navbar-link rounded active">ínicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link navbar-link rounded" href="./suporte.html">suporte</a>
+                        <a class="nav-link navbar-link rounded" href="">suporte</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link navbar-link rounded" href="{{ route('gestor.index') }}">sou gestor</a>
                     </li>
                 </ul>
             </section>
@@ -40,7 +43,7 @@
     {{ $slot }}
 
     </main>
-    <footer class="footer mt-auto container-fluid d-block" st>
+    <footer class="footer mt-auto container-fluid d-block">
         <section id="scrollspyHeading3" class="container-fluid d-grid">
             <div class="row">
                 <div class="col-12 col-lg-3 p-3 d-flex align-items-center justify-content-center">

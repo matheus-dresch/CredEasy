@@ -21,7 +21,7 @@
     <main class="p-3">
         <section class="d-flex flex-column align-items-center">
             @if ($errors->any())
-                <div class="alert alert-danger w-100 rounded-4">
+                <div class="alert alert-danger rounded-4 w-50">
                     <ul>
                         @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>
@@ -29,6 +29,7 @@
                     </ul>
                 </div>
             @endif
+            @include('flash::message')
             {{ $slot }}
 
         </section>

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\EmprestimoController;
+use App\Http\Controllers\GestorController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ParcelaController;
 use App\Http\Controllers\RecoverController;
@@ -25,26 +26,35 @@ Route::get('/', function () {
     return view('home');
 });
 
+//! ---
 //? Resources
 
 Route::resource('/login', LoginController::class)
     ->only(['index']);
 
 Route::resource('/signup', SignupController::class)
-    ->only(['index', 'store']);
+    ->only(['index']);
 
 Route::resource('/recover', RecoverController::class)
     ->only(['index']);
 
 Route::resource('/cliente', ClienteController::class)
+    ->only(['index', 'store']);
+
+Route::resource('/gestor', GestorController::class)
     ->only(['index']);
 
 Route::resource('/emprestimo', EmprestimoController::class)
-    ->only(['index', 'create', 'store', 'show']);
+    ->only(['create', 'show', 'store']);
 
 Route::resource('/parcela', ParcelaController::class)
     ->only(['update']);
 
+//! ---
 //? Rotas personalizadas
 
-Route::get('/parcela/list/{emprestimo}', [ParcelaController::class, 'list'])->name('parcela.list');
+Route::get('/parcela/list/{emprestimo}', [ParcelaController::class, 'list'])
+    ->name('parcela.list');
+
+Route::patch('/emprestimo/{emprestimo}', [EmprestimoController::class, 'mudaStatus'])
+    ->name('emprestimo.muda-status');
