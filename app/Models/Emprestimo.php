@@ -9,6 +9,7 @@ class Emprestimo extends Model
 {
     use HasFactory;
 
+    protected $dates = ['data_solicitacao', 'data_quitacao'];
     protected $fillable = [
         'nome',
         'valor',

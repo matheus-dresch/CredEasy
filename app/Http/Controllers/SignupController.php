@@ -22,6 +22,8 @@ class SignupController extends Controller
 
         $clienteData['renda'] = $renda;
 
+        $clienteData['senha'] = password_hash($clienteData['senha'], PASSWORD_ARGON2I);
+
         [
             'cep' => $cep,
             'estado' => $estado,

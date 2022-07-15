@@ -22,7 +22,7 @@ return new class extends Migration
             $table->float('taxa_juros', 3, 2);
             $table->dateTime('data_solicitacao');
             $table->dateTime('data_quitacao')->nullable();
-            $table->string('status', 255)->default('CLIENTE');
+            $table->string('status', 255)->default('SOLICITADO');
 
             $table->string('cliente_cpf');
             $table->foreign('cliente_cpf')

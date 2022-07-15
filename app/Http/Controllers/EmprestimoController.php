@@ -26,7 +26,7 @@ class EmprestimoController extends Controller
 
         $emprestimoData['taxa_juros'] = fake()->randomFloat(2, 1, 5);
         $emprestimoData['data_solicitacao'] = now();
-        $emprestimoData['cliente_cpf'] = '055.652.727-50';
+        $emprestimoData['cliente_cpf'] = '030.342.600-40';
 
         $emprestimo = Emprestimo::create($emprestimoData);
 

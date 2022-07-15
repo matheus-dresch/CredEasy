@@ -9,6 +9,7 @@ class Parcela extends Model
 {
     use HasFactory;
 
+    protected $dates = ['data_vencimento', 'data_pagamento'];
     public $timestamps = false;
 
     public function emprestimo()

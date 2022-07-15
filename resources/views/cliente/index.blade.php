@@ -30,9 +30,9 @@
                         <h5 class="d-block text-light">Próxima parcela</h5>
                         <div class="d-flex flex-column">
                             <span class="d-flex align-items-center text-light text-decoration-none"><span
-                                    class="material-symbols-outlined fs-5 me-2">event</span>20/05/2022</span>
+                                    class="material-symbols-outlined fs-5 me-2">event</span>{{ $parcela->data_vencimento->format('d/m/Y') }}</span>
                             <span class="d-flex align-items-center text-light text-decoration-none"><span
-                                    class="material-symbols-outlined fs-5 me-2">paid</span>R$ 242,90</span>
+                                    class="material-symbols-outlined fs-5 me-2">paid</span>R$ {{ number_format($parcela->valor, 2, ',', '.') }}</span>
                             <a href=""
                                 class="side-btn d-flex align-items-center text-light text-decoration-none fw-bold"><span
                                     class="material-symbols-outlined fs-5 me-2">arrow_circle_right</span>Acessar</a>
@@ -47,9 +47,9 @@
                         <h5 class="d-block text-light">Último empréstimo</h5>
                         <div class="d-flex flex-column">
                             <span class="d-flex align-items-center text-light text-decoration-none"><span
-                                    class="material-symbols-outlined fs-5 me-2">info</span> </span>
+                                    class="material-symbols-outlined fs-5 me-2">info</span>{{ $emprestimos->first()->nome }} </span>
                             <span class="d-flex align-items-center text-light text-decoration-none"><span
-                                    class="material-symbols-outlined fs-5 me-2">paid</span>R$  </span>
+                                    class="material-symbols-outlined fs-5 me-2">paid</span>R$ {{ number_format($emprestimos->first()->valor, 2, ',', '.') }} </span>
                             <a href=""
                                 class="side-btn d-flex align-items-center text-light text-decoration-none fw-bold"><span
                                     class="material-symbols-outlined fs-5 me-2">arrow_circle_right</span>Acessar</a>

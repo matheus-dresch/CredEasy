@@ -26,7 +26,7 @@
             <section class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a href="/dashboard" class="nav-link navbar-link rounded active">ínicio</a>
+                        <a href="/cliente" class="nav-link navbar-link rounded active">ínicio</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link navbar-link rounded" href="./suporte.html">suporte</a>
@@ -35,7 +35,7 @@
             </section>
         </section>
     </header>
-    <main class="p-3">
+    <main class="p-3 @isset($classes) {{ $classes }} @endisset">
 
     {{ $slot }}
 
