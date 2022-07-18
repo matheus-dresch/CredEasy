@@ -8,7 +8,7 @@
     <link rel="shortcut icon" href="{{ asset('icons/credeasy.ico') }}" type="image/x-icon">
     <link rel="stylesheet"
         href="https://fonts.sandbox.google.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
-    @vite(['resources/css/app.css'])
+    @vite(['resources/css/app.scss'])
     <link rel="stylesheet" href="{{ asset("css/$css/style.css") }}">
     <title>CredEasy - {{ $title }}</title>
 </head>

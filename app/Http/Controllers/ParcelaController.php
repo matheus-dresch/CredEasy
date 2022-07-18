@@ -8,9 +8,9 @@ use Illuminate\Http\Request;
 
 class ParcelaController extends Controller
 {
-    public function update(Parcela $parcela)
+    public function pagaParcela(Parcela $parcela)
     {
-        $parcela->status = 'PAGO';
+        $parcela->status = 'PAGA';
         $parcela->data_pagamento = now();
         $parcela->save();
 
@@ -30,13 +30,13 @@ class ParcelaController extends Controller
             $emprestimo->save();
         }
 
-        return to_route('parcela.list', $parcela->emprestimo_id);
+        return to_route('parcela.lista', $parcela->emprestimo_id);
     }
 
-    public function list(Emprestimo $emprestimo)
+    public function lista(Emprestimo $emprestimo)
     {
         $parcelas = $emprestimo->parcelas;
 
-        return view('parcela.list')->with('parcelas', $parcelas)->with('emprestimo', $emprestimo);
+        return view('emprestimo.parcelas')->with('parcelas', $parcelas)->with('emprestimo', $emprestimo);
     }
 }

@@ -20,7 +20,7 @@
                 <div class="px-3 mt-2 mb-4">
                     <label class="input-label">
                         <h6 class="text-light">Quantidade de parcelas</h6>
-                        <input class="input-box" type="number" name="parcelas" placeholder="12" value="{{ old('parcelas') }}">
+                        <input class="input-box" type="number" name="qtd_parcelas" placeholder="12" value="{{ old('qtd_parcelas') }}">
                     </label>
                 </div>
                 <div class="d-flex justify-content-center">

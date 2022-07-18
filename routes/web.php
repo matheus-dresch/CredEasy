@@ -20,23 +20,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//? Home
+//! -----
 
 Route::get('/', function () {
     return view('home');
 });
 
-//! ---
-//? Resources
+Route::get('/entrar', function () {
+    return view('entrar');
+})->name('login');
 
-Route::resource('/login', LoginController::class)
-    ->only(['index']);
+Route::get('/cadastro', function () {
+    return view('cadastro');
+})->name('signup');
 
-Route::resource('/signup', SignupController::class)
-    ->only(['index']);
-
-Route::resource('/recover', RecoverController::class)
-    ->only(['index']);
+//! -----
 
 Route::resource('/cliente', ClienteController::class)
     ->only(['index', 'store']);
@@ -47,14 +45,20 @@ Route::resource('/gestor', GestorController::class)
 Route::resource('/emprestimo', EmprestimoController::class)
     ->only(['create', 'show', 'store']);
 
-Route::resource('/parcela', ParcelaController::class)
-    ->only(['update']);
-
 //! ---
 //? Rotas personalizadas
 
-Route::get('/parcela/list/{emprestimo}', [ParcelaController::class, 'list'])
-    ->name('parcela.list');
+Route::get('/emprestimo/parcelas/{emprestimo}', [ParcelaController::class, 'lista'])
+    ->name('parcela.lista');
 
-Route::patch('/emprestimo/{emprestimo}', [EmprestimoController::class, 'mudaStatus'])
+Route::get('/emprestimo/analisar/{emprestimo}', [EmprestimoController::class, 'analisar'])
+    ->name('emprestimo.analisar');
+
+Route::patch('/emprestimo/mudastatus/{emprestimo}', [EmprestimoController::class, 'mudaStatus'])
     ->name('emprestimo.muda-status');
+
+Route::patch('parcela/{parcela}', [ParcelaController::class, 'pagaParcela'])
+    ->name('parcela.paga-parcela');
+
+Route::patch('/emprestimo/mudataxa/{emprestimo}', [EmprestimoController::class, 'mudaTaxa'])
+    ->name('emprestimo.muda-taxa');

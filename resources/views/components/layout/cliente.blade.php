@@ -9,7 +9,7 @@
     <link rel="stylesheet"
         href="https://fonts.sandbox.google.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <link rel="stylesheet" href="{{ asset('css/cliente/style.css') }}">
-    @vite(['resources/css/app.css'])
+    @vite(['resources/css/app.scss'])
     <title>CredEasy - {{ $title }}</title>
 </head>
 

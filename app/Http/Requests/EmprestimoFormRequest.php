@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class EmprestimoForRequest extends FormRequest
+class EmprestimoFormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,7 +26,7 @@ class EmprestimoForRequest extends FormRequest
         return [
             'nome' => ['required', 'min:3', 'max:64'],
             'valor' => ['required'],
-            'parcelas' => ['required']
+            'qtd_parcelas' => ['required', 'integer', 'min:1']
         ];
     }
 }

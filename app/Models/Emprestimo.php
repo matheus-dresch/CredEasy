@@ -18,7 +18,8 @@ class Emprestimo extends Model
         'data_solicitacao',
         'data_quitacao',
         'status',
-        'cliente_cpf'
+        'cliente_cpf',
+        'qtd_parcelas'
     ];
 
     public $timestamps = false;

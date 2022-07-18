@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="{{ asset('icons/credeasy.ico') }}" type="image/x-icon">
     <link rel="stylesheet" href="https://fonts.sandbox.google.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
-    @vite(['resources/css/app.css'])
+    @vite(['resources/css/app.scss'])
     <link rel="stylesheet" href="{{ asset('css/home/style.css') }}">
     <title>CredEasy - Home</title>
 </head>
@@ -36,10 +36,10 @@
                 </ul>
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item me-4 mb-3 mb-md-0">
-                        <a href="/login" class="btn btn-outline-light px-4 fw-bold">Entrar</a>
+                        <a href="{{ route('login') }}" class="btn btn-outline-light px-4 fw-bold">Entrar</a>
                     </li>
                     <li class="nav-item">
-                        <form action="/signup" method="POST" class="d-flex" id="cadastroForm">
+                        <form action="{{ route('signup') }}" method="GET" class="d-flex" id="cadastroForm">
                             <input type="email" name="email" id="email" placeholder="Seu e-mail">
                             <button id="submitBtn" type="submit" class="btn btn-outline-purple rounded-end">Cadastrar</button>
                         </form>
@@ -60,7 +60,7 @@
                         Precisando de crédito?
                     </h2>
                     <p class="banner-text text-center text-light fs-4">Conte conosco!</p>
-                    <a class="btn btn-outline-purple d-block w-50 fw-bold" href="/signup">Cadastrar</a>
+                    <a class="btn btn-outline-purple d-block w-50 fw-bold" href="{{ route('signup') }}">Cadastrar</a>
                 </article>
             </section>
             <section id="banner2" class="row main-row" style="max-width: 100vw;">
@@ -69,7 +69,7 @@
                         Já é nosso cliente?
                     </h2>
                     <p class="banner-text text-center text-light fs-4">Acesse sua conta</p>
-                    <a class="btn btn-outline-purple d-block w-50 fw-bold" href="/login">Entrar</a>
+                    <a class="btn btn-outline-purple d-block w-50 fw-bold" href="{{ route('login') }}">Entrar</a>
                 </article>
                 <article class="col info-banner-img p-0">
                     <img class="objfit-cover w-100 h-100" src="{{ asset('images/home/banner2.webp') }}" alt="">
@@ -84,7 +84,7 @@
                         Quer apenas simular?
                     </h2>
                     <p class="banner-text text-center text-light fs-4">Simule seu empréstimo.</p>
-                    <a class="btn btn-outline-purple d-block w-50 fw-bold" href="./simular.html">Simular agora</a>
+                    <a class="btn btn-outline-purple d-block w-50 fw-bold" href="/">Simular agora</a>
                 </article>
             </section>
         </section>
@@ -207,17 +207,17 @@
                     <h3 id="header-title" class="m-0 text-light">CredEasy</h3>
                 </div>
                 <div class="col-12 col-lg-2 d-flex justify-content-center align-items-center">
-                    <a href="" class="text-light nav-link d-flex">
+                    <a href="/" class="text-light nav-link d-flex">
                         <span>Termos legais</span>
                     </a>
                 </div>
                 <div class="col-12 col-lg-2 d-flex justify-content-center align-items-center">
-                    <a href="" class="text-light nav-link d-flex">
+                    <a href="/" class="text-light nav-link d-flex">
                         <span>Termos de uso</span>
                     </a>
                 </div>
                 <div class="col-12 col-lg-2 d-flex justify-content-center align-items-center">
-                    <a href="" class="text-light nav-link d-flex">
+                    <a href="/" class="text-light nav-link d-flex">
                         <span>Privacidade</span>
                     </a>
                 </div>

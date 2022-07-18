@@ -25,10 +25,10 @@
                                 <tr>
                                     <td>{{ $emprestimo->nome }}</td>
                                     <td>R$ {{ number_format($emprestimo->valor, 2, ',', '.') }} </td>
-                                    <td> {{ $emprestimo->parcelas()->count() }} </td>
-                                    <td> {{ $emprestimo->data_solicitacao->format('d/m/Y H:m') }}</td>
+                                    <td> {{ $emprestimo->qtd_parcelas }} </td>
+                                    <td> {{ $emprestimo->data_solicitacao->format('d/m/Y H:i') }}</td>
                                     <td>
-                                        <a href="{{ route('emprestimo.show', $emprestimo->id) }} "
+                                        <a href="{{ route('emprestimo.analisar', $emprestimo->id) }} "
                                             class="btn btn-outline-purple d-flex">
                                             <span class="material-symbols-outlined">
                                                 arrow_circle_right

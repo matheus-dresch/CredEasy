@@ -23,6 +23,7 @@ return new class extends Migration
             $table->dateTime('data_solicitacao');
             $table->dateTime('data_quitacao')->nullable();
             $table->string('status', 255)->default('SOLICITADO');
+            $table->integer('qtd_parcelas');
 
             $table->string('cliente_cpf');
             $table->foreign('cliente_cpf')

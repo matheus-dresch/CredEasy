@@ -9,7 +9,7 @@ class GestorController extends Controller
 {
     public function index()
     {
-        $emprestimos = Emprestimo::all();
+        $emprestimos = Emprestimo::where('status', 'SOLICITADO')->get();
         return view('gestor.index')->with('emprestimos', $emprestimos);
     }
 }

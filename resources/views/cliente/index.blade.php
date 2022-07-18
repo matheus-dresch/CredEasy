@@ -189,6 +189,7 @@
                                 <th>Empréstimo</th>
                                 <th>Valor</th>
                                 <th>Parcelas</th>
+                                <th>Status</th>
                             </thead>
                             <tbody>
 
@@ -196,7 +197,8 @@
                                     <tr>
                                         <td>{{ $emprestimo->nome }}</td>
                                         <td>R$ {{ number_format($emprestimo->valor, 2, ',', '.') }} </td>
-                                        <td> {{ $emprestimo->parcelas()->count() }} </td>
+                                        <td> {{ $emprestimo->qtd_parcelas }} </td>
+                                        <td> {{ $emprestimo->status }}</td>
                                         <td>
                                             <a href="{{ route('emprestimo.show', $emprestimo->id) }} "
                                                 class="btn btn-outline-purple d-flex">

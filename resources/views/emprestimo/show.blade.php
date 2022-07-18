@@ -32,7 +32,12 @@
                     </td>
                 </tr>
                 <tr>
-                    <th>Taxa de juros</th>
+                    <th>Taxa de juros
+                        <span class="badge bg-secondary rounded-circle" data-bs-toggle="tooltip"
+                            title="A taxa de juros pode ser modificada caso o empréstimo ainda não foi aprovado">
+                            ?
+                        </span>
+                    </th>
                     <td>{{ number_format($emprestimo->taxa_juros, 2, ',', '.') }}%</td>
                 </tr>
                 <tr>
@@ -52,7 +57,7 @@
                 </tr>
                 <tr>
                     <th>Nº parcelas</th>
-                    <td>{{ $emprestimo->parcelas->count() }}</td>
+                    <td>{{ $emprestimo->qtd_parcelas }}</td>
                 </tr>
                 <tr>
                     <th>Status</th>
@@ -60,7 +65,7 @@
                 </tr>
             </tbody>
         </table>
-        <a href="{{ route('parcela.list', $emprestimo->id) }} " class="btn btn-outline-purple d-flex">
+        <a href="{{ route('parcela.lista', $emprestimo->id) }} " class="btn btn-outline-purple d-flex">
             <span class="material-symbols-outlined">
                 arrow_circle_right
             </span>
@@ -68,24 +73,6 @@
                 Acessar parcelas
             </span>
         </a>
-        <div class="d-flex mt-3">
-            <form action="{{ route('emprestimo.muda-status', $emprestimo->id) }}" class="w-50" method="post">
-                @csrf
-                @method('PATCH')
-                <input type="checkbox" name="status" checked class="d-none">
-                <button type="submit" href="" class="btn btn-outline-success w-100 me-1">
-                    Aprovar
-                </button>
-            </form>
-            <form action="{{ route('emprestimo.muda-status', $emprestimo->id) }}" class="w-50" method="post">
-                @csrf
-                @method('PATCH')
-                <input type="checkbox" name="status" class="d-none">
-                <button type="submit" class="btn btn-outline-danger w-100 ms-1">
-                    Rejeitar
-                </button>
-            </form>
-        </div>
     </div>
 
 </x-layout.cliente>

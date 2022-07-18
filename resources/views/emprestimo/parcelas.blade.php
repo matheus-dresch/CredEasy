@@ -25,9 +25,9 @@
                         <td>{{ $parcela->status }}</td>
                         <td>
                             @if ($parcela->status === 'ABERTA')
-                            <form action="{{ route('parcela.update', $parcela->id) }}" class="w-100" method="post">
+                            <form action="{{ route('parcela.paga-parcela', $parcela->id) }}" class="w-100" method="post">
                                 @csrf
-                                @method('PUT')
+                                @method('PATCH')
                                 <button type="submit" class="btn btn-outline-purple d-flex w-100">
                                     <span class="material-symbols-outlined me-2">
                                         arrow_circle_right
