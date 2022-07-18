@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -15,5 +16,10 @@ class Parcela extends Model
     public function emprestimo()
     {
         return $this->belongsTo(Emprestimo::class);
+    }
+
+    public function scopePagas(Builder $query)
+    {
+        $query->where('status', 'PAGA');
     }
 }

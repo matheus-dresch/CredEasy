@@ -197,7 +197,7 @@
                                     <tr>
                                         <td>{{ $emprestimo->nome }}</td>
                                         <td>R$ {{ number_format($emprestimo->valor, 2, ',', '.') }} </td>
-                                        <td> {{ $emprestimo->qtd_parcelas }} </td>
+                                        <td> {{ $emprestimo->parcelas()->pagas()->count() }}/{{ $emprestimo->qtd_parcelas }} </td>
                                         <td> {{ $emprestimo->status }}</td>
                                         <td>
                                             <a href="{{ route('emprestimo.show', $emprestimo->id) }} "

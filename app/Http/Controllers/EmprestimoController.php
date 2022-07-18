@@ -36,7 +36,7 @@ class EmprestimoController extends Controller
         $emprestimoData['cliente_cpf'] = '030.342.600-40';
         $emprestimoData['valor_final'] = $valor * 1.2;
 
-        $valorParcela = ($valor * 1.2) / $emprestimoData['qtd_parcelas'];
+        $valorParcela = ($valor * 1.1) / $emprestimoData['qtd_parcelas'];
 
         if ($valorParcela < 200) {
             $valorFormatado = number_format($valorParcela, 2, '.', ',');
@@ -49,7 +49,7 @@ class EmprestimoController extends Controller
 
         $emprestimo = Emprestimo::create($emprestimoData);
 
-        flash("O empréstimo '{$emprestimo->nome} foi solicitado, agurde a aprovação.");
+        flash("O empréstimo '{$emprestimo->nome}' foi solicitado, agurde a aprovação.");
 
         return to_route('cliente.index');
     }
@@ -57,25 +57,6 @@ class EmprestimoController extends Controller
     public function show(Emprestimo $emprestimo)
     {
         return view('emprestimo.show')->with('emprestimo', $emprestimo);
-    }
-
-    public function mudaStatus(Emprestimo $emprestimo, Request $request)
-    {
-        if ($emprestimo->status === 'SOLICITADO') {
-            if ($request->status === 'on') {
-                $emprestimo->status = 'APROVADO';
-                $this->criaParcelas($emprestimo);
-            } else {
-                $emprestimo->status = 'REJEITADO';
-            }
-
-            $emprestimo->save();
-        } else {
-            $status = strtolower($emprestimo->status);
-            flash("Este empréstimo já foi {$status} e não é possível atualizá-lo.")->error();
-        }
-
-        return to_route('emprestimo.analisar', $emprestimo->id);
     }
 
     public function analisar(Emprestimo $emprestimo)
@@ -103,10 +84,10 @@ class EmprestimoController extends Controller
         Parcela::insert($parcelas);
     }
 
-    public function mudaTaxa(Emprestimo $emprestimo, Request $request)
+    public function atualizar(Emprestimo $emprestimo, Request $request)
     {
         $request->validate([
-            'taxa' => ['required', 'numeric', 'min:10', 'max:20']
+            'taxa' => ['numeric', 'min:10', 'max:20']
         ]);
 
         if ($emprestimo->status != 'SOLICITADO') {
@@ -114,11 +95,19 @@ class EmprestimoController extends Controller
                 ->withErrors('Este empréstimo não pode mais ser atualizado.');
         }
 
-        $emprestimo->taxa_juros = $request->taxa;
-        $emprestimo->valor_final = $emprestimo->valor * ( $request->taxa / 100 + 1);
-        $emprestimo->save();
-        flash('A taxa foi atualizada.');
+        if (isset($request->taxa)) {
+            $emprestimo->taxa_juros = $request->taxa;
+            $emprestimo->valor_final = $emprestimo->valor * ( $request->taxa / 100 + 1);
+            flash('A taxa foi atualizada.');
+        } else if (isset($request->status)) {
+            $emprestimo->status = $request->status === 'on' ? 'APROVADO' : 'REJEITADO';
 
+            if ($request->status === 'on') {
+                $this->criaParcelas($emprestimo);
+            }
+        }
+
+        $emprestimo->save();
         return to_route('emprestimo.analisar', $emprestimo->id);
     }
 }

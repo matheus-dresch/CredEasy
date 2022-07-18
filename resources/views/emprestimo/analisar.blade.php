@@ -37,13 +37,18 @@
                 <tr>
                     <th>Taxa de juros</th>
                     <td class="align-items-center">
-                        <form action="{{ route('emprestimo.muda-taxa', $emprestimo->id) }}" method="POST">
-                            @csrf
-                            @method('PATCH')
-                            <input type="number" class="rounded input-box btn-sm" name="taxa"
-                                value="{{ $emprestimo->taxa_juros }}" step="0.1" max="20" min="10">
-                            <button type="submit" class="btn btn-primary btn-sm">Atualizar</button>
-                        </form>
+                        @if ($emprestimo->status === 'SOLICITADO')
+                            <form action="{{ route('emprestimo.atualizar', $emprestimo->id) }}" method="POST">
+                                @csrf
+                                @method('PATCH')
+                                <input type="number" class="rounded input-box btn-sm" name="taxa"
+                                    value="{{ $emprestimo->taxa_juros }}" step="0.1" max="20"
+                                    min="10">
+                                <button type="submit" class="btn btn-primary btn-sm">Atualizar</button>
+                            </form>
+                        @else
+                            {{ $emprestimo->taxa_juros }}%
+                        @endif
                     </td>
                 </tr>
                 <tr>
@@ -84,24 +89,26 @@
                     <td>{{ $cliente->telefone }}</td>
                 </tr>
         </table>
-        <div class="d-flex mt-3">
-            <form action="{{ route('emprestimo.muda-status', $emprestimo->id) }}" class="w-50" method="post">
-                @csrf
-                @method('PATCH')
-                <input type="checkbox" name="status" checked class="d-none">
-                <button type="submit" href="" class="btn btn-outline-success w-100 me-1">
-                    Aprovar
-                </button>
-            </form>
-            <form action="{{ route('emprestimo.muda-status', $emprestimo->id) }}" class="w-50" method="post">
-                @csrf
-                @method('PATCH')
-                <input type="checkbox" name="status" class="d-none">
-                <button type="submit" class="btn btn-outline-danger w-100 ms-1">
-                    Rejeitar
-                </button>
-            </form>
-        </div>
+        @if ($emprestimo->status === 'SOLICITADO')
+            <div class="d-flex mt-3">
+                <form action="{{ route('emprestimo.atualizar', $emprestimo->id) }}" class="w-50" method="post">
+                    @csrf
+                    @method('PATCH')
+                    <input type="checkbox" name="status" checked class="d-none">
+                    <button type="submit" href="" class="btn btn-outline-success w-100 me-1">
+                        Aprovar
+                    </button>
+                </form>
+                <form action="{{ route('emprestimo.atualizar', $emprestimo->id) }}" class="w-50" method="post">
+                    @csrf
+                    @method('PATCH')
+                    <input type="checkbox" name="status" class="d-none">
+                    <button type="submit" class="btn btn-outline-danger w-100 ms-1">
+                        Rejeitar
+                    </button>
+                </form>
+            </div>
+        @endif
     </div>
     <style>
         .input-box {

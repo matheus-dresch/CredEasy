@@ -5,9 +5,16 @@ namespace App\Http\Controllers;
 use App\Http\Requests\SignupFormRequest;
 use App\Models\Cliente;
 use App\Models\Parcela;
+use App\Repositories\ClienteRepository;
 
 class ClienteController extends Controller
 {
+
+    public function __construct(private ClienteRepository $repository)
+    {
+        $this->repository = $repository;
+    }
+
     public function index()
     {
         $cliente = Cliente::find('030.342.600-40')->with('emprestimos')->first();
@@ -29,27 +36,7 @@ class ClienteController extends Controller
     public function store(SignupFormRequest $request)
     {
         $clienteData = $request->all();
-
-        $renda = $clienteData['renda'];
-        $renda = floatval(preg_replace('/[\D]/', '', $renda)) / 100;
-
-        $clienteData['renda'] = $renda;
-
-        $clienteData['senha'] = password_hash($clienteData['senha'], PASSWORD_ARGON2I);
-
-        [
-            'cep' => $cep,
-            'estado' => $estado,
-            'cidade' => $cidade,
-            'bairro' => $bairro,
-            'rua' => $rua,
-            'numcasa' => $numcasa,
-        ] = $clienteData;
-
-        $endereco = "$estado, $cidade - $cep, $bairro, $rua, $numcasa";
-        $clienteData['endereco'] = $endereco;
-
-        Cliente::create($clienteData);
+        $this->repository->add($clienteData);
 
         return to_route('cliente.index');
     }

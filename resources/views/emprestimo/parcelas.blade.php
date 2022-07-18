@@ -1,4 +1,5 @@
 <x-layout.cliente title="Parcelas" classes="d-flex flex-column align-items-center">
+    @include('flash::message');
     <h1 class="text-light">Parcelas do empréstimo '{!! $emprestimo->nome !!}'</h1>
     <div class="bg-dark-25 rounded-4 w-75 p-3">
         <table class="table text-light">
@@ -24,7 +25,7 @@
                         </td>
                         <td>{{ $parcela->status }}</td>
                         <td>
-                            @if ($parcela->status === 'ABERTA')
+                            @if ($parcela->numero === $proximaParcela)
                             <form action="{{ route('parcela.paga-parcela', $parcela->id) }}" class="w-100" method="post">
                                 @csrf
                                 @method('PATCH')
@@ -37,6 +38,15 @@
                                     </span>
                                 </button>
                             </form>
+                            @elseif ($parcela->status === 'ABERTA')
+                            <a class="disabled btn btn-outline-danger d-flex w-100">
+                                <span class="material-symbols-outlined me-2">
+                                    arrow_circle_right
+                                </span>
+                                <span class="d-none d-sm-inline">
+                                    Pagar
+                                </span>
+                            </a>
                             @else
                                 <a disabled class="btn btn-outline-success d-flex disabled">
                                     <span class="material-symbols-outlined me-2">

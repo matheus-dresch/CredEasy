@@ -48,17 +48,14 @@ Route::resource('/emprestimo', EmprestimoController::class)
 //! ---
 //? Rotas personalizadas
 
+Route::patch('/emprestimo/atualizar/{emprestimo}', [EmprestimoController::class, 'atualizar'])
+    ->name('emprestimo.atualizar');
+
 Route::get('/emprestimo/parcelas/{emprestimo}', [ParcelaController::class, 'lista'])
     ->name('parcela.lista');
 
 Route::get('/emprestimo/analisar/{emprestimo}', [EmprestimoController::class, 'analisar'])
     ->name('emprestimo.analisar');
 
-Route::patch('/emprestimo/mudastatus/{emprestimo}', [EmprestimoController::class, 'mudaStatus'])
-    ->name('emprestimo.muda-status');
-
 Route::patch('parcela/{parcela}', [ParcelaController::class, 'pagaParcela'])
     ->name('parcela.paga-parcela');
-
-Route::patch('/emprestimo/mudataxa/{emprestimo}', [EmprestimoController::class, 'mudaTaxa'])
-    ->name('emprestimo.muda-taxa');
