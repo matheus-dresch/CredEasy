@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Services;
 
-use App\Http\Requests\SignupFormRequest;
 use App\Models\Cliente;
 
-class ClienteRepository
+class ClienteService
 {
-    public function add(array $clienteData): Cliente
+    public function registra(array $clienteData): Cliente|bool
     {
         $renda = $clienteData['renda'];
         $renda = floatval(preg_replace('/[\D]/', '', $renda)) / 100;

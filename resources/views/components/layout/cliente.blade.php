@@ -31,9 +31,11 @@
                     <li class="nav-item">
                         <a class="nav-link navbar-link rounded" href="">suporte</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link navbar-link rounded" href="{{ route('gestor.index') }}">sou gestor</a>
-                    </li>
+                    @if (Auth::user()->tipo === "GESTOR")
+                        <li class="nav-item">
+                            <a class="nav-link navbar-link rounded" href="{{ route('gestor.index') }}">sou gestor</a>
+                        </li>
+                    @endif
                 </ul>
             </section>
         </section>

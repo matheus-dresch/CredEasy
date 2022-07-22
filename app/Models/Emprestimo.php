@@ -33,4 +33,11 @@ class Emprestimo extends Model
     {
         return $this->hasMany(Parcela::class);
     }
+
+    public function parcelasPagas()
+    {
+        return $this->parcelas
+            ->filter(fn ($parcela) => $parcela->status === "PAGA")
+            ->count();
+    }
 }

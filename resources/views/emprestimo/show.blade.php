@@ -65,7 +65,7 @@
                 </tr>
             </tbody>
         </table>
-        <a href="{{ route('parcela.lista', $emprestimo->id) }} " class="btn btn-outline-purple d-flex">
+        <a href="{{ route('emprestimo.parcelas', $emprestimo->id) }} " class="btn btn-outline-purple d-flex">
             <span class="material-symbols-outlined">
                 arrow_circle_right
             </span>

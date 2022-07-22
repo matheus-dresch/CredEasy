@@ -17,7 +17,7 @@ class ParcelaController extends Controller
 
         if ($parcela->numero != $proximaParcela) {
             flash("Você precisa pagar a parcela anterior primeiro.")->error();
-            return to_route('parcela.lista', $emprestimo->id);
+            return to_route('emprestimo.parcelas', $emprestimo->id);
             dd('oi');
         }
 
@@ -32,7 +32,7 @@ class ParcelaController extends Controller
         }
 
         flash("A parcela de número {$parcela->numero} foi paga.")->success();
-        return to_route('parcela.lista', $parcela->emprestimo_id);
+        return to_route('emprestimo.parcelas', $parcela->emprestimo_id);
     }
 
     public function lista(Emprestimo $emprestimo)

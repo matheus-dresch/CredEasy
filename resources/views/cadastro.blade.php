@@ -1,5 +1,5 @@
 <x-layout.form title="Cadastro" css="signup">
-        <form action="{{ route('cliente.store') }}" method="POST" class="form">
+        <form action="{{ route('cadastro.store') }}" method="POST" class="form">
             @csrf
             <h1>Olá! Seja muito bem-vindo ;) </h1>
             <p>Dados pessoais:</p>
@@ -104,7 +104,7 @@
                 <span class="error-message">Campo inválido</span>
             </div>
             <button class="submit-button" type="submit">Cadastrar</button>
-            <a href="/login">&#8250; Já sou cliente</a>
+            <a href="{{ route('login') }}">&#8250; Já sou cliente</a>
         </form>
         <script src="{{ asset("js/signup/focus.js") }}"></script>
         <script src="{{ asset("js/signup/valida.js") }}"></script>

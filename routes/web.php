@@ -1,12 +1,12 @@
 <?php
 
+use App\Http\Controllers\CadastroController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\EmprestimoController;
 use App\Http\Controllers\GestorController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ParcelaController;
-use App\Http\Controllers\RecoverController;
-use App\Http\Controllers\SignupController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,41 +21,56 @@ use Illuminate\Support\Facades\Route;
 */
 
 //! -----
+//? Rotas livres (sem middleware)
 
 Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/entrar', function () {
-    return view('entrar');
-})->name('login');
+Route::get('/cadastro', [CadastroController::class, 'index'])->name('cadastro.index');
+Route::post('/cadastro', [CadastroController::class, 'store'])->name('cadastro.store');
 
-Route::get('/cadastro', function () {
-    return view('cadastro');
-})->name('signup');
+Route::get('/entrar', [LoginController::class, 'index'])->name('login');
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+Route::post('/entrar', [LoginController::class, 'auth'])->name('login.auth');
+
 
 //! -----
+//? Rotas autenticadas CLIENTE (Autenticador)
 
-Route::resource('/cliente', ClienteController::class)
-    ->only(['index', 'store']);
+Route::middleware('auth')->group(function () {
 
-Route::resource('/gestor', GestorController::class)
-    ->only(['index']);
+    Route::get('/cliente', [ClienteController::class, 'index'])->name('cliente.index');
+    Route::get('/cliente/minha-conta', [ClienteController::class, 'conta'])->name('cliente.conta');
 
-Route::resource('/emprestimo', EmprestimoController::class)
-    ->only(['create', 'show', 'store']);
+    Route::get('/emprestimo/form', [EmprestimoController::class, 'form'])
+    ->name('emprestimo.form');
+    Route::get('/emprestimo/{emprestimo}', [EmprestimoController::class, 'show'])
+    ->name('emprestimo.show');
+    Route::get('/emprestimo/parcelas/{emprestimo}', [ParcelaController::class, 'lista'])
+        ->name('emprestimo.parcelas');
+    Route::get('/emprestimo/analisar/{emprestimo}', [EmprestimoController::class, 'analisar'])
+        ->name('emprestimo.analisar');
+    Route::post('/emprestimo', [EmprestimoController::class, 'store'])
+        ->name('emprestimo.store');
+    Route::patch('/emprestimo/atualizar/{emprestimo}', [EmprestimoController::class, 'atualizar'])
+        ->name('emprestimo.atualizar');
 
-//! ---
-//? Rotas personalizadas
+    Route::patch('parcela/{parcela}', [ParcelaController::class, 'pagaParcela'])
+        ->name('parcela.paga-parcela');
 
-Route::patch('/emprestimo/atualizar/{emprestimo}', [EmprestimoController::class, 'atualizar'])
-    ->name('emprestimo.atualizar');
+    Route::resource('/gestor', GestorController::class)
+        ->only(['index']);
 
-Route::get('/emprestimo/parcelas/{emprestimo}', [ParcelaController::class, 'lista'])
-    ->name('parcela.lista');
+});
 
-Route::get('/emprestimo/analisar/{emprestimo}', [EmprestimoController::class, 'analisar'])
-    ->name('emprestimo.analisar');
+//! -----
+//? Rotas autenticadas GESTOR (AutenticaGestor)
 
-Route::patch('parcela/{parcela}', [ParcelaController::class, 'pagaParcela'])
-    ->name('parcela.paga-parcela');
+Route::middleware('auth.gestor')->group(function () {
+    Route::resource('/gestor', GestorController::class)
+        ->only(['index']);
+
+    Route::get('/emprestimo/analisar/{emprestimo}', [EmprestimoController::class, 'analisar'])
+        ->name('emprestimo.analisar');
+});

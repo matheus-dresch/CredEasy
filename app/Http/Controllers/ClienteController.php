@@ -2,42 +2,50 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Middleware\Autenticador;
 use App\Http\Requests\SignupFormRequest;
 use App\Models\Cliente;
 use App\Models\Parcela;
-use App\Repositories\ClienteRepository;
+use App\Services\ClienteService;
+use Illuminate\Support\Facades\Auth;
 
 class ClienteController extends Controller
 {
 
-    public function __construct(private ClienteRepository $repository)
+    public function __construct(private ClienteService $service)
     {
-        $this->repository = $repository;
     }
 
     public function index()
     {
-        $cliente = Cliente::find('030.342.600-40')->with('emprestimos')->first();
+        /**
+         * @var Cliente $cliente
+         */
+        $cliente = Auth::user();
         $emprestimos = $cliente->emprestimos()->orderBy('data_solicitacao')->get();
 
-        $proximaParcela = Parcela::join('emprestimos', 'parcelas.emprestimo_id', '=', 'emprestimos.id')
-            ->join('clientes', 'emprestimos.cliente_cpf', '=', 'clientes.cpf')
-            ->where('parcelas.status', 'ABERTA')
-            ->select('parcelas.valor', 'parcelas.data_vencimento', 'parcelas.id', 'parcelas.status')
+        $proximaParcela = Parcela::select('parcelas.emprestimo_id', 'parcelas.data_vencimento', 'parcelas.valor')
+            ->join('emprestimos', 'parcelas.emprestimo_id', 'emprestimos.id')
+            ->where('cliente_cpf', $cliente->cpf)
+            ->where('parcelas.status', '!=', 'PAGA')
             ->orderBy('parcelas.data_vencimento')
+            ->limit(1)
             ->first();
+
+        $cliente->numerosTotais();
 
         return view('cliente.index')
             ->with('emprestimos', $emprestimos)
             ->with('cliente', $cliente)
-            ->with('parcela', $proximaParcela);
+            ->with('parcela', $proximaParcela)
+            ->with('estatisticas', $cliente->numerosTotais());
     }
 
-    public function store(SignupFormRequest $request)
+    public function conta()
     {
-        $clienteData = $request->all();
-        $this->repository->add($clienteData);
+        $cliente = Auth::user();
 
-        return to_route('cliente.index');
+        return view('cliente.conta')
+            ->with('cliente',  $cliente);
     }
 }

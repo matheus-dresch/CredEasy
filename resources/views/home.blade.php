@@ -39,7 +39,7 @@
                         <a href="{{ route('login') }}" class="btn btn-outline-light px-4 fw-bold">Entrar</a>
                     </li>
                     <li class="nav-item">
-                        <form action="{{ route('signup') }}" method="GET" class="d-flex" id="cadastroForm">
+                        <form action="{{ route('cadastro.index') }}" method="GET" class="d-flex" id="cadastroForm">
                             <input type="email" name="email" id="email" placeholder="Seu e-mail">
                             <button id="submitBtn" type="submit" class="btn btn-outline-purple rounded-end">Cadastrar</button>
                         </form>
@@ -60,7 +60,7 @@
                         Precisando de crédito?
                     </h2>
                     <p class="banner-text text-center text-light fs-4">Conte conosco!</p>
-                    <a class="btn btn-outline-purple d-block w-50 fw-bold" href="{{ route('signup') }}">Cadastrar</a>
+                    <a class="btn btn-outline-purple d-block w-50 fw-bold" href="{{ route('cadastro.index') }}">Cadastrar</a>
                 </article>
             </section>
             <section id="banner2" class="row main-row" style="max-width: 100vw;">

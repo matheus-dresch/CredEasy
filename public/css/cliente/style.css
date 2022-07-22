@@ -5,6 +5,11 @@ body {
     flex-direction: column;
 }
 
+.w-20 {
+    width: 20%!important;
+    overflow: hidden!important;
+}
+
 .side-btn {
     border-left: 0px solid rgb(98, 0, 255)
 }

@@ -4,58 +4,31 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\EmprestimoFormRequest;
 use App\Models\Emprestimo;
-use App\Models\Parcela;
-use DateInterval;
-use DateTimeImmutable;
+use App\Services\EmprestimoService;
+use DomainException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EmprestimoController extends Controller
 {
-    public function create()
+
+    public function __construct(private EmprestimoService $emprestimoService)
     {
-        return view('emprestimo.create');
     }
 
-    public function store(EmprestimoFormRequest $request)
+    //! Views
+    public function form()
     {
-        $emprestimoData = $request->all();
-
-        // Converte a renda que vem mascarada para um float (R$ 1200,50 -> 120050 -> 1200.50)
-        $valor = floatval(preg_replace('/[\D]/', '', $emprestimoData['valor'])) / 100;
-
-        if ($valor < 1000) {
-            return to_route('emprestimo.create')
-                ->withInput()
-                ->withErrors('O valor mínimo é de R$ 1000,00');
-        }
-
-        $emprestimoData['valor'] = $valor;
-
-        $emprestimoData['taxa_juros'] = 20;
-        $emprestimoData['data_solicitacao'] = now();
-        $emprestimoData['cliente_cpf'] = '030.342.600-40';
-        $emprestimoData['valor_final'] = $valor * 1.2;
-
-        $valorParcela = ($valor * 1.1) / $emprestimoData['qtd_parcelas'];
-
-        if ($valorParcela < 200) {
-            $valorFormatado = number_format($valorParcela, 2, '.', ',');
-            $msg = "Valor mínimo da parcela: R$ 200,00; Valor calculado: R$ $valorFormatado";
-
-            return to_route('emprestimo.create')
-                ->withInput()
-                ->withErrors($msg);
-        }
-
-        $emprestimo = Emprestimo::create($emprestimoData);
-
-        flash("O empréstimo '{$emprestimo->nome}' foi solicitado, agurde a aprovação.");
-
-        return to_route('cliente.index');
+        return view('emprestimo.form');
     }
 
     public function show(Emprestimo $emprestimo)
     {
+        if ($emprestimo->cliente_cpf != Auth::user()->cpf) {
+            flash("Você não tem permissão para acessar esse recurso.")->warning();
+            return to_route('cliente.index');
+        }
+
         return view('emprestimo.show')->with('emprestimo', $emprestimo);
     }
 
@@ -64,50 +37,36 @@ class EmprestimoController extends Controller
         return view('emprestimo.analisar')->with('emprestimo', $emprestimo)->with('cliente', $emprestimo->cliente);
     }
 
-    private function criaParcelas(Emprestimo $emprestimo)
+    //! Resources
+    public function store(EmprestimoFormRequest $request, EmprestimoService $emprestimoService)
     {
-        $qtdParcelas = $emprestimo->qtd_parcelas;
-        $valorParcela = $emprestimo->valor / $qtdParcelas;
+        $emprestimoData = $request->all();
 
-        $parcelas = [];
-        $dataVencimento = (new DateTimeImmutable())->add(new DateInterval('P1M'));
-        for ($i = 1; $i <= $qtdParcelas; $i++) {
-            $parcelas[] = [
-                'emprestimo_id' => $emprestimo->id,
-                'valor' => $valorParcela,
-                'numero' => $i,
-                'data_vencimento' => $dataVencimento
-            ];
-            $dataVencimento = $dataVencimento->add(new DateInterval('P1M'));
+        try {
+            $emprestimo = $emprestimoService->registra($emprestimoData);
+            flash("O empréstimo '{$emprestimo->nome}' foi solicitado, agurde a aprovação.");
+        } catch (DomainException $e) {
+            return redirect()->back()->withInput()->withErrors($e->getMessage());
         }
 
-        Parcela::insert($parcelas);
+        return to_route('cliente.index');
     }
 
     public function atualizar(Emprestimo $emprestimo, Request $request)
     {
         $request->validate([
-            'taxa' => ['numeric', 'min:10', 'max:20']
+            'taxa' => ['required', 'numeric', 'min:10', 'max:20'],
+            'status' => ['required', 'integer']
         ]);
 
-        if ($emprestimo->status != 'SOLICITADO') {
-            return to_route('emprestimo.analisar', $emprestimo->id)
-                ->withErrors('Este empréstimo não pode mais ser atualizado.');
+        $status = $request->status == 1 ? "APROVADO" : "REJEITADO";
+        try {
+            $this->emprestimoService->atualizar($emprestimo, $request->taxa, $status);
+        } catch (DomainException $e) {
+            return redirect()->back()->withErrors($e->getMessage());
         }
 
-        if (isset($request->taxa)) {
-            $emprestimo->taxa_juros = $request->taxa;
-            $emprestimo->valor_final = $emprestimo->valor * ( $request->taxa / 100 + 1);
-            flash('A taxa foi atualizada.');
-        } else if (isset($request->status)) {
-            $emprestimo->status = $request->status === 'on' ? 'APROVADO' : 'REJEITADO';
-
-            if ($request->status === 'on') {
-                $this->criaParcelas($emprestimo);
-            }
-        }
-
-        $emprestimo->save();
-        return to_route('emprestimo.analisar', $emprestimo->id);
+        flash("O empréstimo foi atualizado com sucesso.");
+        return redirect()->back();
     }
 }
