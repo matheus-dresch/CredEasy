@@ -5,13 +5,12 @@ namespace App\Models;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Sanctum\HasApiTokens;
 
 class Cliente extends Model implements Authenticatable
 {
-    use HasFactory;
+    use HasFactory, HasApiTokens;
 
-    protected $primaryKey = 'cpf';
-    protected $keyType = 'string';
     protected $fillable = [
         'cpf',
         'nome',

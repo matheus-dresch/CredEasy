@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Middleware\Autenticador;
-use App\Http\Requests\SignupFormRequest;
 use App\Models\Cliente;
 use App\Models\Parcela;
 use App\Services\ClienteService;
@@ -26,7 +24,7 @@ class ClienteController extends Controller
 
         $proximaParcela = Parcela::select('parcelas.emprestimo_id', 'parcelas.data_vencimento', 'parcelas.valor')
             ->join('emprestimos', 'parcelas.emprestimo_id', 'emprestimos.id')
-            ->where('cliente_cpf', $cliente->cpf)
+            ->where('cliente_id', $cliente->id)
             ->where('parcelas.status', '!=', 'PAGA')
             ->orderBy('parcelas.data_vencimento')
             ->limit(1)

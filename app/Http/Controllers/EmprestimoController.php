@@ -24,7 +24,7 @@ class EmprestimoController extends Controller
 
     public function show(Emprestimo $emprestimo)
     {
-        if ($emprestimo->cliente_cpf != Auth::user()->cpf) {
+        if ($emprestimo->cliente_id != Auth::user()->cpf) {
             flash("Você não tem permissão para acessar esse recurso.")->warning();
             return to_route('cliente.index');
         }
@@ -68,5 +68,13 @@ class EmprestimoController extends Controller
 
         flash("O empréstimo foi atualizado com sucesso.");
         return redirect()->back();
+    }
+
+    public function emprestimos()
+    {
+        $emprestimos = Emprestimo::all();
+        $emprestimosJson = json_decode($emprestimos);
+
+        return response()->json($emprestimosJson);
     }
 }

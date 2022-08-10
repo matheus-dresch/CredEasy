@@ -18,7 +18,7 @@ class Emprestimo extends Model
         'data_solicitacao',
         'data_quitacao',
         'status',
-        'cliente_cpf',
+        'cliente_id',
         'qtd_parcelas'
     ];
 
@@ -39,5 +39,15 @@ class Emprestimo extends Model
         return $this->parcelas
             ->filter(fn ($parcela) => $parcela->status === "PAGA")
             ->count();
+    }
+
+    public function temParcelas(): bool
+    {
+        return $this->parcelas()->exists();
+    }
+
+    public function proximaParcela()
+    {
+        return $this->parcelas()->where('status', '!=' ,'PAGA')->first()->numero;
     }
 }

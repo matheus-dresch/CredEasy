@@ -27,7 +27,7 @@ class EmprestimoService
 
         $emprestimoData['taxa_juros'] = 20;
         $emprestimoData['data_solicitacao'] = now();
-        $emprestimoData['cliente_cpf'] = Auth::user()->cpf;
+        $emprestimoData['cliente_id'] = Auth::user()->id;
         $emprestimoData['valor_final'] = $valor * 1.2;
 
         $valorParcela = ($valor * 1.1) / $emprestimoData['qtd_parcelas'];
@@ -86,7 +86,7 @@ class EmprestimoService
 
         if ($emprestimo->status != "SOLICITADO") {
             throw new DomainException("O empréstimo já foi '{$emprestimo->status}' e não pode mais ser atualizado.");
-        } else if ($emprestimo->cliente_cpf === Auth::user()->cpf) {
+        } else if ($emprestimo->cliente_id === Auth::user()->cpf) {
             throw new DomainException("Você não pode atualizar seu próprio empréstimo.");
         }
     }
