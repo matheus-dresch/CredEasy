@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Cliente;
+use App\Services\ClienteService;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,10 +16,26 @@ class ClienteController extends Controller
         return Cliente::all();
     }
 
-    public function um(int $cliente)
+    public function dados()
     {
-        $clienteModel = Cliente::find($cliente);
-        return $clienteModel;
+        /** @var Cliente $cliente */
+        $cliente = Auth::user();
+
+        $ultimoEmprestimo = $cliente->emprestimos()->first();
+        $proximaParcela = $cliente->proximaParcela();
+        $dados = $cliente->numerosTotais();
+
+        return response()->json([
+            'cliente' => $cliente,
+            'emprestimos' => $cliente->emprestimos,
+            'ultimo_emprestimo' => $ultimoEmprestimo,
+            'proxima_parcela' => $proximaParcela,
+            'dados' => [
+                'total_emprestado' => $dados['emprestado'],
+                'total_pago' => $dados['pago'],
+                'qtd_emprestimos' => $dados['emprestimos']
+            ]
+        ]);
     }
 
     public function emprestimos(Cliente $cliente)
@@ -33,16 +51,25 @@ class ClienteController extends Controller
         ]);
 
         if (!Auth::attempt(['email' => $loginData['email'], 'password' => $loginData['senha']])) {
-            return response('', 401);
+            return response()->json(['message' => 'Usuário ou senha inválidos'], 401);;
         }
 
+        /** @var \App\Models\Cliente $user */
         $user = Auth::user();
-        // $token =  $user->createToken('token');
+        $token =  $user->createToken('token');
 
         return response()->json([
-            // 'token' => $token->plainTextToken,
+            'token' => $token->plainTextToken,
             'nome' => $user->nome,
             'gestor' => $user->tipo === 'GESTOR'
         ]);
+    }
+
+    public function cadastro(Request $request, ClienteService $clienteService)
+    {
+        $clienteData = $request->values;
+        $clienteService->registra($clienteData);
+
+        return response('', 201);
     }
 }

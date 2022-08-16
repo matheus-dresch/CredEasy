@@ -10,15 +10,6 @@ body {
     overflow: hidden!important;
 }
 
-.side-btn {
-    border-left: 0px solid rgb(98, 0, 255)
-}
-
-.side-btn:hover {
-    border-left: 0.5rem solid rgb(98, 0, 255);
-    padding-left: 0.5rem!important;
-    transition: .5s;
-}
 
 .perfil-container {
     background-color: #5555;

@@ -2,8 +2,6 @@
 
 use App\Http\Controllers\Api\ClienteController;
 use App\Http\Controllers\Api\EmprestimoController;
-use App\Models\Emprestimo;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,12 +25,14 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/emprestimos', [EmprestimoController::class, 'todos']);
     Route::post('/emprestimos', [EmprestimoController::class, 'registra']);
     Route::patch('/emprestimos/{id}', [EmprestimoController::class, 'analisa']);
-    
+
     Route::patch('/parcela', [EmprestimoController::class, 'pagaParcela']);
-    
+
+    Route::get('/cliente', [ClienteController::class, 'dados']);
     Route::get('/clientes', [ClienteController::class, 'todos']);
-    Route::get('/clientes/{cliente}', [ClienteController::class, 'um']);
     Route::get('/clientes/{cliente}/emprestimos', [ClienteController::class, 'emprestimos']);
+
 });
 
 Route::post('/login', [ClienteController::class, 'auth']);
+Route::post('/cadastro', [ClienteController::class, 'cadastro']);

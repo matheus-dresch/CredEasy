@@ -17,7 +17,7 @@ class ClienteService
 
         [
             'cep' => $cep,
-            'estado' => $estado,
+            'uf' => $estado,
             'cidade' => $cidade,
             'bairro' => $bairro,
             'rua' => $rua,

@@ -48,6 +48,8 @@ class Emprestimo extends Model
 
     public function proximaParcela()
     {
-        return $this->parcelas()->where('status', '!=' ,'PAGA')->first()->numero;
+        $proximaParcela = $this->parcelas()->where('status', '!=' ,'PAGA')->first();
+
+        return $proximaParcela? $proximaParcela->numero : null;
     }
 }

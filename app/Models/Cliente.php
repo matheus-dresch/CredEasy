@@ -14,7 +14,7 @@ class Cliente extends Model implements Authenticatable
     protected $fillable = [
         'cpf',
         'nome',
-        'telefone',
+        'celular',
         'endereco',
         'profissao',
         'renda',
@@ -34,7 +34,7 @@ class Cliente extends Model implements Authenticatable
     {
         $qtdEmprestimos = $this->emprestimos->count();
 
-        $emprestimos = $this->emprestimos->filter(fn ($emprestimo) => $emprestimo->status === "APROVADO");
+        $emprestimos = $this->emprestimos->filter(fn ($emprestimo) => in_array($emprestimo->status, [ 'APROVADO', 'QUITADO' ]));
         $totalEmp = $emprestimos->reduce(fn ($acum, $item) => $acum + $item['valor']);
 
         $totalPago = 0;
@@ -50,15 +50,23 @@ class Cliente extends Model implements Authenticatable
         }
 
         return [
-            'emprestado' => number_format($totalEmp, 2, ',', '.'),
-            'pago' => number_format($totalPago, 2, ',', '.'),
+            'emprestado' => $totalEmp,
+            'pago' => $totalPago,
             'emprestimos' => $qtdEmprestimos
         ];
     }
 
-    public function primeiroNome(): string
+    public function proximaParcela()
     {
-        return explode(' ', $this->nome)[0];
+        $parcela = Parcela::select('parcelas.emprestimo_id', 'parcelas.data_vencimento', 'parcelas.valor')
+            ->join('emprestimos', 'parcelas.emprestimo_id', 'emprestimos.id')
+            ->where('cliente_id', $this->id)
+            ->where('parcelas.status', '!=', 'PAGA')
+            ->orderBy('parcelas.data_vencimento')
+            ->limit(1)
+            ->first();
+
+        return $parcela;
     }
 
     public function getAuthIdentifierName()
