@@ -5,10 +5,9 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EmprestimoFormRequest;
 use App\Models\Emprestimo;
-use App\Models\Parcela;
 use App\Services\EmprestimoService;
-use DateInterval;
-use DateTimeImmutable;
+use App\Traits\ApiResponse;
+use App\Traits\ServiceTrait;
 use DomainException;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
@@ -16,84 +15,69 @@ use Illuminate\Support\Facades\Auth;
 
 class EmprestimoController extends Controller
 {
-    public function todos(Request $request)
-    {
-        if ($request->query('todos') && $request->user()->tipo === 'GESTOR') {
-            $emprestimosParaAnalise = Emprestimo::where('status', 'SOLICITADO')
-                ->where('cliente_id', '!=', $request->user()->id)
-                ->get();
 
-            return response()->json([
-                'emprestimos_analise' => $emprestimosParaAnalise,
-                'emprestimos_todos' => Emprestimo::all()
+    use ServiceTrait, ApiResponse;
+
+    public function detalhes(int $emprestimoId, Request $request)
+    {
+        $emprestimo = Emprestimo::find($emprestimoId);
+        if (!$emprestimo) return $this->respostaErro("O empréstimo não existe", 404);
+
+        if ($request->query('cliente')) {
+            // if (Auth::user()->tipo != "GESTOR") return $this->respostaErro("Você não tem permissão para acessar este recurso", 403);
+
+            return $this->respostaSucesso([
+                'emprestimo' => $emprestimo,
+                'cliente' => $emprestimo->cliente
             ]);
         }
 
-        return $request->user()->emprestimos;
+        return $this->respostaSucesso([
+            'emprestimo' => $emprestimo,
+            'tem_parcelas' => $emprestimo->temParcelas()
+        ]);
     }
 
-    public function um(int $emprestimoId)
+    public function lista(Request $request)
     {
+        if (!$request->query('gestor')) return Auth::user()->emprestimos;
+        if (!Auth::user()->tipo === 'GESTOR') return $this->respostaErro('Você não tem permissão para acessar esse recurso.', 403);
 
-        $emprestimo = Emprestimo::with('cliente')->find($emprestimoId);
+        $emprestimosSolicitados = Emprestimo::where('status', 'SOLICITADO')
+            ->where('cliente_id', '!=', Auth::user()->id)
+            ->get();
 
-        if (!$emprestimo) {
-            return response('', 404);
-        }
-
-        $emprestimo->tem_parcelas = $emprestimo->temParcelas();
-
-        return $emprestimo;
+        return $this->respostaSucesso([
+            'emprestimos_solicitados' => $emprestimosSolicitados
+        ]);
     }
 
     public function parcelas(int $id)
     {
         $emprestimo = Emprestimo::with('parcelas')->find($id);
 
-        if ($emprestimo->cliente_id != Auth::user()->id) return response([
-            'message' => 'Você não pode acessar as parcelas de outra pessoa.'
-        ], 403);
+        if (!$emprestimo || !$emprestimo->temParcelas()) return $this->respostaErro("O empréstimo não existe ou não tem parcelas", 404);
 
-        if ($emprestimo && $emprestimo->temParcelas()) {
-            $parcelas = $emprestimo->parcelas;
+        $this->emprestimoService()->checaParcelasAtrasadas($id);
 
-            return response()->json([
-                'parcelas' => $parcelas,
-                'emprestimo' => $emprestimo,
-                'dados' => [
-                    'proxima_parcela' => $emprestimo->proximaParcela()
-                ]
-            ]);
-        } else {
-            return response('', 404);
-        };
+        return $this->respostaSucesso([
+            'emprestimo' => $emprestimo->id,
+            'parcelas' => $emprestimo->parcelas,
+            'proxima_parcela' => $emprestimo->proximaParcela()
+        ]);
     }
 
-    public function pagaParcela(Request $request)
+    public function pagaParcela(int $id)
     {
-        $parcela = Parcela::with('emprestimo')->find($request->parcela);
-        $emprestimo = $parcela->emprestimo;
-
-        if ($emprestimo->cliente_id != Auth::user()->id) throw new AuthorizationException('Voce nao pode pagar a parcela de outra pessoa');
-
-        if ($parcela->numero != $emprestimo->proximaParcela()) {
-            return response('', 401);
+        try {
+            $parcela = $this->parcelaService()->pagaParcela($id);
+        } catch (AuthorizationException $err) {
+            return $this->respostaErro($err->getMessage(), 403);
+        } catch (DomainException $err) {
+            return $this->respostaErro($err->getMessage(), 422);
         }
 
-        $parcela->status = 'PAGA';
-        $parcela->data_pagamento = now();
-        $parcela->save();
-
-        if ($parcela->numero === $emprestimo->qtd_parcelas) {
-            $emprestimo->status = 'QUITADO';
-            $emprestimo->data_quitacao = now();
-            $emprestimo->save();
-        }
-
-        return response([
-            'parcela' => $parcela,
-            'message' => 'Parcela #' . $parcela->numero . ' paga com sucesso.'
-        ], 200);
+        return $this->respostaSucesso(['parcela' => $parcela], "Parcela {$parcela->numero} paga com sucesso!");
     }
 
     public function registra(EmprestimoFormRequest $request, EmprestimoService $emprestimoService)
@@ -102,48 +86,30 @@ class EmprestimoController extends Controller
 
         try {
             $emprestimo = $emprestimoService->registra($emprestimoData);
-            return response([
-                'emprestimo' => $emprestimo,
-                'message' => 'Empréstimo solicitado com sucesso, aguarde ele ser analisado'
-            ], 201);
-        } catch (DomainException $e) {
-            return response($e, 422);
+            return $this->respostaSucesso(['emprestimo' => $emprestimo], "O empréstimo {$emprestimo->nome} foi solicitado com sucesso", 201);
+        } catch (DomainException $err) {
+            return $this->respostaErro($err->getMessage(), 422);
         }
     }
 
-    public function analisa(int $id, Request $request)
+    public function analisa(int $id, Request $request, EmprestimoService $emprestimoService)
     {
+        $request->validate([
+            'taxa' => ['required', 'numeric', 'min:10', 'max:20'],
+            'status' => ['required', 'boolean']
+        ]);
+
         $emprestimo = Emprestimo::find($id);
 
-        if ($emprestimo->status != 'SOLICITADO') {
-            throw new AuthorizationException();
+        if (!$emprestimo) return $this->respostaErro("O empréstimo não existe", 404);
+
+        try {
+            $emprestimo = $emprestimoService->atualizar($emprestimo, $request->taxa, $request->status);
+            return $this->respostaSucesso(['emprestimo' => $emprestimo], "O empréstimo foi atualizado com sucesso");
+        } catch (AuthorizationException $err) {
+            return $this->respostaErro($err->getMessage(), 403);
+        } catch (DomainException $err) {
+            return $this->respostaErro($err->getMessage(), 422);
         }
-
-        $emprestimo->status = $request->status ? 'APROVADO' : 'REJEITADO';
-        $emprestimo->save();
-
-        if ($emprestimo->status === 'APROVADO') $this->criaParcelas($emprestimo);
-
-        return response($emprestimo, 200);
-    }
-
-    private function criaParcelas(Emprestimo $emprestimo)
-    {
-        $qtdParcelas = $emprestimo->qtd_parcelas;
-        $valorParcela = $emprestimo->valor_final / $qtdParcelas;
-
-        $parcelas = [];
-        $dataVencimento = (new DateTimeImmutable())->add(new DateInterval('P1M'));
-        for ($i = 1; $i <= $qtdParcelas; $i++) {
-            $parcelas[] = [
-                'emprestimo_id' => $emprestimo->id,
-                'valor' => $valorParcela,
-                'numero' => $i,
-                'data_vencimento' => $dataVencimento
-            ];
-            $dataVencimento = $dataVencimento->add(new DateInterval('P1M'));
-        }
-
-        Parcela::insert($parcelas);
     }
 }

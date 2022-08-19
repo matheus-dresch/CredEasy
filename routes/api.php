@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\ClienteController;
 use App\Http\Controllers\Api\EmprestimoController;
+use App\Http\Controllers\Api\LoginController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,21 +19,22 @@ use Illuminate\Support\Facades\Route;
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
+Route::get('/emprestimos/{id}', [EmprestimoController::class, 'detalhes']);
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/emprestimos/{id}', [EmprestimoController::class, 'um']);
-    Route::get('/emprestimos/{id}/parcelas', [EmprestimoController::class, 'parcelas']);
-    Route::get('/emprestimos', [EmprestimoController::class, 'todos']);
-    Route::post('/emprestimos', [EmprestimoController::class, 'registra']);
+    
     Route::patch('/emprestimos/{id}', [EmprestimoController::class, 'analisa']);
+    Route::post('/emprestimos', [EmprestimoController::class, 'registra']);
+    
+    Route::get('/emprestimos/{id}/parcelas', [EmprestimoController::class, 'parcelas']);
+    Route::get('/emprestimos', [EmprestimoController::class, 'lista']);
 
-    Route::patch('/parcela', [EmprestimoController::class, 'pagaParcela']);
+    Route::patch('/parcela/{id}', [EmprestimoController::class, 'pagaParcela']);
 
-    Route::get('/cliente', [ClienteController::class, 'dados']);
-    Route::get('/clientes', [ClienteController::class, 'todos']);
+    Route::get('/cliente', [ClienteController::class, 'detalhes']);
     Route::get('/clientes/{cliente}/emprestimos', [ClienteController::class, 'emprestimos']);
 
 });
 
-Route::post('/login', [ClienteController::class, 'auth']);
+Route::post('/login', [LoginController::class, 'auth']);
 Route::post('/cadastro', [ClienteController::class, 'cadastro']);

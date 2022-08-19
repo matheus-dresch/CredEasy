@@ -3,91 +3,103 @@
 namespace App\Services;
 
 use App\Models\Emprestimo;
-use App\Models\Parcela;
-use DateInterval;
-use DateTimeImmutable;
+use App\Traits\ServiceTrait;
 use DomainException;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Support\Facades\Auth;
 
 class EmprestimoService
 {
+    use ServiceTrait;
 
+    /**
+     * @throws DomainException CODE 0 = VALOR MINIMO EMPRESTIMO
+     * @throws DomainException CODE 1 = VALOR MAXIMO EMPRESTIMO
+     * @throws DomainException CODE 2 = VALOR MINIMO PARCELA
+     */
     public function registra(array $emprestimoData): Emprestimo
     {
-        // Converte a renda que vem mascarada para um float (R$ 1200,50 -> 120050 -> 1200.50)
+        $VALOR_MAXIMO_EMPRESTIMO = 100000000;
+        $VALOR_MINIMO_EMPRESTIMO = 1000;
+        $VALOR_MINIMO_PARCELA = 200;
+        $TAXA_JUROS_MAXIMA = 20;
+        $TAXA_JUROS_MINIMA = 10;
+
+        //? Converte a renda que vem mascarada para um float (R$ 1200,50 -> 120050 -> 1200.50)
         $valor = floatval(preg_replace('/[\D]/', '', $emprestimoData['valor'])) / 100;
 
-        if ($valor < 1000) {
-            throw new DomainException("O valor do empréstimo deve ser de no mínimo R$ 1.000,00");
-        } else if ($valor > 1000000000) {
-            throw new DomainException("O valor do empréstimo deve ser de no máximo R$ 1.000.000.000,00");
-        }
+        if ($valor < $VALOR_MINIMO_EMPRESTIMO) throw new DomainException("O valor mínimo do empréstimo é de R$ {$this->formataDinheiro($VALOR_MINIMO_EMPRESTIMO)}");
+        if ($valor > $VALOR_MAXIMO_EMPRESTIMO) throw new DomainException("O valor máximo do empréstimo é de R$ {$this->formataDinheiro($VALOR_MAXIMO_EMPRESTIMO)}");
 
+        //? Inicializa os valores padrão do empréstimo
         $emprestimoData['valor'] = $valor;
-
-        $emprestimoData['taxa_juros'] = 20;
+        $emprestimoData['taxa_juros'] = $TAXA_JUROS_MAXIMA;
         $emprestimoData['data_solicitacao'] = now();
         $emprestimoData['cliente_id'] = Auth::user()->id;
-        $emprestimoData['valor_final'] = $valor * 1.2;
+        $emprestimoData['valor_final'] = $emprestimoData['valor'] * $TAXA_JUROS_MAXIMA / 100 + 1;
 
-        $valorParcela = ($valor * 1.1) / $emprestimoData['qtd_parcelas'];
-
-        if ($valorParcela < 200) {
-            $valorFormatado = number_format($valorParcela, 2, '.', ',');
-            $msg = "Valor mínimo da parcela: R$ 200,00; Valor calculado: R$ $valorFormatado";
-
-            throw new DomainException($msg);
-        }
+        $valorMinimo = $valor * ($TAXA_JUROS_MINIMA / 100 + 1);
+        $valorParcela = $valorMinimo / $emprestimoData['qtd_parcelas'];
+        if ($valorParcela < $VALOR_MINIMO_PARCELA) throw new DomainException("O valor mínimo da parcela é de R$ {$VALOR_MINIMO_PARCELA}");
 
         $emprestimo = Emprestimo::create($emprestimoData);
 
         return $emprestimo;
     }
 
-    private function criaParcelas(Emprestimo $emprestimo)
-    {
-        $qtdParcelas = $emprestimo->qtd_parcelas;
-        $valorParcela = $emprestimo->valor / $qtdParcelas;
-
-        $parcelas = [];
-        $dataVencimento = (new DateTimeImmutable())->add(new DateInterval('P1M'));
-        for ($i = 1; $i <= $qtdParcelas; $i++) {
-            $parcelas[] = [
-                'emprestimo_id' => $emprestimo->id,
-                'valor' => $valorParcela,
-                'numero' => $i,
-                'data_vencimento' => $dataVencimento
-            ];
-            $dataVencimento = $dataVencimento->add(new DateInterval('P1M'));
-        }
-
-        Parcela::insert($parcelas);
-    }
-
-    public function atualizar(Emprestimo $emprestimo, float $taxa, string $status)
+    public function atualizar(Emprestimo $emprestimo, float $taxa, bool $status): Emprestimo
     {
         $this->validaAtualizacao($emprestimo);
 
-        $emprestimo->status = $status;
-        $emprestimo->taxa_juros = $taxa;
+        if ($status) return $this->aprovaEmprestimo($emprestimo, $taxa);
+        
+        $emprestimo->status = "REJEITADO";
+        $emprestimo->save();
 
-        if ($status === "APROVADO") {
-            $this->criaParcelas($emprestimo);
-        }
-
-        $taxaJuros = 1 + ($taxa / 100);
-        $emprestimo->valor_final = $emprestimo->valor * $taxaJuros;
-
-        return $emprestimo->save();
+        return $emprestimo;
     }
 
-    private function validaAtualizacao(Emprestimo $emprestimo)
+    private function aprovaEmprestimo(Emprestimo $emprestimo, float $taxa)
     {
+        $taxaJuros = 1 + ($taxa / 100);
+        
+        $emprestimo->taxa_juros = $taxa;
+        $emprestimo->status = "APROVADO";
+        $emprestimo->valor_final = $emprestimo->valor * $taxaJuros;
+        $emprestimo->save();
 
-        if ($emprestimo->status != "SOLICITADO") {
-            throw new DomainException("O empréstimo já foi '{$emprestimo->status}' e não pode mais ser atualizado.");
-        } else if ($emprestimo->cliente_id === Auth::user()->cpf) {
-            throw new DomainException("Você não pode atualizar seu próprio empréstimo.");
+        $this->parcelaService()->criaParcelas(
+            $emprestimo->id, 
+            $emprestimo->valor_final, 
+            $emprestimo->qtd_parcelas
+        );
+
+        return $emprestimo;
+    }
+
+    private function validaAtualizacao(Emprestimo $emprestimo): void
+    {
+        if (Auth::user()->tipo != "GESTOR") throw new AuthorizationException("Você não tem permissão para atualizar este empréstimo");
+        if ($emprestimo->status != "SOLICITADO") throw new DomainException("O empréstimo não pode mais ser atualizado");
+        if ($emprestimo->cliente_id === Auth::user()->cpf) throw new AuthorizationException("Você não pode atualizar seu próprio empréstimo");
+    }
+
+    public function checaParcelasAtrasadas(Int $id)
+    {
+        $emprestimo = Emprestimo::find($id);
+        $parcelas = $emprestimo->parcelas()->where('status', 'ABERTA')->get();
+
+        foreach ($parcelas as $parcela) {
+            if ($parcela->data_vencimento < now()) {
+                $this->parcelaService()->atualizaParcela($parcela);
+            }
         }
+
+        return;
+    }
+
+    private function formataDinheiro(int $valor): string
+    {
+        return number_format($valor, 2, ',', '.');
     }
 }

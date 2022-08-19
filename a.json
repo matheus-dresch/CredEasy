@@ -1,0 +1,31 @@
+{
+    "status": "Sucesso",
+    "message": "",
+    "data": {
+        "emprestimo": {
+            "id": 24,
+            "nome": "nowend",
+            "valor": 2343.24,
+            "valor_final": 2811.89,
+            "taxa_juros": 20,
+            "data_solicitacao": "2022-08-17T17:19:18.000000Z",
+            "data_quitacao": null,
+            "status": "APROVADO",
+            "qtd_parcelas": 12,
+            "cliente_id": 2,
+            "cliente": {
+                "id": 2,
+                "cpf": "560.774.400-00",
+                "nome": "Elzira silva",
+                "celular": "(18) 9 2372-9302",
+                "endereco": "RS, Nova Petr\u00f3polis - 95150-000, testadores, rua do teste, 7878",
+                "profissao": "Testadora",
+                "renda": 7878.78,
+                "email": "elzira@email.com",
+                "senha": "$argon2i$v=19$m=65536,t=4,p=1$dzg3NVRLbm5ock4xTjZJMw$FMga3sGBy0lPnZ4Q4GyiokyPlRpqCDLCuW1jW46OEF0",
+                "tipo": "CLIENTE"
+            }
+        },
+        "tem_parcelas": true
+    }
+}

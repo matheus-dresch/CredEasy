@@ -25,37 +25,42 @@ class Cliente extends Model implements Authenticatable
 
     public $timestamps = false;
 
+    protected $hidden = ['senha', 'emprestimos'];
+
+    protected $appends = ['total_pago', 'total_emprestado', 'quantidade_emprestimos'];
+
     public function emprestimos()
     {
         return $this->hasMany(Emprestimo::class);
     }
 
-    public function numerosTotais()
+    public function getTotalPagoAttribute(): float
     {
-        $qtdEmprestimos = $this->emprestimos->count();
-
-        $emprestimos = $this->emprestimos->filter(fn ($emprestimo) => in_array($emprestimo->status, [ 'APROVADO', 'QUITADO' ]));
-        $totalEmp = $emprestimos->reduce(fn ($acum, $item) => $acum + $item['valor']);
-
         $totalPago = 0;
-        $totalEmp = 0;
-        foreach ($emprestimos as $emprestimo) {
-            $totalEmp += $emprestimo->valor;
+        
+        foreach ($this->emprestimos as $emprestimo) {
+            if (! $emprestimo->parcelas()->exists()) continue;
 
-            $parcelasPagas = $emprestimo->parcelas->filter(fn ($parcela) => $parcela->status === "PAGA");
-
-            foreach ($parcelasPagas as $parcela) {
-                $totalPago += $parcela->valor;
+            foreach ($emprestimo->parcelas as $parcela) {
+                if ($parcela->status === "PAGA") $totalPago += $parcela->valor;
             }
         }
 
-        return [
-            'emprestado' => $totalEmp,
-            'pago' => $totalPago,
-            'emprestimos' => $qtdEmprestimos
-        ];
+        return $totalPago;
     }
 
+    public function getQuantidadeEmprestimosAttribute(): int
+    {
+        return $this->emprestimos->count();
+    }
+
+    public function getTotalEmprestadoAttribute(): float
+    {
+        $totalPago = $this->emprestimos->reduce(fn ($acum, $item) => $acum + $item->valor);
+
+        return $totalPago;
+    }
+    
     public function proximaParcela()
     {
         $parcela = Parcela::select('parcelas.emprestimo_id', 'parcelas.data_vencimento', 'parcelas.valor')

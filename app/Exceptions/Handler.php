@@ -2,11 +2,14 @@
 
 namespace App\Exceptions;
 
+use App\Traits\ApiResponse;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
 
 class Handler extends ExceptionHandler
 {
+    use ApiResponse;
+
     /**
      * A list of exception types with their corresponding custom log levels.
      *
@@ -49,9 +52,7 @@ class Handler extends ExceptionHandler
 
         $this->renderable(function (\Illuminate\Auth\AuthenticationException $e, $request) {
             if ($request->is('api/*')) {
-                return response()->json([
-                    'message' => 'Token invalido'
-                ], 401);
+                return $this->respostaErro("Você precisa estar autenticado para acessar este recurso", 401);
             }
         });
     }

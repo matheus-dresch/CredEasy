@@ -46,6 +46,11 @@ class Emprestimo extends Model
         return $this->parcelas()->exists();
     }
 
+    public function temParcelaAtrasada(): bool
+    {
+        return $this->parcelas()->where('status', 'ATRASADA')->get() ? true : false;
+    }
+
     public function proximaParcela()
     {
         $proximaParcela = $this->parcelas()->where('status', '!=' ,'PAGA')->first();
